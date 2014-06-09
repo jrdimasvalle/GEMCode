@@ -37,7 +37,7 @@ if scenario is 1 or scenario is 2:
 elif scenario is 3:
     process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:upgradePLS3', '')    
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
 
@@ -166,6 +166,8 @@ process.l1extraParticles.centralBxOnly = cms.bool(True)
 process.l1extraParticles.produceMuonParticles = cms.bool(True)
 process.l1extraParticles.produceCaloParticles = cms.bool(False)
 process.l1extraParticles.ignoreHtMiss = cms.bool(False)
+tmbp=process.simCscTriggerPrimitiveDigis.tmbSLHC
+tmbp.tmbDropUsedAlcts = cms.bool(True)
 
 ## messages
 print

@@ -172,7 +172,7 @@ tmbp.tmbCrossBxAlgorithm = cms.uint32(0)
 tmbp.matchEarliestClctME11Only = cms.bool(False)
 tmbp.tmbDropUsedClcts=cms.bool(False)
 tmbp.clctToAlct = cms.bool(False)
-
+tmbp.tmbDropUsedAlcts = cms.bool(True)
 tmbp.matchTrigWindowSize = cms.uint32(3)
 clctp=process.simCscTriggerPrimitiveDigis.clctSLHC
 clctp.clctUseCorrectedBx = cms.bool(True)
