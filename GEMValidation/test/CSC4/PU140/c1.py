@@ -68,7 +68,7 @@ matching.tfCand.input = ""
 matching.gmtCand.input = ""
 matching.l1Extra.input = ""
 """
-doGem = True
+doGem = False
 if doGem:
   matching.cscSimHit.minNHitsChamber = 3
   matching.cscStripDigi.minNHitsChamber = 3
