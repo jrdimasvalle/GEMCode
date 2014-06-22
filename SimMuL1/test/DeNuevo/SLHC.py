@@ -166,9 +166,10 @@ process.l1extraParticles.centralBxOnly = cms.bool(True)
 process.l1extraParticles.produceMuonParticles = cms.bool(True)
 process.l1extraParticles.produceCaloParticles = cms.bool(False)
 process.l1extraParticles.ignoreHtMiss = cms.bool(False)
+
 tmbp=process.simCscTriggerPrimitiveDigis.tmbSLHC
-tmbp.tmbDropUsedAlcts = cms.bool(True)
-tmbp.matchEarliestAlctME11Only = cms.bool(True)
+tmbp.tmbDropUsedAlcts = cms.bool(False)
+tmbp.matchEarliestAlctME11Only = cms.bool(False)
 ## messages
 print
 print 'Input files:'

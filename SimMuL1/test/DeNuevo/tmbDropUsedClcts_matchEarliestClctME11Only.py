@@ -172,9 +172,9 @@ tmbp.tmbCrossBxAlgorithm = cms.uint32(0)
 tmbp.matchEarliestClctME11Only = cms.bool(False)
 tmbp.tmbDropUsedClcts=cms.bool(False)
 tmbp.clctToAlct = cms.bool(False)
-tmbp.tmbDropUsedAlcts = cms.bool(True)
+#tmbp.tmbDropUsedAlcts = cms.bool(True)
 tmbp.matchTrigWindowSize = cms.uint32(3)
-tmbp.matchEarliestAlctME11Only = cms.bool(True)
+#tmbp.matchEarliestAlctME11Only = cms.bool(True)
 clctp=process.simCscTriggerPrimitiveDigis.clctSLHC
 clctp.clctUseCorrectedBx = cms.bool(True)
 
@@ -192,6 +192,8 @@ alctp.alctGhostCancellationSideQuality = cms.bool(True)
 alctp.alctGhostCancellationBxDepth = cms.int32(1)
 
 #process.simCscTriggerPrimitiveDigis.commonParam.disableME42 = cms.bool(True)
+tmbp.tmbDropUsedAlcts = cms.bool(False)
+tmbp.matchEarliestAlctME11Only = cms.bool(False)
 ## messages
 print
 print 'Input files:'
