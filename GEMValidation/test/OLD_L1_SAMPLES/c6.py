@@ -65,7 +65,7 @@ process.GEMCSCAnalyzer = cms.EDAnalyzer("GEMCSCAnalyzer",
     simTrackMatching = SimTrackMatching
 )
 matching = process.GEMCSCAnalyzer.simTrackMatching
-matching.simTrack.minPt = 10
+matching.simTrack.minPt = 1.5
 matching.gemRecHit.input = ""
 """
 matching.cscTfTrack.input = ""

@@ -34,7 +34,7 @@ events=-1
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(events)
 )
-outputFileName = 'hp_CMSSW14_usingL1SLHC7_'   + suffix + '_eff.root'
+outputFileName = 'hp_July7_'   + suffix + '_eff.root'
 
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string(outputFileName)
@@ -65,7 +65,7 @@ process.GEMCSCAnalyzer = cms.EDAnalyzer("GEMCSCAnalyzer",
     simTrackMatching = SimTrackMatching
 )
 matching = process.GEMCSCAnalyzer.simTrackMatching
-matching.simTrack.minPt = 10
+matching.simTrack.minPt = 1.5
 matching.gemRecHit.input = ""
 """
 matching.cscTfTrack.input = ""
