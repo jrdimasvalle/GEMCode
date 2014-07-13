@@ -662,9 +662,9 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     const int st(detIdToMEStation(id.station(),id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
 
-    if (id.ring==4 or id.ring==1){
+    if (id.ring()==4 or id.ring()==1){
         CSCDetId ddA(d);
-        if(id.ring==4){
+        if(id.ring()==4){
             ddA = CSCDetId (id.endcap(),id.station(),1,id.chamber(),id.layer());
         }else{
             ddA = CSCDetId (id.endcap(),id.station(),4,id.chamber(),id.layer());
