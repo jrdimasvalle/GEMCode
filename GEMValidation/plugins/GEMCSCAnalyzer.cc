@@ -665,17 +665,17 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     if (id.ring()==4 or id.ring()==1){
         CSCDetId ddA(d);
         if(id.ring()==4){
-            ddA = CSCDetId (id.endcap(),id.station(),1,id.chamber(),id.layer());
+            CSCDetId ddA(id.endcap(),id.station(),1,id.chamber(),id.layer());
         }else{
-            ddA = CSCDetId (id.endcap(),id.station(),4,id.chamber(),id.layer());
+            CSCDetId ddA(id.endcap(),id.station(),4,id.chamber(),id.layer());
         }
-        
+        std::cout<<"Me11 id: "<<id<<" . Me11 ddA: "<<ddA<<std::endl;
         nlayers=match_sh.nLayersWithHitsInSuperChamber(id)+match_sh.nLayersWithHitsInSuperChamber(ddA);
     }else{
        nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
     }
     
-    
+    std::cout<<"Number of layers: "<<nlayers<<std::endl;
 
     if (nlayers < minNHitsChamberCSCSimHit_) continue;
 
