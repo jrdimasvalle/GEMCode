@@ -658,25 +658,37 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
   for(auto d: match_sh.chamberIdsCSC(0))
   {
     CSCDetId id(d);
-    int nlayers=0;
+    int nlayers=0,nlayers2=0;
     const int st(detIdToMEStation(id.station(),id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
 
-    if (id.ring()==4 or id.ring()==1){
-        CSCDetId ddA(d);
-        if(id.ring()==4){
-            CSCDetId ddA(id.endcap(),id.station(),1,id.chamber(),id.layer());
-        }else{
-            CSCDetId ddA(id.endcap(),id.station(),4,id.chamber(),id.layer());
+    if (id.station()==1 and (id.ring()==4 or id.ring()==1)){
+        std::cout<<"Me11: "<<id<<", starting secondary loop."<<std::endl;
+
+        for(auto d2: match_sh.chamberIdsCSC(0)){
+            CSCDetId id2(d2);
+            const int st2(detIdToMEStation(id2.station(),id2.ring()));
+            if (stations_to_use_.count(st2) == 0) continue;
+         
+            if(id.endcap()==id2.endcap() and id.station()==id2.station() and id.chamber()==id2.chamber() and id.ring()!=id2.ring()){
+                nlayers2=match_sh.nLayersWithHitsInSuperChamber(d2);
+                std::cout<<"Complimentary id: "<<id2<<std::endl;
+                std::cout<<"Break of secondary loop."<<std::endl;
+                break;
+            }else{
+                continue;
+            }
+   
         }
-        std::cout<<"Me11 id: "<<id<<" . Me11 ddA: "<<ddA<<std::endl;
-        nlayers=match_sh.nLayersWithHitsInSuperChamber(id)+match_sh.nLayersWithHitsInSuperChamber(ddA);
+        nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
+        std::cout<<"Hits in ME11: "<<nlayers<<" Hits in the complimentary chamber: "<<nlayers2<<std::endl;
     }else{
-       nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
+        nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
+        std::cout<<"Non ME11 layers: "<<nlayers<<std::endl;
     }
     
-    std::cout<<"Number of layers: "<<nlayers<<std::endl;
-
+    std::cout<<"After the loops => nlayers: "<<nlayers<<", nlayers2: "<<nlayers2<<std::endl;
+    nlayers=nlayers+nlayers2;
     if (nlayers < minNHitsChamberCSCSimHit_) continue;
 
     const bool odd(id.chamber()%2==1);
