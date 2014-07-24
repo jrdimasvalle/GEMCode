@@ -1,0 +1,759 @@
+globaltag = DES19_62_V8::All
+Proceed to next directory
+
+Input files:
+----------------------------------------
+cms.untracked.vstring('file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root')
+
+Output file:
+----------------------------------------
+cms.string('hp_dimu_CMSSW_6_2_0_SLHC14_upgrade2019_w3PU140_TMB_Baseline_2_eff.root')
+
+271 DQMStore::DQMStore 
+HcalTopologyIdealEP::HcalTopologyIdealEP
+24-Jul-2014 08:07:14 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+24-Jul-2014 08:07:16 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 24-Jul-2014 08:07:16.733 CDT
+in MuonNumberingInitialization::initializeMuonDDDConstants
+about to make my new muonDDDConst_
+in MuonNumberingInitialization::produce
+Building the geometry service
+RPCGeometryESModule :: produce
+RPCGeometryESModule :: produce :: 1/4 Get Muon Ideal Geometry Record
+RPCGeometryESModule :: produce :: 2/4 Get Muon DDD Constants
+RPCGeometryESModule :: produce :: 3/4 Get Muon Numbering Record
+RPCGeometryESModule :: produce :: 4/4 Build
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 20.0111 SimTrack eta: -2.05395 SimTrack phi:-1.35323
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 20.0111 SimTrack eta: 2.05395 SimTrack phi:1.78836
+ ####################### End of Informatione ################################################ 
+Begin processing the 2nd record. Run 1, Event 603, LumiSection 200 at 24-Jul-2014 08:07:30.159 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 7.48939 SimTrack eta: -1.7684 SimTrack phi:0.528675
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 7.48939 SimTrack eta: 1.7684 SimTrack phi:-2.61292
+ ####################### End of Informatione ################################################ 
+Begin processing the 3rd record. Run 1, Event 604, LumiSection 200 at 24-Jul-2014 08:07:30.194 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 49.5517 SimTrack eta: 1.85205 SimTrack phi:0.821517
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 49.5517 SimTrack eta: -1.85205 SimTrack phi:-2.32008
+ ####################### End of Informatione ################################################ 
+Begin processing the 4th record. Run 1, Event 610, LumiSection 200 at 24-Jul-2014 08:07:30.213 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 9.3008 SimTrack eta: 1.89664 SimTrack phi:-0.482337
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 9.3008 SimTrack eta: -1.89664 SimTrack phi:2.65926
+ ####################### End of Informatione ################################################ 
+Begin processing the 5th record. Run 1, Event 613, LumiSection 200 at 24-Jul-2014 08:07:30.235 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 28.8386 SimTrack eta: 1.71707 SimTrack phi:-2.39755
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 28.8386 SimTrack eta: -1.71707 SimTrack phi:0.744044
+ ####################### End of Informatione ################################################ 
+Begin processing the 6th record. Run 1, Event 614, LumiSection 200 at 24-Jul-2014 08:07:30.255 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 47.3554 SimTrack eta: 1.70064 SimTrack phi:-0.221844
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 47.3554 SimTrack eta: -1.70064 SimTrack phi:2.91975
+ ####################### End of Informatione ################################################ 
+Begin processing the 7th record. Run 1, Event 616, LumiSection 200 at 24-Jul-2014 08:07:30.274 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 30.2031 SimTrack eta: 1.74791 SimTrack phi:2.88513
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 30.2031 SimTrack eta: -1.74791 SimTrack phi:-0.25646
+ ####################### End of Informatione ################################################ 
+Begin processing the 8th record. Run 1, Event 622, LumiSection 200 at 24-Jul-2014 08:07:30.291 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 19.5384 SimTrack eta: 1.65404 SimTrack phi:-2.68189
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 19.5384 SimTrack eta: -1.65404 SimTrack phi:0.459705
+ ####################### End of Informatione ################################################ 
+Begin processing the 9th record. Run 1, Event 623, LumiSection 200 at 24-Jul-2014 08:07:30.314 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 11.5848 SimTrack eta: 2.22397 SimTrack phi:2.78018
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 11.5848 SimTrack eta: -2.22397 SimTrack phi:-0.361416
+ ####################### End of Informatione ################################################ 
+Begin processing the 10th record. Run 1, Event 626, LumiSection 200 at 24-Jul-2014 08:07:30.335 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 26.69 SimTrack eta: -1.6707 SimTrack phi:2.24892
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 26.69 SimTrack eta: 1.6707 SimTrack phi:-0.892669
+ ####################### End of Informatione ################################################ 
+Begin processing the 11th record. Run 1, Event 630, LumiSection 200 at 24-Jul-2014 08:07:30.354 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 12.9859 SimTrack eta: 2.20323 SimTrack phi:1.42646
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 12.9859 SimTrack eta: -2.20323 SimTrack phi:-1.71513
+ ####################### End of Informatione ################################################ 
+Begin processing the 12th record. Run 1, Event 634, LumiSection 200 at 24-Jul-2014 08:07:30.372 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 7.0395 SimTrack eta: 1.52747 SimTrack phi:0.223044
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 7.0395 SimTrack eta: -1.52747 SimTrack phi:-2.91855
+ ####################### End of Informatione ################################################ 
+Begin processing the 13th record. Run 1, Event 650, LumiSection 200 at 24-Jul-2014 08:07:30.393 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 11.9825 SimTrack eta: -1.49065 SimTrack phi:0.397604
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 11.9825 SimTrack eta: 1.49065 SimTrack phi:-2.74399
+ ####################### End of Informatione ################################################ 
+Begin processing the 14th record. Run 1, Event 653, LumiSection 200 at 24-Jul-2014 08:07:30.416 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 3.48182 SimTrack eta: 1.66292 SimTrack phi:-2.98804
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 3.48182 SimTrack eta: -1.66292 SimTrack phi:0.153553
+ ####################### End of Informatione ################################################ 
+Begin processing the 15th record. Run 1, Event 659, LumiSection 200 at 24-Jul-2014 08:07:30.433 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 21.7631 SimTrack eta: -1.4912 SimTrack phi:1.53164
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 21.7631 SimTrack eta: 1.4912 SimTrack phi:-1.60995
+ ####################### End of Informatione ################################################ 
+Begin processing the 16th record. Run 1, Event 665, LumiSection 200 at 24-Jul-2014 08:07:30.454 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 36.9919 SimTrack eta: -1.70017 SimTrack phi:-1.86445
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 36.9919 SimTrack eta: 1.70017 SimTrack phi:1.27714
+ ####################### End of Informatione ################################################ 
+Begin processing the 17th record. Run 1, Event 668, LumiSection 200 at 24-Jul-2014 08:07:30.474 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.5739 SimTrack eta: 2.08218 SimTrack phi:-0.422738
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.5739 SimTrack eta: -2.08218 SimTrack phi:2.71885
+ ####################### End of Informatione ################################################ 
+Begin processing the 18th record. Run 1, Event 671, LumiSection 200 at 24-Jul-2014 08:07:30.489 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 30.6245 SimTrack eta: 2.44233 SimTrack phi:1.45919
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 30.6245 SimTrack eta: -2.44233 SimTrack phi:-1.6824
+ ####################### End of Informatione ################################################ 
+Begin processing the 19th record. Run 1, Event 672, LumiSection 200 at 24-Jul-2014 08:07:30.496 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 9.96066 SimTrack eta: 1.5774 SimTrack phi:3.12967
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 9.96066 SimTrack eta: -1.5774 SimTrack phi:-0.0119224
+ ####################### End of Informatione ################################################ 
+Begin processing the 20th record. Run 1, Event 673, LumiSection 200 at 24-Jul-2014 08:07:30.506 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 38.2312 SimTrack eta: -2.28802 SimTrack phi:-1.7699
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 38.2312 SimTrack eta: 2.28802 SimTrack phi:1.37169
+ ####################### End of Informatione ################################################ 
+Begin processing the 21st record. Run 1, Event 674, LumiSection 200 at 24-Jul-2014 08:07:30.516 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 14.8114 SimTrack eta: -1.95945 SimTrack phi:1.10319
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 14.8114 SimTrack eta: 1.95945 SimTrack phi:-2.03841
+ ####################### End of Informatione ################################################ 
+Begin processing the 22nd record. Run 1, Event 677, LumiSection 200 at 24-Jul-2014 08:07:30.530 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 31.2384 SimTrack eta: 1.68161 SimTrack phi:-0.43378
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 31.2384 SimTrack eta: -1.68161 SimTrack phi:2.70781
+ ####################### End of Informatione ################################################ 
+Begin processing the 23rd record. Run 1, Event 678, LumiSection 200 at 24-Jul-2014 08:07:30.539 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 35.6332 SimTrack eta: 2.37054 SimTrack phi:-2.3281
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 35.6332 SimTrack eta: -2.37054 SimTrack phi:0.813494
+ ####################### End of Informatione ################################################ 
+Begin processing the 24th record. Run 1, Event 679, LumiSection 200 at 24-Jul-2014 08:07:30.551 CDT
+Begin processing the 25th record. Run 1, Event 681, LumiSection 200 at 24-Jul-2014 08:07:30.556 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 35.5057 SimTrack eta: -2.43399 SimTrack phi:-0.767428
+ ####################### End of Informatione ################################################ 
+Begin processing the 26th record. Run 1, Event 685, LumiSection 200 at 24-Jul-2014 08:07:30.573 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 8.19533 SimTrack eta: -1.484 SimTrack phi:2.47232
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 8.19533 SimTrack eta: 1.484 SimTrack phi:-0.669275
+ ####################### End of Informatione ################################################ 
+Begin processing the 27th record. Run 1, Event 687, LumiSection 200 at 24-Jul-2014 08:07:30.586 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 14.9617 SimTrack eta: -1.52126 SimTrack phi:-1.68984
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 14.9617 SimTrack eta: 1.52126 SimTrack phi:1.45175
+ ####################### End of Informatione ################################################ 
+Begin processing the 28th record. Run 1, Event 689, LumiSection 200 at 24-Jul-2014 08:07:30.596 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.0115 SimTrack eta: -1.85585 SimTrack phi:0.645683
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.0115 SimTrack eta: 1.85585 SimTrack phi:-2.49591
+ ####################### End of Informatione ################################################ 
+Begin processing the 29th record. Run 1, Event 691, LumiSection 200 at 24-Jul-2014 08:07:30.608 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 13.5399 SimTrack eta: -1.89383 SimTrack phi:-0.231081
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 13.5399 SimTrack eta: 1.89383 SimTrack phi:2.91051
+ ####################### End of Informatione ################################################ 
+Begin processing the 30th record. Run 1, Event 697, LumiSection 200 at 24-Jul-2014 08:07:30.620 CDT
+Begin processing the 31st record. Run 1, Event 698, LumiSection 200 at 24-Jul-2014 08:07:30.630 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 28.4123 SimTrack eta: 1.84158 SimTrack phi:3.03504
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 28.4123 SimTrack eta: -1.84158 SimTrack phi:-0.106556
+ ####################### End of Informatione ################################################ 
+Begin processing the 32nd record. Run 1, Event 699, LumiSection 200 at 24-Jul-2014 08:07:30.639 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 21.7598 SimTrack eta: 1.73465 SimTrack phi:1.15023
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 21.7598 SimTrack eta: -1.73465 SimTrack phi:-1.99136
+ ####################### End of Informatione ################################################ 
+Begin processing the 33rd record. Run 1, Event 702, LumiSection 200 at 24-Jul-2014 08:07:30.648 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 32.7792 SimTrack eta: -1.67254 SimTrack phi:3.01258
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 32.7792 SimTrack eta: 1.67254 SimTrack phi:-0.129012
+ ####################### End of Informatione ################################################ 
+Begin processing the 34th record. Run 1, Event 703, LumiSection 200 at 24-Jul-2014 08:07:30.659 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 42.3479 SimTrack eta: -1.77685 SimTrack phi:-1.18246
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 42.3479 SimTrack eta: 1.77685 SimTrack phi:1.95913
+ ####################### End of Informatione ################################################ 
+Begin processing the 35th record. Run 1, Event 704, LumiSection 200 at 24-Jul-2014 08:07:30.667 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.4708 SimTrack eta: -1.75223 SimTrack phi:1.29999
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.4708 SimTrack eta: 1.75223 SimTrack phi:-1.8416
+ ####################### End of Informatione ################################################ 
+Begin processing the 36th record. Run 1, Event 708, LumiSection 200 at 24-Jul-2014 08:07:30.680 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 35.8586 SimTrack eta: 1.79984 SimTrack phi:-2.70924
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 35.8586 SimTrack eta: -1.79984 SimTrack phi:0.432357
+ ####################### End of Informatione ################################################ 
+Begin processing the 37th record. Run 1, Event 709, LumiSection 200 at 24-Jul-2014 08:07:30.688 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 4.91741 SimTrack eta: 1.84902 SimTrack phi:-0.386138
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 4.91741 SimTrack eta: -1.84902 SimTrack phi:2.75545
+ ####################### End of Informatione ################################################ 
+Begin processing the 38th record. Run 1, Event 713, LumiSection 200 at 24-Jul-2014 08:07:30.699 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 11.2882 SimTrack eta: -1.81856 SimTrack phi:-2.71815
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 11.2882 SimTrack eta: 1.81856 SimTrack phi:0.423442
+ ####################### End of Informatione ################################################ 
+Begin processing the 39th record. Run 1, Event 718, LumiSection 200 at 24-Jul-2014 08:07:30.708 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 18.4282 SimTrack eta: 2.05383 SimTrack phi:2.85767
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 18.4282 SimTrack eta: -2.05383 SimTrack phi:-0.283925
+ ####################### End of Informatione ################################################ 
+Begin processing the 40th record. Run 1, Event 721, LumiSection 200 at 24-Jul-2014 08:07:30.721 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 48.1429 SimTrack eta: -2.42687 SimTrack phi:2.47231
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 48.1429 SimTrack eta: 2.42687 SimTrack phi:-0.669282
+ ####################### End of Informatione ################################################ 
+Begin processing the 41st record. Run 1, Event 722, LumiSection 200 at 24-Jul-2014 08:07:30.729 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 23.5754 SimTrack eta: -2.36008 SimTrack phi:-2.42122
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 23.5754 SimTrack eta: 2.36008 SimTrack phi:0.720374
+ ####################### End of Informatione ################################################ 
+Begin processing the 42nd record. Run 1, Event 724, LumiSection 200 at 24-Jul-2014 08:07:30.738 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 24.6977 SimTrack eta: 2.36978 SimTrack phi:-0.522326
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 24.6977 SimTrack eta: -2.36978 SimTrack phi:2.61927
+ ####################### End of Informatione ################################################ 
+Begin processing the 43rd record. Run 1, Event 726, LumiSection 200 at 24-Jul-2014 08:07:30.756 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 32.1564 SimTrack eta: -2.02681 SimTrack phi:-2.7392
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 32.1564 SimTrack eta: 2.02681 SimTrack phi:0.402394
+ ####################### End of Informatione ################################################ 
+Begin processing the 44th record. Run 1, Event 727, LumiSection 200 at 24-Jul-2014 08:07:30.766 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 19.4774 SimTrack eta: 1.8234 SimTrack phi:1.39112
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 19.4774 SimTrack eta: -1.8234 SimTrack phi:-1.75047
+ ####################### End of Informatione ################################################ 
+Begin processing the 45th record. Run 1, Event 729, LumiSection 200 at 24-Jul-2014 08:07:30.776 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.0406 SimTrack eta: -1.79844 SimTrack phi:-3.09354
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.0406 SimTrack eta: 1.79844 SimTrack phi:0.0480534
+ ####################### End of Informatione ################################################ 
+Begin processing the 46th record. Run 1, Event 730, LumiSection 200 at 24-Jul-2014 08:07:30.784 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 11.3889 SimTrack eta: -1.52116 SimTrack phi:1.86657
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 11.3889 SimTrack eta: 1.52116 SimTrack phi:-1.27502
+ ####################### End of Informatione ################################################ 
+Begin processing the 47th record. Run 1, Event 731, LumiSection 200 at 24-Jul-2014 08:07:30.796 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 43.7023 SimTrack eta: -1.89351 SimTrack phi:2.55818
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 43.7023 SimTrack eta: 1.89351 SimTrack phi:-0.583408
+ ####################### End of Informatione ################################################ 
+Begin processing the 48th record. Run 1, Event 737, LumiSection 200 at 24-Jul-2014 08:07:30.807 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 5.59519 SimTrack eta: -1.59607 SimTrack phi:0.0301029
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 5.59519 SimTrack eta: 1.59607 SimTrack phi:-3.11149
+ ####################### End of Informatione ################################################ 
+Begin processing the 49th record. Run 1, Event 738, LumiSection 200 at 24-Jul-2014 08:07:30.818 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 8.47444 SimTrack eta: -1.63618 SimTrack phi:-2.72475
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 8.47444 SimTrack eta: 1.63618 SimTrack phi:0.416838
+ ####################### End of Informatione ################################################ 
+Begin processing the 50th record. Run 1, Event 740, LumiSection 200 at 24-Jul-2014 08:07:30.828 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 34.084 SimTrack eta: -1.88148 SimTrack phi:2.30761
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 34.084 SimTrack eta: 1.88148 SimTrack phi:-0.833978
+ ####################### End of Informatione ################################################ 
+Begin processing the 51st record. Run 1, Event 741, LumiSection 200 at 24-Jul-2014 08:07:30.837 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 18.5216 SimTrack eta: 1.46304 SimTrack phi:-0.274098
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 18.5216 SimTrack eta: -1.46304 SimTrack phi:2.8675
+ ####################### End of Informatione ################################################ 
+Begin processing the 52nd record. Run 1, Event 744, LumiSection 200 at 24-Jul-2014 08:07:30.849 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 34.2243 SimTrack eta: 1.8273 SimTrack phi:3.08164
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 34.2243 SimTrack eta: -1.8273 SimTrack phi:-0.0599503
+ ####################### End of Informatione ################################################ 
+Begin processing the 53rd record. Run 1, Event 745, LumiSection 200 at 24-Jul-2014 08:07:30.859 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 48.9327 SimTrack eta: 1.84682 SimTrack phi:-2.05484
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 48.9327 SimTrack eta: -1.84682 SimTrack phi:1.08675
+ ####################### End of Informatione ################################################ 
+Begin processing the 54th record. Run 1, Event 747, LumiSection 200 at 24-Jul-2014 08:07:30.868 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 17.482 SimTrack eta: 1.9463 SimTrack phi:2.24569
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 17.482 SimTrack eta: -1.9463 SimTrack phi:-0.895898
+ ####################### End of Informatione ################################################ 
+Begin processing the 55th record. Run 1, Event 751, LumiSection 200 at 24-Jul-2014 08:07:30.878 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 23.3417 SimTrack eta: -2.05876 SimTrack phi:-0.442582
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 23.3417 SimTrack eta: 2.05876 SimTrack phi:2.69901
+ ####################### End of Informatione ################################################ 
+Begin processing the 56th record. Run 1, Event 752, LumiSection 200 at 24-Jul-2014 08:07:30.888 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 29.9283 SimTrack eta: -2.05458 SimTrack phi:0.0866291
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 29.9283 SimTrack eta: 2.05458 SimTrack phi:-3.05496
+ ####################### End of Informatione ################################################ 
+Begin processing the 57th record. Run 1, Event 753, LumiSection 200 at 24-Jul-2014 08:07:30.898 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 7.85943 SimTrack eta: -2.11324 SimTrack phi:0.792054
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 7.85943 SimTrack eta: 2.11324 SimTrack phi:-2.34954
+ ####################### End of Informatione ################################################ 
+Begin processing the 58th record. Run 1, Event 755, LumiSection 200 at 24-Jul-2014 08:07:30.911 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 5.65664 SimTrack eta: -1.61842 SimTrack phi:1.9867
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 5.65664 SimTrack eta: 1.61842 SimTrack phi:-1.15489
+ ####################### End of Informatione ################################################ 
+Begin processing the 59th record. Run 1, Event 756, LumiSection 200 at 24-Jul-2014 08:07:30.923 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 10.1812 SimTrack eta: -2.19289 SimTrack phi:1.35173
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 10.1812 SimTrack eta: 2.19289 SimTrack phi:-1.78987
+ ####################### End of Informatione ################################################ 
+Begin processing the 60th record. Run 1, Event 757, LumiSection 200 at 24-Jul-2014 08:07:30.934 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 10.189 SimTrack eta: -1.74158 SimTrack phi:-2.0537
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 10.189 SimTrack eta: 1.74158 SimTrack phi:1.08789
+ ####################### End of Informatione ################################################ 
+Begin processing the 61st record. Run 1, Event 758, LumiSection 200 at 24-Jul-2014 08:07:30.943 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 35.2273 SimTrack eta: 2.17126 SimTrack phi:2.44268
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 35.2273 SimTrack eta: -2.17126 SimTrack phi:-0.698917
+ ####################### End of Informatione ################################################ 
+Begin processing the 62nd record. Run 1, Event 763, LumiSection 200 at 24-Jul-2014 08:07:30.952 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 40.3022 SimTrack eta: 1.59182 SimTrack phi:-2.49727
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 40.3022 SimTrack eta: -1.59182 SimTrack phi:0.644321
+ ####################### End of Informatione ################################################ 
+Begin processing the 63rd record. Run 1, Event 764, LumiSection 200 at 24-Jul-2014 08:07:30.962 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 37.3418 SimTrack eta: -1.47509 SimTrack phi:1.58771
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 37.3418 SimTrack eta: 1.47509 SimTrack phi:-1.55389
+ ####################### End of Informatione ################################################ 
+Begin processing the 64th record. Run 1, Event 765, LumiSection 200 at 24-Jul-2014 08:07:30.975 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 22.1136 SimTrack eta: -2.36076 SimTrack phi:-0.185032
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 22.1136 SimTrack eta: 2.36076 SimTrack phi:2.95656
+ ####################### End of Informatione ################################################ 
+Begin processing the 65th record. Run 1, Event 770, LumiSection 200 at 24-Jul-2014 08:07:30.986 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 2.54288 SimTrack eta: -1.90978 SimTrack phi:-1.29841
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 2.54288 SimTrack eta: 1.90978 SimTrack phi:1.84318
+ ####################### End of Informatione ################################################ 
+Begin processing the 66th record. Run 1, Event 775, LumiSection 200 at 24-Jul-2014 08:07:30.997 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 24.4338 SimTrack eta: 1.68485 SimTrack phi:2.73748
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 24.4338 SimTrack eta: -1.68485 SimTrack phi:-0.404115
+ ####################### End of Informatione ################################################ 
+Begin processing the 67th record. Run 1, Event 778, LumiSection 200 at 24-Jul-2014 08:07:31.006 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 29.7198 SimTrack eta: 2.34023 SimTrack phi:2.71467
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 29.7198 SimTrack eta: -2.34023 SimTrack phi:-0.426925
+ ####################### End of Informatione ################################################ 
+Begin processing the 68th record. Run 1, Event 781, LumiSection 200 at 24-Jul-2014 08:07:31.016 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 8.57933 SimTrack eta: -1.88362 SimTrack phi:-0.448476
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 8.57933 SimTrack eta: 1.88362 SimTrack phi:2.69312
+ ####################### End of Informatione ################################################ 
+Begin processing the 69th record. Run 1, Event 784, LumiSection 200 at 24-Jul-2014 08:07:31.026 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 20.9514 SimTrack eta: -2.14589 SimTrack phi:-1.604
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 20.9514 SimTrack eta: 2.14589 SimTrack phi:1.53759
+ ####################### End of Informatione ################################################ 
+Begin processing the 70th record. Run 1, Event 788, LumiSection 200 at 24-Jul-2014 08:07:31.038 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 14.6271 SimTrack eta: 2.03762 SimTrack phi:1.62845
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 14.6271 SimTrack eta: -2.03762 SimTrack phi:-1.51314
+ ####################### End of Informatione ################################################ 
+Begin processing the 71st record. Run 1, Event 789, LumiSection 200 at 24-Jul-2014 08:07:31.049 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 16.7047 SimTrack eta: 1.63843 SimTrack phi:-1.25127
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 16.7047 SimTrack eta: -1.63843 SimTrack phi:1.89032
+ ####################### End of Informatione ################################################ 
+Begin processing the 72nd record. Run 1, Event 790, LumiSection 200 at 24-Jul-2014 08:07:31.060 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 39.4825 SimTrack eta: -2.36331 SimTrack phi:1.12632
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 39.4825 SimTrack eta: 2.36331 SimTrack phi:-2.01528
+ ####################### End of Informatione ################################################ 
+Begin processing the 73rd record. Run 1, Event 798, LumiSection 200 at 24-Jul-2014 08:07:31.069 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 31.8509 SimTrack eta: 1.68195 SimTrack phi:-1.75155
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 31.8509 SimTrack eta: -1.68195 SimTrack phi:1.39004
+ ####################### End of Informatione ################################################ 
+Begin processing the 74th record. Run 1, Event 799, LumiSection 200 at 24-Jul-2014 08:07:31.078 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 6.98457 SimTrack eta: -1.93489 SimTrack phi:-1.71662
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 6.98457 SimTrack eta: 1.93489 SimTrack phi:1.42498
+ ####################### End of Informatione ################################################ 
+Begin processing the 75th record. Run 1, Event 800, LumiSection 200 at 24-Jul-2014 08:07:31.088 CDT
+Begin processing the 76th record. Run 1, Event 802, LumiSection 200 at 24-Jul-2014 08:07:31.094 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 19.1543 SimTrack eta: 1.70202 SimTrack phi:0.579337
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 19.1543 SimTrack eta: -1.70202 SimTrack phi:-2.56226
+ ####################### End of Informatione ################################################ 
+Begin processing the 77th record. Run 1, Event 804, LumiSection 200 at 24-Jul-2014 08:07:31.103 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 23.7679 SimTrack eta: -2.09474 SimTrack phi:1.21855
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 23.7679 SimTrack eta: 2.09474 SimTrack phi:-1.92305
+ ####################### End of Informatione ################################################ 
+Begin processing the 78th record. Run 1, Event 808, LumiSection 200 at 24-Jul-2014 08:07:31.113 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 24.0802 SimTrack eta: -2.36995 SimTrack phi:2.78771
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 24.0802 SimTrack eta: 2.36995 SimTrack phi:-0.353879
+ ####################### End of Informatione ################################################ 
+Begin processing the 79th record. Run 1, Event 810, LumiSection 200 at 24-Jul-2014 08:07:31.123 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.4724 SimTrack eta: 1.6606 SimTrack phi:0.409458
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.4724 SimTrack eta: -1.6606 SimTrack phi:-2.73213
+ ####################### End of Informatione ################################################ 
+Begin processing the 80th record. Run 1, Event 814, LumiSection 200 at 24-Jul-2014 08:07:31.132 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 15.6251 SimTrack eta: 2.07377 SimTrack phi:-0.52722
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 15.6251 SimTrack eta: -2.07377 SimTrack phi:2.61437
+ ####################### End of Informatione ################################################ 
+Begin processing the 81st record. Run 1, Event 818, LumiSection 200 at 24-Jul-2014 08:07:31.146 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 17.0305 SimTrack eta: -1.67393 SimTrack phi:-0.96302
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 17.0305 SimTrack eta: 1.67393 SimTrack phi:2.17857
+ ####################### End of Informatione ################################################ 
+Begin processing the 82nd record. Run 1, Event 819, LumiSection 200 at 24-Jul-2014 08:07:31.155 CDT
+Begin processing the 83rd record. Run 1, Event 820, LumiSection 200 at 24-Jul-2014 08:07:31.161 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.9235 SimTrack eta: 1.51081 SimTrack phi:1.03738
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.9235 SimTrack eta: -1.51081 SimTrack phi:-2.10421
+ ####################### End of Informatione ################################################ 
+Begin processing the 84th record. Run 1, Event 821, LumiSection 200 at 24-Jul-2014 08:07:31.173 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 45.4053 SimTrack eta: 1.98841 SimTrack phi:-2.24859
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 45.4053 SimTrack eta: -1.98841 SimTrack phi:0.892999
+ ####################### End of Informatione ################################################ 
+Begin processing the 85th record. Run 1, Event 822, LumiSection 200 at 24-Jul-2014 08:07:31.183 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 10.5817 SimTrack eta: 2.07084 SimTrack phi:2.27887
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 10.5817 SimTrack eta: -2.07084 SimTrack phi:-0.86272
+ ####################### End of Informatione ################################################ 
+Begin processing the 86th record. Run 1, Event 823, LumiSection 200 at 24-Jul-2014 08:07:31.194 CDT
+Begin processing the 87th record. Run 1, Event 824, LumiSection 200 at 24-Jul-2014 08:07:31.200 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 38.3957 SimTrack eta: 1.7593 SimTrack phi:1.66118
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 38.3957 SimTrack eta: -1.7593 SimTrack phi:-1.48042
+ ####################### End of Informatione ################################################ 
+Begin processing the 88th record. Run 1, Event 825, LumiSection 200 at 24-Jul-2014 08:07:31.208 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 22.5842 SimTrack eta: 2.35445 SimTrack phi:1.09794
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 22.5842 SimTrack eta: -2.35445 SimTrack phi:-2.04365
+ ####################### End of Informatione ################################################ 
+Begin processing the 89th record. Run 1, Event 826, LumiSection 200 at 24-Jul-2014 08:07:31.218 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 29.8046 SimTrack eta: 1.65236 SimTrack phi:2.03624
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 29.8046 SimTrack eta: -1.65236 SimTrack phi:-1.10535
+ ####################### End of Informatione ################################################ 
+Begin processing the 90th record. Run 1, Event 829, LumiSection 200 at 24-Jul-2014 08:07:31.228 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 24.5885 SimTrack eta: 1.78733 SimTrack phi:-1.78944
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 24.5885 SimTrack eta: -1.78733 SimTrack phi:1.35215
+ ####################### End of Informatione ################################################ 
+Begin processing the 91st record. Run 1, Event 839, LumiSection 200 at 24-Jul-2014 08:07:31.237 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 23.7689 SimTrack eta: 1.98164 SimTrack phi:2.49365
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 23.7689 SimTrack eta: -1.98164 SimTrack phi:-0.647943
+ ####################### End of Informatione ################################################ 
+Begin processing the 92nd record. Run 1, Event 840, LumiSection 200 at 24-Jul-2014 08:07:31.246 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 11.091 SimTrack eta: -2.34391 SimTrack phi:1.22966
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 11.091 SimTrack eta: 2.34391 SimTrack phi:-1.91193
+ ####################### End of Informatione ################################################ 
+Begin processing the 93rd record. Run 1, Event 841, LumiSection 200 at 24-Jul-2014 08:07:31.256 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 30.3916 SimTrack eta: -2.3324 SimTrack phi:-0.489205
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 30.3916 SimTrack eta: 2.3324 SimTrack phi:2.65239
+ ####################### End of Informatione ################################################ 
+Begin processing the 94th record. Run 1, Event 847, LumiSection 200 at 24-Jul-2014 08:07:31.267 CDT
+Begin processing the 95th record. Run 1, Event 848, LumiSection 200 at 24-Jul-2014 08:07:31.273 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 25.9961 SimTrack eta: 1.57358 SimTrack phi:-0.590341
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 25.9961 SimTrack eta: -1.57358 SimTrack phi:2.55125
+ ####################### End of Informatione ################################################ 
+Begin processing the 96th record. Run 1, Event 854, LumiSection 200 at 24-Jul-2014 08:07:31.283 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 48.9617 SimTrack eta: -1.93674 SimTrack phi:-2.4385
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 48.9617 SimTrack eta: 1.93674 SimTrack phi:0.703089
+ ####################### End of Informatione ################################################ 
+Begin processing the 97th record. Run 1, Event 855, LumiSection 200 at 24-Jul-2014 08:07:31.291 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 9.49168 SimTrack eta: 1.69216 SimTrack phi:-1.35232
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 9.49168 SimTrack eta: -1.69216 SimTrack phi:1.78927
+ ####################### End of Informatione ################################################ 
+Begin processing the 98th record. Run 1, Event 860, LumiSection 200 at 24-Jul-2014 08:07:31.301 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 39.4401 SimTrack eta: 1.72287 SimTrack phi:-2.23644
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 39.4401 SimTrack eta: -1.72287 SimTrack phi:0.905154
+ ####################### End of Informatione ################################################ 
+Begin processing the 99th record. Run 1, Event 861, LumiSection 200 at 24-Jul-2014 08:07:31.310 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 34.5761 SimTrack eta: -1.95292 SimTrack phi:0.909954
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 34.5761 SimTrack eta: 1.95292 SimTrack phi:-2.23164
+ ####################### End of Informatione ################################################ 
+Begin processing the 100th record. Run 1, Event 864, LumiSection 200 at 24-Jul-2014 08:07:31.318 CDT
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 1 SimTrack Pt: 41.5825 SimTrack eta: -2.13422 SimTrack phi:2.72514
+ ####################### End of Informatione ################################################ 
+##################### Start Printing  Informatione ########################### 
+SimTrack ID: 2 SimTrack Pt: 41.5825 SimTrack eta: 2.13422 SimTrack phi:-0.416449
+ ####################### End of Informatione ################################################ 
+24-Jul-2014 08:07:31 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+
+TrigReport ---------- Event  Summary ------------
+TrigReport Events total = 100 passed = 100 failed = 0
+
+TrigReport ---------- Path   Summary ------------
+TrigReport  Trig Bit#        Run     Passed     Failed      Error Name
+TrigReport     1    0        100        100          0          0 ana_step
+
+TrigReport -------End-Path   Summary ------------
+TrigReport  Trig Bit#        Run     Passed     Failed      Error Name
+
+TrigReport ---------- Modules in Path: ana_step ------------
+TrigReport  Trig Bit#    Visited     Passed     Failed      Error Name
+TrigReport     1    0        100        100          0          0 GEMCSCTriggerEfficiency
+
+TrigReport ---------- Module Summary ------------
+TrigReport    Visited        Run     Passed     Failed      Error Name
+TrigReport        100        100        100          0          0 GEMCSCTriggerEfficiency
+TrigReport        100        100        100          0          0 TriggerResults
+
+TimeReport ---------- Event  Summary ---[sec]----
+TimeReport CPU/event = 0.123951 Real/event = 0.145186
+
+TimeReport ---------- Path   Summary ---[sec]----
+TimeReport             per event          per path-run 
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport   0.123931   0.145158   0.123931   0.145158 ana_step
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport             per event          per path-run 
+
+TimeReport -------End-Path   Summary ---[sec]----
+TimeReport             per event       per endpath-run 
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport             per event       per endpath-run 
+
+TimeReport ---------- Modules in Path: ana_step ---[sec]----
+TimeReport             per event      per module-visit 
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport   0.123931   0.145156   0.123931   0.145156 GEMCSCTriggerEfficiency
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport             per event      per module-visit 
+TimeReport        CPU       Real        CPU       Real Name
+TimeReport             per event      per module-visit 
+
+TimeReport ---------- Module Summary ---[sec]----
+TimeReport             per event        per module-run      per module-visit 
+TimeReport        CPU       Real        CPU       Real        CPU       Real Name
+TimeReport   0.123931   0.145156   0.123931   0.145156   0.123931   0.145156 GEMCSCTriggerEfficiency
+TimeReport   0.000020   0.000024   0.000020   0.000024   0.000020   0.000024 TriggerResults
+TimeReport        CPU       Real        CPU       Real        CPU       Real Name
+TimeReport             per event        per module-run      per module-visit 
+
+T---Report end!
+
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 fileAction           -s file_close                             1        1
+    2 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 fileAction           PostEndRun                        
+    2 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+System                  3                   3

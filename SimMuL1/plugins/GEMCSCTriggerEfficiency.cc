@@ -28,8 +28,9 @@
 #include "RecoMuon/Records/interface/MuonRecoGeometryRecord.h"
 
 #include "CondFormats/DataRecord/interface/L1MuTriggerScalesRcd.h"
-#include "CondFormats/DataRecord/interface/L1MuTriggerPtScaleRcd.h"
 
+#include "CondFormats/DataRecord/interface/L1MuTriggerPtScaleRcd.h"
+#include "FWCore/Framework/interface/Event.h"
 #include "SimMuon/CSCDigitizer/src/CSCDbStripConditions.h"
 
 #include <Geometry/CSCGeometry/interface/CSCChamberSpecs.h>
@@ -1429,7 +1430,7 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
         // checks
         if (debugALLEVENT) {
             //charge = static_cast<int> (-itrack->type()/13); //static_cast<int> (itrack->charge());
-            std::cout<<"SimTrk\t id eta phi pt nSH: "<<istrk->trackId()<<" "<<steta <<" "<< stphi <<" "<<stpt <<" "<<match->simHits.size()<<std::endl;
+            std::cout<<" SimTrk\t id eta phi pt nSH: "<<istrk->trackId()<<" "<<steta <<" "<< stphi <<" "<<stpt <<" "<<match->simHits.size()<<std::endl;
             std::cout<<"      \t nALCT: "<<match->ALCTs.size() 
                 <<" nCLCT: "<<match->CLCTs.size() 
                 <<" nLCT: "<<match->LCTs.size() 
@@ -1598,7 +1599,25 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
 
             // SimHIts:
             if (has_hits_in_me11) h_eta_me11_initial->Fill(steta);
-            if (has_hits_in_st[1]) h_eta_me1_initial->Fill(steta);
+            if (has_hits_in_st[1]) {
+
+                    h_eta_me1_initial->Fill(steta);
+                    std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
+                    //std::cout<<"Information on Track (loop im): "<<im<<std::endl;
+                    //std::cout<<" Event: "<<"Luminosity: "<<Event->getLuminosityBlock()<<" Run: "<<Event->Run()<<std::endl;
+                    std::cout<<"SimTrack ID: "<<match->strk->trackId()<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi:"<<stphi<<std::endl;
+                     //match->print("",1,1,0,0,1,0);
+/*
+             std::cout<<"      \t nALCT: "<<match->ALCTs.size()
+                 <<" nCLCT: "<<match->CLCTs.size()
+                 <<" nLCT: "<<match->LCTs.size()
+                 <<" nMPLCT: "<<match->MPLCTs.size()
+                 <<" TFTRACKs/All: "<<match->TFTRACKs.size() <<"/"<<match->TFTRACKsAll.size()
+                 <<" TFCANDs/All: "<<match->TFCANDs.size() <<"/"<<match->TFCANDsAll.size()<<std::endl;
+  */                  //std::cout<<"Chamber Id: "<<CSCDetId (im);
+                    std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+                }
+
             if (has_hits_in_st[2]) h_eta_me2_initial->Fill(steta);
             if (has_hits_in_st[3]) h_eta_me3_initial->Fill(steta);
             if (has_hits_in_st[4]) h_eta_me4_initial->Fill(steta);

@@ -57,7 +57,7 @@ SimHitMatcher::init()
   event().getByLabel(cscSimHitInput_, csc_hits);
   event().getByLabel(gemSimHitInput_, gem_hits);
   event().getByLabel(rpcSimHitInput_, rpc_hits);
-  event().getByLabel(me0SimHitInput_, me0_hits);
+  //event().getByLabel(me0SimHitInput_, me0_hits);
 
   // fill trkId2Index associoation:
   int no = 0;
@@ -467,7 +467,7 @@ SimHitMatcher::hitsInChamber(unsigned int detid) const
   if (is_csc(detid))
   {
     CSCDetId id(detid);
-    if (csc_chamber_to_hits_.find(id.chamberId().rawId()) == gem_chamber_to_hits_.end()) return no_hits_;
+    if (csc_chamber_to_hits_.find(id.chamberId().rawId()) == csc_chamber_to_hits_.end()) return no_hits_;
     return csc_chamber_to_hits_.at(id.chamberId().rawId());
   }
   if (is_rpc(detid))

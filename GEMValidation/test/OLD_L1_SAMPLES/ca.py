@@ -23,14 +23,17 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring('file:out_L1.root')
 )
 
-process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(100)
 
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1)
+process.MessageLogger.cerr.noTimeStamps = cms.untracked.bool(True)
+process.MessageLogger.cerr.FwkReport.optionalPSet = cms.untracked.bool(False)
+process.MessageLogger.cerr.optionalPSet=cms.untracked.bool(False)
 ## input
 from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import *
 from GEMCode.GEMValidation.InputFileHelpers import *
 suffix = 'PU140_TMB_Baseline_2'
 process = useInputDir(process, eosfiles[suffix], True)
-events=-1
+events=100
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(events)
 )

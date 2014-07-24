@@ -8,7 +8,7 @@ process = cms.Process('GEMCSCTRGANA')
 cmssw = os.getenv( "CMSSW_VERSION" )
 
 ## steering
-events = 100000
+events = 100
 sample='dimu'
 globalTag = 'upgrade2019'
 #sample='minbias'
@@ -77,9 +77,15 @@ process.source = cms.Source("PoolSource",
     )
 )
 
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1)
+process.MessageLogger.cerr.noTimeStamps = cms.untracked.bool(True)
+process.MessageLogger.cerr.FwkReport.optionalPSet = cms.untracked.bool(False)
+process.MessageLogger.cerr.optionalPSet=cms.untracked.bool(False)
+
+
 from GEMCode.GEMValidation.InputFileHelpers import useInputDir
 from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import eosfiles
-suffix = '_pt2-50_PU140_dphi0_preTrig33_NoLQCLCTwithoutGEM_ALCTGEM'
+suffix = 'PU140_TMB_Baseline_2'
 process = useInputDir(process, eosfiles[suffix], True)
 
 process.maxEvents = cms.untracked.PSet(

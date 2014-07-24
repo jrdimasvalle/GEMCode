@@ -661,9 +661,9 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     int nlayers=0,nlayers2=0;
     const int st(detIdToMEStation(id.station(),id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
-
+    
     if (id.station()==1 and (id.ring()==4 or id.ring()==1)){
-        std::cout<<"Me11: "<<id<<", starting secondary loop."<<std::endl;
+        //std::cout<<"Me11: "<<id<<", starting secondary loop."<<std::endl;
 
         for(auto d2: match_sh.chamberIdsCSC(0)){
             CSCDetId id2(d2);
@@ -672,8 +672,8 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
          
             if(id.endcap()==id2.endcap() and id.station()==id2.station() and id.chamber()==id2.chamber() and id.ring()!=id2.ring()){
                 nlayers2=match_sh.nLayersWithHitsInSuperChamber(d2);
-                std::cout<<"Complimentary id: "<<id2<<std::endl;
-                std::cout<<"Break of secondary loop."<<std::endl;
+                //std::cout<<"Complimentary id: "<<id2<<std::endl;
+                //std::cout<<"Break of secondary loop."<<std::endl;
                 break;
             }else{
                 continue;
@@ -681,14 +681,16 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
    
         }
         nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
-        std::cout<<"Hits in ME11: "<<nlayers<<" Hits in the complimentary chamber: "<<nlayers2<<std::endl;
+        //std::cout<<"Hits in ME11: "<<nlayers<<" Hits in the complimentary chamber: "<<nlayers2<<std::endl;
     }else{
         nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
-        std::cout<<"Non ME11 layers: "<<nlayers<<std::endl;
+        //std::cout<<"Non ME11 layers: "<<nlayers<<std::endl;
     }
     
-    std::cout<<"After the loops => nlayers: "<<nlayers<<", nlayers2: "<<nlayers2<<std::endl;
     nlayers=nlayers+nlayers2;
+    //std::cout<<"After the loops => nlayers TOTAL: "<<nlayers<<", nlayers2: "<<nlayers2<<std::endl;
+    
+    //nlayers=match_sh.nLayersWithHitsInSuperChamber(id);
     if (nlayers < minNHitsChamberCSCSimHit_) continue;
 
     const bool odd(id.chamber()%2==1);
@@ -708,7 +710,27 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
       if (odd) etrk_[1].nlayers_csc_sh_odd = nlayers;
       else etrk_[1].nlayers_csc_sh_even = nlayers;
-    }  
+            }
+
+      if (t.momentum().pt()>10){
+            std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
+
+            //std::cout<<" Run: "<<match.simhits().event().id().run()<<" lumi: "<<match.simhits().event().id().luminosityBlock()<<" event: "<<match.simhits().event().id().event()<<endl;
+            //The previous line wasn't really necessary once I activated the Want Summary option
+
+            auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
+
+            std::cout<<"SimTrack ID: "<<csc_csh_ch_ids.size()<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi:"<<t.momentum().phi()<< std::endl;
+           /* const auto& hits = match_sh.hitsInChamber(d);
+            auto gp = match_sh.simHitsMeanPosition(hits);
+            float mean_strip = match_sh.simHitsMeanStrip(hits);
+            std::cout << "CSC Chamber: "<<d<<" "<<id<<" layerswithhits:"<<nlayers<<" global eta:"<<gp.eta()<<" mean strip:"<<mean_strip<<" st:"<<st<<endl;
+
+            */
+
+                    std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+
+         }
   }
 
   // CSC strip digis
