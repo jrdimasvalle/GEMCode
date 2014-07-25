@@ -1,0 +1,622 @@
+20,22c20,22
+< 25-Jul-2014 06:31:25 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+< 25-Jul-2014 06:31:26 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+< 25-Jul-2014 06:34:31 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+---
+> 25-Jul-2014 06:31:14 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+> 25-Jul-2014 06:31:15 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+> 25-Jul-2014 06:32:13 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+25c25
+< Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 25-Jul-2014 06:31:30.405 CDT
+---
+> Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 25-Jul-2014 06:31:16.278 CDT
+33a34
+> Event: 1 Luminosity: 965 Run: 1 SimTrack Pt: 25.8503 SimTrack eta: 1.84573 SimTrack phi: -0.744359
+63a65
+> Event: 104 Luminosity: 957 Run: 1 SimTrack Pt: 47.8737 SimTrack eta: 2.08691 SimTrack phi: -1.12951
+86a89,90
+> Event: 107 Luminosity: 212 Run: 1 SimTrack Pt: 13.498 SimTrack eta: 2.19591 SimTrack phi: -0.301887
+> Event: 107 Luminosity: 953 Run: 1 SimTrack Pt: 22.7945 SimTrack eta: 1.92323 SimTrack phi: 3.10082
+101a106
+> Event: 109 Luminosity: 212 Run: 1 SimTrack Pt: 13.3559 SimTrack eta: 2.18884 SimTrack phi: 1.09694
+110a116
+> Event: 11 Luminosity: 968 Run: 1 SimTrack Pt: 29.8277 SimTrack eta: 2.17801 SimTrack phi: 0.173259
+170a177
+> Event: 122 Luminosity: 209 Run: 1 SimTrack Pt: 10.3736 SimTrack eta: 2.25022 SimTrack phi: 2.19727
+200a208
+> Event: 128 Luminosity: 207 Run: 1 SimTrack Pt: 13.888 SimTrack eta: 1.73473 SimTrack phi: 2.63388
+211a220
+> Event: 130 Luminosity: 954 Run: 1 SimTrack Pt: 37.6771 SimTrack eta: 1.96022 SimTrack phi: 1.27799
+218a228
+> Event: 132 Luminosity: 211 Run: 1 SimTrack Pt: 29.6403 SimTrack eta: 2.11813 SimTrack phi: 2.14683
+242a253
+> Event: 136 Luminosity: 956 Run: 1 SimTrack Pt: 23.5417 SimTrack eta: 2.13336 SimTrack phi: 2.67454
+255a267
+> Event: 138 Luminosity: 963 Run: 1 SimTrack Pt: 20.3381 SimTrack eta: 2.27471 SimTrack phi: -1.17246
+264a277
+> Event: 14 Luminosity: 960 Run: 1 SimTrack Pt: 38.3489 SimTrack eta: 2.12369 SimTrack phi: 0.258391
+293a307
+> Event: 146 Luminosity: 964 Run: 1 SimTrack Pt: 21.4462 SimTrack eta: 1.76332 SimTrack phi: 0.742317
+295a310
+> Event: 147 Luminosity: 964 Run: 1 SimTrack Pt: 39.6657 SimTrack eta: 1.8374 SimTrack phi: 0.586045
+311a327
+> Event: 150 Luminosity: 209 Run: 1 SimTrack Pt: 24.8211 SimTrack eta: 1.65082 SimTrack phi: -0.212153
+315d330
+< Event: 152 Luminosity: 212 Run: 1 SimTrack Pt: 30.1665 SimTrack eta: 2.16644 SimTrack phi: -3.12182
+323a339
+> Event: 153 Luminosity: 967 Run: 1 SimTrack Pt: 49.315 SimTrack eta: 2.33583 SimTrack phi: 0.69125
+351a368,369
+> Event: 159 Luminosity: 954 Run: 1 SimTrack Pt: 33.6711 SimTrack eta: 1.95164 SimTrack phi: -0.677872
+> Event: 159 Luminosity: 956 Run: 1 SimTrack Pt: 41.7622 SimTrack eta: 1.75997 SimTrack phi: 1.33989
+400a419
+> Event: 169 Luminosity: 954 Run: 1 SimTrack Pt: 43.9377 SimTrack eta: 2.01967 SimTrack phi: 1.0208
+457a477
+> Event: 178 Luminosity: 965 Run: 1 SimTrack Pt: 46.7391 SimTrack eta: 2.07642 SimTrack phi: 1.22846
+459a480
+> Event: 179 Luminosity: 209 Run: 1 SimTrack Pt: 46.4381 SimTrack eta: 2.20405 SimTrack phi: 0.77097
+461a483
+> Event: 179 Luminosity: 963 Run: 1 SimTrack Pt: 49.8466 SimTrack eta: 2.14838 SimTrack phi: 2.92717
+490a513
+> Event: 184 Luminosity: 962 Run: 1 SimTrack Pt: 11.0696 SimTrack eta: 2.21977 SimTrack phi: -2.33761
+497d519
+< Event: 185 Luminosity: 966 Run: 1 SimTrack Pt: 40.5896 SimTrack eta: 1.88274 SimTrack phi: 0.634691
+505a528
+> Event: 187 Luminosity: 212 Run: 1 SimTrack Pt: 37.764 SimTrack eta: 1.65773 SimTrack phi: 2.67449
+532a556
+> Event: 191 Luminosity: 960 Run: 1 SimTrack Pt: 23.0692 SimTrack eta: 2.26939 SimTrack phi: -0.0191399
+556a581
+> Event: 196 Luminosity: 961 Run: 1 SimTrack Pt: 21.9198 SimTrack eta: 2.28162 SimTrack phi: -2.66904
+574a600
+> Event: 2 Luminosity: 961 Run: 1 SimTrack Pt: 28.9173 SimTrack eta: 1.65896 SimTrack phi: -1.00664
+630a657
+> Event: 21 Luminosity: 204 Run: 1 SimTrack Pt: 23.3253 SimTrack eta: 1.76297 SimTrack phi: 0.214907
+637a665
+> Event: 210 Luminosity: 960 Run: 1 SimTrack Pt: 27.2304 SimTrack eta: 1.96117 SimTrack phi: 0.076787
+656a685,686
+> Event: 214 Luminosity: 955 Run: 1 SimTrack Pt: 11.2954 SimTrack eta: 2.21153 SimTrack phi: -2.59689
+> Event: 214 Luminosity: 959 Run: 1 SimTrack Pt: 19.5049 SimTrack eta: 1.94861 SimTrack phi: 3.00829
+661a692
+> Event: 215 Luminosity: 210 Run: 1 SimTrack Pt: 21.3783 SimTrack eta: 1.65062 SimTrack phi: 0.49553
+671a703
+> Event: 217 Luminosity: 961 Run: 1 SimTrack Pt: 20.096 SimTrack eta: 2.16055 SimTrack phi: 1.70013
+673a706
+> Event: 218 Luminosity: 212 Run: 1 SimTrack Pt: 21.7411 SimTrack eta: 2.1504 SimTrack phi: 1.27398
+702a736
+> Event: 223 Luminosity: 954 Run: 1 SimTrack Pt: 20.3811 SimTrack eta: 2.14342 SimTrack phi: -1.19509
+757a792
+> Event: 232 Luminosity: 207 Run: 1 SimTrack Pt: 12.5451 SimTrack eta: 2.068 SimTrack phi: -0.5594
+770a806
+> Event: 233 Luminosity: 966 Run: 1 SimTrack Pt: 43.2869 SimTrack eta: 1.70385 SimTrack phi: 0.585924
+775a812
+> Event: 235 Luminosity: 952 Run: 1 SimTrack Pt: 42.8279 SimTrack eta: 2.09249 SimTrack phi: 1.2519
+777a815
+> Event: 235 Luminosity: 956 Run: 1 SimTrack Pt: 49.5183 SimTrack eta: 2.00754 SimTrack phi: -0.401343
+787a826
+> Event: 237 Luminosity: 952 Run: 1 SimTrack Pt: 35.4517 SimTrack eta: 1.7692 SimTrack phi: 0.468127
+796a836
+> Event: 238 Luminosity: 959 Run: 1 SimTrack Pt: 26.8964 SimTrack eta: 2.12048 SimTrack phi: 0.131004
+798a839
+> Event: 239 Luminosity: 211 Run: 1 SimTrack Pt: 20.7918 SimTrack eta: 1.80116 SimTrack phi: 1.51281
+800d840
+< Event: 239 Luminosity: 957 Run: 1 SimTrack Pt: 43.4457 SimTrack eta: 1.65821 SimTrack phi: 2.22361
+817a858
+> Event: 242 Luminosity: 212 Run: 1 SimTrack Pt: 31.596 SimTrack eta: 1.7024 SimTrack phi: 3.04842
+835a877
+> Event: 246 Luminosity: 952 Run: 1 SimTrack Pt: 46.9071 SimTrack eta: 1.67934 SimTrack phi: 1.63308
+854a897
+> Event: 25 Luminosity: 961 Run: 1 SimTrack Pt: 23.5474 SimTrack eta: 1.84097 SimTrack phi: -1.09209
+862a906
+> Event: 251 Luminosity: 202 Run: 1 SimTrack Pt: 11.2192 SimTrack eta: 1.95451 SimTrack phi: 1.42802
+913a958
+> Event: 261 Luminosity: 956 Run: 1 SimTrack Pt: 42.8219 SimTrack eta: 1.72152 SimTrack phi: 0.115612
+917a963
+> Event: 262 Luminosity: 210 Run: 1 SimTrack Pt: 48.7971 SimTrack eta: 2.20152 SimTrack phi: 0.956315
+922d967
+< Event: 262 Luminosity: 962 Run: 1 SimTrack Pt: 43.2221 SimTrack eta: 2.17699 SimTrack phi: 2.35176
+926a972
+> Event: 264 Luminosity: 202 Run: 1 SimTrack Pt: 12.7238 SimTrack eta: 1.80172 SimTrack phi: -0.495283
+935d980
+< Event: 265 Luminosity: 212 Run: 1 SimTrack Pt: 24.0104 SimTrack eta: 2.26882 SimTrack phi: -1.63277
+946a992
+> Event: 267 Luminosity: 957 Run: 1 SimTrack Pt: 34.9682 SimTrack eta: 2.0884 SimTrack phi: 0.851445
+972a1019
+> Event: 273 Luminosity: 968 Run: 1 SimTrack Pt: 30.0715 SimTrack eta: 2.02499 SimTrack phi: 2.15587
+1036a1084
+> Event: 286 Luminosity: 211 Run: 1 SimTrack Pt: 21.5504 SimTrack eta: 2.01178 SimTrack phi: 0.683306
+1055a1104
+> Event: 289 Luminosity: 202 Run: 1 SimTrack Pt: 19.893 SimTrack eta: 1.95161 SimTrack phi: -2.578
+1063a1113
+> Event: 29 Luminosity: 209 Run: 1 SimTrack Pt: 21.1595 SimTrack eta: 2.09283 SimTrack phi: -3.01216
+1077a1128
+> Event: 292 Luminosity: 957 Run: 1 SimTrack Pt: 42.9156 SimTrack eta: 1.70119 SimTrack phi: -2.44261
+1086a1138
+> Event: 294 Luminosity: 209 Run: 1 SimTrack Pt: 19.4133 SimTrack eta: 1.97592 SimTrack phi: -0.216698
+1134a1187
+> Event: 300 Luminosity: 967 Run: 1 SimTrack Pt: 14.1827 SimTrack eta: 1.67432 SimTrack phi: 1.92447
+1139a1193,1194
+> Event: 301 Luminosity: 965 Run: 1 SimTrack Pt: 39.4009 SimTrack eta: 2.274 SimTrack phi: -1.0482
+> Event: 301 Luminosity: 967 Run: 1 SimTrack Pt: 23.8731 SimTrack eta: 2.04158 SimTrack phi: -1.17419
+1167d1221
+< Event: 308 Luminosity: 959 Run: 1 SimTrack Pt: 23.6894 SimTrack eta: 2.3127 SimTrack phi: -2.26221
+1183a1238
+> Event: 31 Luminosity: 953 Run: 1 SimTrack Pt: 15.2864 SimTrack eta: 1.7582 SimTrack phi: -0.866731
+1192a1248
+> Event: 311 Luminosity: 953 Run: 1 SimTrack Pt: 39.7058 SimTrack eta: 1.68447 SimTrack phi: 0.073233
+1210a1267
+> Event: 315 Luminosity: 202 Run: 1 SimTrack Pt: 16.0328 SimTrack eta: 1.93387 SimTrack phi: 1.60201
+1221a1279
+> Event: 317 Luminosity: 211 Run: 1 SimTrack Pt: 47.8713 SimTrack eta: 2.0997 SimTrack phi: -0.494161
+1239a1298
+> Event: 319 Luminosity: 957 Run: 1 SimTrack Pt: 21.3013 SimTrack eta: 2.3439 SimTrack phi: -1.28511
+1243a1303
+> Event: 32 Luminosity: 211 Run: 1 SimTrack Pt: 18.6201 SimTrack eta: 2.14999 SimTrack phi: -0.891302
+1267a1328
+> Event: 323 Luminosity: 960 Run: 1 SimTrack Pt: 40.2442 SimTrack eta: 1.71475 SimTrack phi: -1.27699
+1276a1338
+> Event: 324 Luminosity: 959 Run: 1 SimTrack Pt: 41.4684 SimTrack eta: 1.74134 SimTrack phi: 2.85211
+1302d1363
+< Event: 328 Luminosity: 962 Run: 1 SimTrack Pt: 17.0628 SimTrack eta: 2.20677 SimTrack phi: 0.698323
+1321a1383
+> Event: 331 Luminosity: 965 Run: 1 SimTrack Pt: 39.891 SimTrack eta: 1.96228 SimTrack phi: 0.285372
+1338a1401
+> Event: 334 Luminosity: 955 Run: 1 SimTrack Pt: 22.2443 SimTrack eta: 2.0738 SimTrack phi: -1.66733
+1342a1406
+> Event: 335 Luminosity: 956 Run: 1 SimTrack Pt: 10.7474 SimTrack eta: 1.72785 SimTrack phi: -1.55349
+1393a1458
+> Event: 342 Luminosity: 959 Run: 1 SimTrack Pt: 43.5824 SimTrack eta: 2.2212 SimTrack phi: 1.15183
+1405a1471
+> Event: 344 Luminosity: 963 Run: 1 SimTrack Pt: 27.6476 SimTrack eta: 1.83474 SimTrack phi: -2.78143
+1412a1479
+> Event: 345 Luminosity: 961 Run: 1 SimTrack Pt: 31.7236 SimTrack eta: 1.9181 SimTrack phi: 0.746692
+1414d1480
+< Event: 345 Luminosity: 964 Run: 1 SimTrack Pt: 26.5646 SimTrack eta: 2.31464 SimTrack phi: 2.13846
+1453a1520,1521
+> Event: 351 Luminosity: 961 Run: 1 SimTrack Pt: 16.6978 SimTrack eta: 1.90564 SimTrack phi: 0.557554
+> Event: 351 Luminosity: 964 Run: 1 SimTrack Pt: 18.1133 SimTrack eta: 1.95843 SimTrack phi: -0.314154
+1458a1527
+> Event: 352 Luminosity: 204 Run: 1 SimTrack Pt: 49.7762 SimTrack eta: 1.66965 SimTrack phi: -0.590333
+1485a1555
+> Event: 358 Luminosity: 204 Run: 1 SimTrack Pt: 45.8683 SimTrack eta: 1.69585 SimTrack phi: 1.28446
+1509d1578
+< Event: 361 Luminosity: 960 Run: 1 SimTrack Pt: 10.5457 SimTrack eta: 1.66965 SimTrack phi: 2.50572
+1526a1596
+> Event: 366 Luminosity: 204 Run: 1 SimTrack Pt: 11.8152 SimTrack eta: 1.95068 SimTrack phi: -1.94463
+1570d1639
+< Event: 372 Luminosity: 966 Run: 1 SimTrack Pt: 42.1781 SimTrack eta: 1.95652 SimTrack phi: -1.66198
+1575a1645
+> Event: 373 Luminosity: 961 Run: 1 SimTrack Pt: 39.5965 SimTrack eta: 1.88793 SimTrack phi: 0.634068
+1610d1679
+< Event: 379 Luminosity: 960 Run: 1 SimTrack Pt: 18.7024 SimTrack eta: 2.07399 SimTrack phi: 0.287297
+1613a1683
+> Event: 38 Luminosity: 964 Run: 1 SimTrack Pt: 36.8723 SimTrack eta: 1.66733 SimTrack phi: -1.27748
+1618a1689
+> Event: 380 Luminosity: 209 Run: 1 SimTrack Pt: 10.6895 SimTrack eta: 1.65418 SimTrack phi: 0.145732
+1658a1730,1731
+> Event: 388 Luminosity: 966 Run: 1 SimTrack Pt: 44.1235 SimTrack eta: 2.13947 SimTrack phi: 0.024628
+> Event: 388 Luminosity: 966 Run: 1 SimTrack Pt: 44.1235 SimTrack eta: 2.13947 SimTrack phi: 0.024628
+1663a1737
+> Event: 389 Luminosity: 968 Run: 1 SimTrack Pt: 23.292 SimTrack eta: 2.15348 SimTrack phi: 0.249362
+1667a1742
+> Event: 39 Luminosity: 953 Run: 1 SimTrack Pt: 35.7912 SimTrack eta: 2.16037 SimTrack phi: 0.764046
+1678a1754
+> Event: 391 Luminosity: 953 Run: 1 SimTrack Pt: 13.2382 SimTrack eta: 1.99028 SimTrack phi: 2.54709
+1710a1787
+> Event: 398 Luminosity: 959 Run: 1 SimTrack Pt: 39.0213 SimTrack eta: 1.94737 SimTrack phi: -1.91188
+1714a1792
+> Event: 399 Luminosity: 212 Run: 1 SimTrack Pt: 38.8926 SimTrack eta: 2.12973 SimTrack phi: 1.15285
+1725a1804
+> Event: 400 Luminosity: 956 Run: 1 SimTrack Pt: 42.1902 SimTrack eta: 1.75824 SimTrack phi: -2.03349
+1730a1810
+> Event: 400 Luminosity: 965 Run: 1 SimTrack Pt: 28.4012 SimTrack eta: 1.88249 SimTrack phi: -1.27538
+1732a1813
+> Event: 401 Luminosity: 964 Run: 1 SimTrack Pt: 45.8114 SimTrack eta: 1.83139 SimTrack phi: 2.00597
+1740d1820
+< Event: 402 Luminosity: 965 Run: 1 SimTrack Pt: 17.2958 SimTrack eta: 1.94483 SimTrack phi: -2.86963
+1742a1823
+> Event: 403 Luminosity: 960 Run: 1 SimTrack Pt: 19.9225 SimTrack eta: 1.87728 SimTrack phi: -1.8879
+1756d1836
+< Event: 406 Luminosity: 954 Run: 1 SimTrack Pt: 26.3467 SimTrack eta: 2.3171 SimTrack phi: -2.70337
+1758a1839
+> Event: 406 Luminosity: 964 Run: 1 SimTrack Pt: 23.9164 SimTrack eta: 1.67466 SimTrack phi: -2.16663
+1776a1858,1859
+> Event: 409 Luminosity: 967 Run: 1 SimTrack Pt: 47.2401 SimTrack eta: 2.18224 SimTrack phi: 1.00085
+> Event: 41 Luminosity: 204 Run: 1 SimTrack Pt: 41.2613 SimTrack eta: 1.76437 SimTrack phi: -2.72666
+1784a1868
+> Event: 411 Luminosity: 210 Run: 1 SimTrack Pt: 31.3458 SimTrack eta: 1.79125 SimTrack phi: 3.08953
+1801d1884
+< Event: 413 Luminosity: 961 Run: 1 SimTrack Pt: 39.8141 SimTrack eta: 2.21806 SimTrack phi: -1.79758
+1808d1890
+< Event: 415 Luminosity: 954 Run: 1 SimTrack Pt: 37.0141 SimTrack eta: 2.28827 SimTrack phi: 1.73101
+1813a1896
+> Event: 416 Luminosity: 958 Run: 1 SimTrack Pt: 48.4426 SimTrack eta: 2.15881 SimTrack phi: 0.79261
+1866a1950
+> Event: 426 Luminosity: 961 Run: 1 SimTrack Pt: 20.8922 SimTrack eta: 1.77024 SimTrack phi: 0.703117
+1911a1996
+> Event: 435 Luminosity: 211 Run: 1 SimTrack Pt: 14.1695 SimTrack eta: 2.0175 SimTrack phi: -2.87747
+1916d2000
+< Event: 435 Luminosity: 962 Run: 1 SimTrack Pt: 41.7556 SimTrack eta: 2.0519 SimTrack phi: 1.77836
+1920a2005
+> Event: 436 Luminosity: 954 Run: 1 SimTrack Pt: 44.7601 SimTrack eta: 1.86999 SimTrack phi: -3.07317
+1928a2014
+> Event: 437 Luminosity: 958 Run: 1 SimTrack Pt: 45.3978 SimTrack eta: 1.80468 SimTrack phi: 0.0629112
+1956a2043
+> Event: 442 Luminosity: 952 Run: 1 SimTrack Pt: 28.7312 SimTrack eta: 1.85997 SimTrack phi: -3.01198
+1969d2055
+< Event: 445 Luminosity: 952 Run: 1 SimTrack Pt: 17.7683 SimTrack eta: 1.92952 SimTrack phi: -1.81406
+1980a2067
+> Event: 447 Luminosity: 953 Run: 1 SimTrack Pt: 37.2361 SimTrack eta: 1.9325 SimTrack phi: -1.68572
+1982a2070
+> Event: 447 Luminosity: 955 Run: 1 SimTrack Pt: 23.3014 SimTrack eta: 1.97996 SimTrack phi: -1.44839
+2003d2090
+< Event: 45 Luminosity: 966 Run: 1 SimTrack Pt: 43.6676 SimTrack eta: 1.88821 SimTrack phi: -1.9811
+2005d2091
+< Event: 450 Luminosity: 967 Run: 1 SimTrack Pt: 45.1228 SimTrack eta: 1.85198 SimTrack phi: 0.437252
+2009a2096
+> Event: 452 Luminosity: 209 Run: 1 SimTrack Pt: 31.7211 SimTrack eta: 1.6755 SimTrack phi: -3.01323
+2018a2106
+> Event: 453 Luminosity: 960 Run: 1 SimTrack Pt: 27.985 SimTrack eta: 1.73331 SimTrack phi: -0.651707
+2029a2118
+> Event: 455 Luminosity: 211 Run: 1 SimTrack Pt: 32.304 SimTrack eta: 2.11788 SimTrack phi: 1.49771
+2032d2120
+< Event: 456 Luminosity: 953 Run: 1 SimTrack Pt: 42.3122 SimTrack eta: 2.02019 SimTrack phi: -0.803638
+2042a2131
+> Event: 458 Luminosity: 211 Run: 1 SimTrack Pt: 34.7538 SimTrack eta: 2.25388 SimTrack phi: 3.03674
+2051a2141
+> Event: 459 Luminosity: 953 Run: 1 SimTrack Pt: 30.6374 SimTrack eta: 2.0157 SimTrack phi: 0.541318
+2087d2176
+< Event: 463 Luminosity: 958 Run: 1 SimTrack Pt: 23.6023 SimTrack eta: 1.88334 SimTrack phi: -2.82381
+2095a2185,2186
+> Event: 464 Luminosity: 963 Run: 1 SimTrack Pt: 39.8879 SimTrack eta: 1.98091 SimTrack phi: 2.82321
+> Event: 465 Luminosity: 204 Run: 1 SimTrack Pt: 17.3056 SimTrack eta: 1.98269 SimTrack phi: 0.200553
+2130a2222
+> Event: 471 Luminosity: 963 Run: 1 SimTrack Pt: 30.0454 SimTrack eta: 1.86456 SimTrack phi: 0.707445
+2166a2259
+> Event: 478 Luminosity: 211 Run: 1 SimTrack Pt: 45.8727 SimTrack eta: 2.14267 SimTrack phi: 2.35066
+2222a2316
+> Event: 489 Luminosity: 963 Run: 1 SimTrack Pt: 46.1009 SimTrack eta: 2.08172 SimTrack phi: -2.93466
+2225a2320
+> Event: 49 Luminosity: 204 Run: 1 SimTrack Pt: 46.7226 SimTrack eta: 1.9952 SimTrack phi: -2.46407
+2249a2345
+> Event: 494 Luminosity: 209 Run: 1 SimTrack Pt: 41.617 SimTrack eta: 2.29126 SimTrack phi: 1.77691
+2255a2352
+> Event: 494 Luminosity: 968 Run: 1 SimTrack Pt: 15.9515 SimTrack eta: 2.20587 SimTrack phi: 0.212098
+2257d2353
+< Event: 495 Luminosity: 954 Run: 1 SimTrack Pt: 20.6501 SimTrack eta: 2.16385 SimTrack phi: 2.08051
+2258a2355,2356
+> Event: 495 Luminosity: 957 Run: 1 SimTrack Pt: 38.227 SimTrack eta: 1.95185 SimTrack phi: -1.72447
+> Event: 495 Luminosity: 965 Run: 1 SimTrack Pt: 15.1407 SimTrack eta: 1.95297 SimTrack phi: -0.678672
+2299d2396
+< Event: 500 Luminosity: 966 Run: 1 SimTrack Pt: 39.2153 SimTrack eta: 2.23238 SimTrack phi: 1.31048
+2321a2419
+> Event: 505 Luminosity: 204 Run: 1 SimTrack Pt: 45.9645 SimTrack eta: 1.92602 SimTrack phi: -2.68233
+2333a2432,2433
+> Event: 507 Luminosity: 953 Run: 1 SimTrack Pt: 37.9895 SimTrack eta: 2.0259 SimTrack phi: 0.31835
+> Event: 507 Luminosity: 954 Run: 1 SimTrack Pt: 25.6175 SimTrack eta: 1.67434 SimTrack phi: 0.737933
+2334a2435
+> Event: 507 Luminosity: 959 Run: 1 SimTrack Pt: 48.0186 SimTrack eta: 2.23237 SimTrack phi: -0.930208
+2343a2445
+> Event: 509 Luminosity: 961 Run: 1 SimTrack Pt: 14.6823 SimTrack eta: 2.0345 SimTrack phi: 2.29954
+2347d2448
+< Event: 51 Luminosity: 958 Run: 1 SimTrack Pt: 31.6285 SimTrack eta: 1.80527 SimTrack phi: -1.44493
+2348a2450
+> Event: 51 Luminosity: 965 Run: 1 SimTrack Pt: 18.7555 SimTrack eta: 2.16034 SimTrack phi: -0.705533
+2372a2475,2476
+> Event: 515 Luminosity: 954 Run: 1 SimTrack Pt: 43.4475 SimTrack eta: 1.95635 SimTrack phi: -2.7279
+> Event: 515 Luminosity: 955 Run: 1 SimTrack Pt: 17.1146 SimTrack eta: 2.1167 SimTrack phi: 1.05186
+2394d2497
+< Event: 519 Luminosity: 959 Run: 1 SimTrack Pt: 14.2158 SimTrack eta: 2.11484 SimTrack phi: -2.78312
+2399a2503
+> Event: 520 Luminosity: 210 Run: 1 SimTrack Pt: 34.3318 SimTrack eta: 2.30604 SimTrack phi: -1.17216
+2432d2535
+< Event: 526 Luminosity: 954 Run: 1 SimTrack Pt: 32.4119 SimTrack eta: 2.19793 SimTrack phi: -0.216822
+2470a2574
+> Event: 533 Luminosity: 956 Run: 1 SimTrack Pt: 10.9634 SimTrack eta: 2.09787 SimTrack phi: 1.496
+2487a2592
+> Event: 535 Luminosity: 961 Run: 1 SimTrack Pt: 21.9404 SimTrack eta: 1.988 SimTrack phi: 2.39863
+2494a2600
+> Event: 536 Luminosity: 960 Run: 1 SimTrack Pt: 26.5829 SimTrack eta: 2.12091 SimTrack phi: -1.97983
+2497a2604
+> Event: 536 Luminosity: 966 Run: 1 SimTrack Pt: 43.0074 SimTrack eta: 1.83583 SimTrack phi: -0.637995
+2503a2611
+> Event: 538 Luminosity: 210 Run: 1 SimTrack Pt: 14.021 SimTrack eta: 1.65081 SimTrack phi: -2.24272
+2530d2637
+< Event: 542 Luminosity: 209 Run: 1 SimTrack Pt: 44.2912 SimTrack eta: 1.93728 SimTrack phi: -1.95528
+2544d2650
+< Event: 544 Luminosity: 962 Run: 1 SimTrack Pt: 34.3121 SimTrack eta: 1.68056 SimTrack phi: 1.10304
+2551a2658
+> Event: 545 Luminosity: 966 Run: 1 SimTrack Pt: 45.9061 SimTrack eta: 1.70344 SimTrack phi: 1.97957
+2565a2673
+> Event: 547 Luminosity: 960 Run: 1 SimTrack Pt: 17.2026 SimTrack eta: 1.84688 SimTrack phi: 0.499789
+2580d2687
+< Event: 550 Luminosity: 207 Run: 1 SimTrack Pt: 38.3851 SimTrack eta: 2.07296 SimTrack phi: -1.32102
+2673a2781,2782
+> Event: 566 Luminosity: 956 Run: 1 SimTrack Pt: 30.5875 SimTrack eta: 1.70831 SimTrack phi: 2.62435
+> Event: 566 Luminosity: 957 Run: 1 SimTrack Pt: 49.5983 SimTrack eta: 1.77029 SimTrack phi: 1.28439
+2675a2785
+> Event: 566 Luminosity: 965 Run: 1 SimTrack Pt: 45.4054 SimTrack eta: 1.91105 SimTrack phi: -1.47805
+2690a2801
+> Event: 569 Luminosity: 964 Run: 1 SimTrack Pt: 38.1993 SimTrack eta: 1.97464 SimTrack phi: 0.23723
+2735a2847
+> Event: 578 Luminosity: 210 Run: 1 SimTrack Pt: 43.5574 SimTrack eta: 1.67477 SimTrack phi: -2.49496
+2769d2880
+< Event: 584 Luminosity: 210 Run: 1 SimTrack Pt: 40.9064 SimTrack eta: 2.31532 SimTrack phi: -1.54268
+2804a2916
+> Event: 589 Luminosity: 961 Run: 1 SimTrack Pt: 17.7719 SimTrack eta: 1.76461 SimTrack phi: 2.19995
+2808a2921
+> Event: 59 Luminosity: 209 Run: 1 SimTrack Pt: 41.0478 SimTrack eta: 2.00499 SimTrack phi: 3.05599
+2815a2929
+> Event: 590 Luminosity: 962 Run: 1 SimTrack Pt: 42.1182 SimTrack eta: 1.93645 SimTrack phi: 2.9043
+2826a2941
+> Event: 593 Luminosity: 955 Run: 1 SimTrack Pt: 27.9235 SimTrack eta: 2.16618 SimTrack phi: -0.194667
+2844a2960
+> Event: 597 Luminosity: 207 Run: 1 SimTrack Pt: 32.5557 SimTrack eta: 2.07477 SimTrack phi: 3.0013
+2885a3002
+> Event: 603 Luminosity: 962 Run: 1 SimTrack Pt: 23.3365 SimTrack eta: 1.92169 SimTrack phi: 1.17362
+2892a3010
+> Event: 605 Luminosity: 956 Run: 1 SimTrack Pt: 10.6435 SimTrack eta: 2.2657 SimTrack phi: -0.544946
+2894a3013
+> Event: 606 Luminosity: 207 Run: 1 SimTrack Pt: 46.6196 SimTrack eta: 1.71857 SimTrack phi: -1.63716
+2937a3057
+> Event: 613 Luminosity: 957 Run: 1 SimTrack Pt: 13.3742 SimTrack eta: 1.91257 SimTrack phi: 1.57331
+2992a3113
+> Event: 621 Luminosity: 964 Run: 1 SimTrack Pt: 25.2567 SimTrack eta: 1.6834 SimTrack phi: -0.187097
+3005d3125
+< Event: 624 Luminosity: 965 Run: 1 SimTrack Pt: 38.3477 SimTrack eta: 1.9409 SimTrack phi: 1.4504
+3011a3132
+> Event: 627 Luminosity: 952 Run: 1 SimTrack Pt: 35.6279 SimTrack eta: 2.27216 SimTrack phi: 1.42756
+3030a3152
+> Event: 630 Luminosity: 965 Run: 1 SimTrack Pt: 14.7772 SimTrack eta: 2.33486 SimTrack phi: 1.43471
+3036a3159
+> Event: 632 Luminosity: 953 Run: 1 SimTrack Pt: 48.1399 SimTrack eta: 1.95487 SimTrack phi: 1.19864
+3052a3176
+> Event: 636 Luminosity: 211 Run: 1 SimTrack Pt: 34.3274 SimTrack eta: 2.12484 SimTrack phi: 2.55877
+3058a3183
+> Event: 637 Luminosity: 204 Run: 1 SimTrack Pt: 23.4284 SimTrack eta: 2.0147 SimTrack phi: -1.32355
+3087a3213
+> Event: 640 Luminosity: 966 Run: 1 SimTrack Pt: 46.4096 SimTrack eta: 1.89641 SimTrack phi: 1.50232
+3095a3222
+> Event: 641 Luminosity: 968 Run: 1 SimTrack Pt: 42.4679 SimTrack eta: 1.87608 SimTrack phi: 1.85958
+3112a3240
+> Event: 645 Luminosity: 953 Run: 1 SimTrack Pt: 27.2588 SimTrack eta: 2.16939 SimTrack phi: 1.90222
+3153a3282
+> Event: 653 Luminosity: 967 Run: 1 SimTrack Pt: 16.1034 SimTrack eta: 2.10008 SimTrack phi: -2.03735
+3158c3287
+< Event: 654 Luminosity: 959 Run: 1 SimTrack Pt: 29.9984 SimTrack eta: 2.28269 SimTrack phi: -0.844009
+---
+> Event: 654 Luminosity: 958 Run: 1 SimTrack Pt: 18.6819 SimTrack eta: 1.79 SimTrack phi: -0.548182
+3161a3291
+> Event: 654 Luminosity: 968 Run: 1 SimTrack Pt: 45.6574 SimTrack eta: 2.17236 SimTrack phi: -1.85017
+3211a3342
+> Event: 665 Luminosity: 200 Run: 1 SimTrack Pt: 36.9919 SimTrack eta: 1.70017 SimTrack phi: 1.27714
+3213a3345
+> Event: 665 Luminosity: 962 Run: 1 SimTrack Pt: 24.4134 SimTrack eta: 2.08239 SimTrack phi: 0.392073
+3243a3376
+> Event: 670 Luminosity: 202 Run: 1 SimTrack Pt: 36.3011 SimTrack eta: 1.6836 SimTrack phi: -1.22566
+3273a3407
+> Event: 675 Luminosity: 207 Run: 1 SimTrack Pt: 28.4186 SimTrack eta: 2.08596 SimTrack phi: -3.13287
+3295d3428
+< Event: 678 Luminosity: 961 Run: 1 SimTrack Pt: 41.7819 SimTrack eta: 1.689 SimTrack phi: -0.886309
+3299a3433
+> Event: 679 Luminosity: 956 Run: 1 SimTrack Pt: 45.8173 SimTrack eta: 2.29143 SimTrack phi: -2.03163
+3303a3438
+> Event: 68 Luminosity: 212 Run: 1 SimTrack Pt: 43.8624 SimTrack eta: 2.09838 SimTrack phi: 0.0577932
+3315a3451
+> Event: 681 Luminosity: 202 Run: 1 SimTrack Pt: 46.6532 SimTrack eta: 2.01547 SimTrack phi: -0.47275
+3326a3463
+> Event: 683 Luminosity: 957 Run: 1 SimTrack Pt: 36.1992 SimTrack eta: 1.86377 SimTrack phi: 0.468842
+3333a3471,3472
+> Event: 684 Luminosity: 210 Run: 1 SimTrack Pt: 31.4502 SimTrack eta: 1.84549 SimTrack phi: 2.32828
+> Event: 684 Luminosity: 211 Run: 1 SimTrack Pt: 42.5853 SimTrack eta: 2.23602 SimTrack phi: 3.00051
+3359a3499
+> Event: 69 Luminosity: 210 Run: 1 SimTrack Pt: 26.4514 SimTrack eta: 2.12874 SimTrack phi: -0.820345
+3362a3503,3504
+> Event: 69 Luminosity: 968 Run: 1 SimTrack Pt: 37.6248 SimTrack eta: 2.10974 SimTrack phi: -2.54603
+> Event: 69 Luminosity: 968 Run: 1 SimTrack Pt: 37.6248 SimTrack eta: 2.10974 SimTrack phi: -2.54603
+3368a3511
+> Event: 691 Luminosity: 956 Run: 1 SimTrack Pt: 13.7477 SimTrack eta: 2.21923 SimTrack phi: 2.64687
+3380a3524
+> Event: 694 Luminosity: 953 Run: 1 SimTrack Pt: 14.4225 SimTrack eta: 2.06491 SimTrack phi: -1.28947
+3384a3529
+> Event: 695 Luminosity: 962 Run: 1 SimTrack Pt: 27.9627 SimTrack eta: 2.08895 SimTrack phi: 2.67659
+3414a3560
+> Event: 700 Luminosity: 957 Run: 1 SimTrack Pt: 12.0938 SimTrack eta: 2.16813 SimTrack phi: -0.850995
+3424a3571,3572
+> Event: 701 Luminosity: 961 Run: 1 SimTrack Pt: 42.0254 SimTrack eta: 1.88407 SimTrack phi: -0.93708
+> Event: 702 Luminosity: 200 Run: 1 SimTrack Pt: 32.7792 SimTrack eta: 1.67254 SimTrack phi: -0.129012
+3432a3581
+> Event: 703 Luminosity: 204 Run: 1 SimTrack Pt: 46.2441 SimTrack eta: 2.1984 SimTrack phi: -1.29474
+3449a3599
+> Event: 706 Luminosity: 952 Run: 1 SimTrack Pt: 31.9864 SimTrack eta: 1.7266 SimTrack phi: 1.97435
+3451a3602
+> Event: 707 Luminosity: 959 Run: 1 SimTrack Pt: 44.3065 SimTrack eta: 2.18037 SimTrack phi: 0.768993
+3453a3605
+> Event: 707 Luminosity: 966 Run: 1 SimTrack Pt: 31.0751 SimTrack eta: 2.26743 SimTrack phi: -2.93479
+3455a3608
+> Event: 708 Luminosity: 210 Run: 1 SimTrack Pt: 31.6491 SimTrack eta: 1.72811 SimTrack phi: -3.00419
+3496a3650
+> Event: 715 Luminosity: 960 Run: 1 SimTrack Pt: 26.5094 SimTrack eta: 2.16191 SimTrack phi: -2.91359
+3512a3667
+> Event: 718 Luminosity: 209 Run: 1 SimTrack Pt: 30.6434 SimTrack eta: 1.84433 SimTrack phi: 0.817463
+3518a3674,3675
+> Event: 718 Luminosity: 966 Run: 1 SimTrack Pt: 30.1198 SimTrack eta: 1.96635 SimTrack phi: -2.9082
+> Event: 719 Luminosity: 954 Run: 1 SimTrack Pt: 30.671 SimTrack eta: 2.04962 SimTrack phi: 0.986231
+3521a3679
+> Event: 719 Luminosity: 968 Run: 1 SimTrack Pt: 47.0793 SimTrack eta: 1.96125 SimTrack phi: -0.244541
+3542d3699
+< Event: 723 Luminosity: 954 Run: 1 SimTrack Pt: 25.9055 SimTrack eta: 2.07402 SimTrack phi: 2.07116
+3547a3705,3706
+> Event: 725 Luminosity: 960 Run: 1 SimTrack Pt: 21.9333 SimTrack eta: 1.81452 SimTrack phi: -0.440675
+> Event: 725 Luminosity: 968 Run: 1 SimTrack Pt: 41.1529 SimTrack eta: 1.85851 SimTrack phi: -2.67729
+3550a3710
+> Event: 726 Luminosity: 959 Run: 1 SimTrack Pt: 33.8938 SimTrack eta: 2.10396 SimTrack phi: -1.98628
+3570d3729
+< Event: 73 Luminosity: 204 Run: 1 SimTrack Pt: 41.8309 SimTrack eta: 1.65207 SimTrack phi: -2.79921
+3588a3748
+> Event: 732 Luminosity: 966 Run: 1 SimTrack Pt: 32.2471 SimTrack eta: 2.12882 SimTrack phi: 1.39718
+3596a3757
+> Event: 734 Luminosity: 202 Run: 1 SimTrack Pt: 44.6156 SimTrack eta: 1.8242 SimTrack phi: 3.08922
+3599a3761
+> Event: 734 Luminosity: 954 Run: 1 SimTrack Pt: 43.4449 SimTrack eta: 1.88458 SimTrack phi: -1.85756
+3618a3781,3782
+> Event: 738 Luminosity: 956 Run: 1 SimTrack Pt: 43.2813 SimTrack eta: 1.70406 SimTrack phi: 1.16427
+> Event: 738 Luminosity: 962 Run: 1 SimTrack Pt: 14.822 SimTrack eta: 2.11141 SimTrack phi: -2.11228
+3631d3794
+< Event: 74 Luminosity: 967 Run: 1 SimTrack Pt: 12.0685 SimTrack eta: 2.22573 SimTrack phi: 1.12889
+3641a3805
+> Event: 742 Luminosity: 202 Run: 1 SimTrack Pt: 25.7834 SimTrack eta: 2.14989 SimTrack phi: 0.25839
+3662a3827
+> Event: 747 Luminosity: 211 Run: 1 SimTrack Pt: 45.1461 SimTrack eta: 1.90147 SimTrack phi: -1.25067
+3675a3841
+> Event: 749 Luminosity: 965 Run: 1 SimTrack Pt: 43.8834 SimTrack eta: 2.2399 SimTrack phi: 2.72209
+3706a3873
+> Event: 754 Luminosity: 968 Run: 1 SimTrack Pt: 11.6655 SimTrack eta: 1.88087 SimTrack phi: 0.870427
+3714a3882
+> Event: 755 Luminosity: 968 Run: 1 SimTrack Pt: 37.4653 SimTrack eta: 2.08543 SimTrack phi: -3.03126
+3729a3898
+> Event: 758 Luminosity: 211 Run: 1 SimTrack Pt: 39.7683 SimTrack eta: 2.08845 SimTrack phi: -2.51027
+3734a3904
+> Event: 759 Luminosity: 961 Run: 1 SimTrack Pt: 18.2792 SimTrack eta: 1.65296 SimTrack phi: 2.63861
+3737a3908
+> Event: 76 Luminosity: 212 Run: 1 SimTrack Pt: 14.13 SimTrack eta: 2.02926 SimTrack phi: 0.554218
+3739a3911
+> Event: 76 Luminosity: 967 Run: 1 SimTrack Pt: 20.1454 SimTrack eta: 2.02622 SimTrack phi: -2.57487
+3747a3920
+> Event: 762 Luminosity: 955 Run: 1 SimTrack Pt: 20.0935 SimTrack eta: 2.08309 SimTrack phi: -2.35713
+3753a3927
+> Event: 762 Luminosity: 968 Run: 1 SimTrack Pt: 18.061 SimTrack eta: 2.26926 SimTrack phi: 0.270966
+3760a3935
+> Event: 764 Luminosity: 961 Run: 1 SimTrack Pt: 30.0406 SimTrack eta: 2.04814 SimTrack phi: 0.288486
+3767a3943,3944
+> Event: 766 Luminosity: 209 Run: 1 SimTrack Pt: 46.6495 SimTrack eta: 2.29981 SimTrack phi: 1.428
+> Event: 766 Luminosity: 953 Run: 1 SimTrack Pt: 13.599 SimTrack eta: 1.73973 SimTrack phi: 2.17854
+3783a3961
+> Event: 769 Luminosity: 202 Run: 1 SimTrack Pt: 13.6735 SimTrack eta: 1.9893 SimTrack phi: 0.460338
+3824a4003
+> Event: 775 Luminosity: 961 Run: 1 SimTrack Pt: 24.886 SimTrack eta: 1.89675 SimTrack phi: 0.618002
+3846a4026
+> Event: 779 Luminosity: 963 Run: 1 SimTrack Pt: 44.0759 SimTrack eta: 2.18459 SimTrack phi: -2.25411
+3852a4033
+> Event: 78 Luminosity: 960 Run: 1 SimTrack Pt: 11.4633 SimTrack eta: 2.10352 SimTrack phi: -1.96517
+3855a4037
+> Event: 780 Luminosity: 204 Run: 1 SimTrack Pt: 46.2632 SimTrack eta: 2.21361 SimTrack phi: -1.84322
+3886a4069
+> Event: 787 Luminosity: 207 Run: 1 SimTrack Pt: 18.4622 SimTrack eta: 2.12873 SimTrack phi: 0.349288
+3893d4075
+< Event: 788 Luminosity: 200 Run: 1 SimTrack Pt: 14.6271 SimTrack eta: 2.03762 SimTrack phi: 1.62845
+3914a4097
+> Event: 791 Luminosity: 959 Run: 1 SimTrack Pt: 48.3566 SimTrack eta: 2.05771 SimTrack phi: -1.90071
+3974a4158
+> Event: 802 Luminosity: 953 Run: 1 SimTrack Pt: 45.8475 SimTrack eta: 2.02268 SimTrack phi: -1.85062
+4030a4215
+> Event: 811 Luminosity: 953 Run: 1 SimTrack Pt: 10.8301 SimTrack eta: 1.79224 SimTrack phi: -2.98382
+4041a4227
+> Event: 812 Luminosity: 966 Run: 1 SimTrack Pt: 38.3143 SimTrack eta: 2.01145 SimTrack phi: -0.240745
+4070a4257
+> Event: 818 Luminosity: 202 Run: 1 SimTrack Pt: 31.0089 SimTrack eta: 2.06246 SimTrack phi: -1.92751
+4084a4272
+> Event: 820 Luminosity: 202 Run: 1 SimTrack Pt: 31.5406 SimTrack eta: 2.03899 SimTrack phi: -0.687955
+4125a4314
+> Event: 825 Luminosity: 959 Run: 1 SimTrack Pt: 24.8154 SimTrack eta: 1.67507 SimTrack phi: 1.5316
+4164a4354
+> Event: 832 Luminosity: 211 Run: 1 SimTrack Pt: 46.0547 SimTrack eta: 1.67178 SimTrack phi: 0.0556997
+4165a4356
+> Event: 832 Luminosity: 955 Run: 1 SimTrack Pt: 34.7702 SimTrack eta: 2.32882 SimTrack phi: -2.12937
+4185a4377
+> Event: 836 Luminosity: 967 Run: 1 SimTrack Pt: 26.4576 SimTrack eta: 1.85621 SimTrack phi: -1.27462
+4190a4383
+> Event: 837 Luminosity: 968 Run: 1 SimTrack Pt: 47.4227 SimTrack eta: 1.6587 SimTrack phi: 2.5314
+4221a4415
+> Event: 842 Luminosity: 210 Run: 1 SimTrack Pt: 25.1614 SimTrack eta: 2.0497 SimTrack phi: -0.699354
+4225a4420
+> Event: 843 Luminosity: 211 Run: 1 SimTrack Pt: 45.4986 SimTrack eta: 2.01829 SimTrack phi: 0.752603
+4279a4475
+> Event: 854 Luminosity: 952 Run: 1 SimTrack Pt: 35.0005 SimTrack eta: 2.1738 SimTrack phi: -3.08179
+4303a4500
+> Event: 859 Luminosity: 964 Run: 1 SimTrack Pt: 21.4181 SimTrack eta: 2.11532 SimTrack phi: 2.17872
+4378a4576
+> Event: 872 Luminosity: 968 Run: 1 SimTrack Pt: 41.8692 SimTrack eta: 2.16604 SimTrack phi: 2.32068
+4388a4587
+> Event: 875 Luminosity: 952 Run: 1 SimTrack Pt: 39.8375 SimTrack eta: 1.69277 SimTrack phi: -1.27669
+4398a4598,4599
+> Event: 876 Luminosity: 968 Run: 1 SimTrack Pt: 24.0118 SimTrack eta: 2.32895 SimTrack phi: 2.02891
+> Event: 877 Luminosity: 207 Run: 1 SimTrack Pt: 35.3507 SimTrack eta: 2.21713 SimTrack phi: -1.64004
+4409a4611
+> Event: 879 Luminosity: 962 Run: 1 SimTrack Pt: 35.8318 SimTrack eta: 2.06435 SimTrack phi: 1.60393
+4428a4631
+> Event: 883 Luminosity: 200 Run: 1 SimTrack Pt: 34.5304 SimTrack eta: 1.69542 SimTrack phi: 2.09025
+4450a4654
+> Event: 887 Luminosity: 207 Run: 1 SimTrack Pt: 44.8735 SimTrack eta: 1.8079 SimTrack phi: -1.50907
+4487a4692
+> Event: 891 Luminosity: 211 Run: 1 SimTrack Pt: 32.449 SimTrack eta: 1.82213 SimTrack phi: 0.578
+4502a4708
+> Event: 895 Luminosity: 209 Run: 1 SimTrack Pt: 29.1974 SimTrack eta: 2.0609 SimTrack phi: -1.16422
+4506a4713
+> Event: 896 Luminosity: 207 Run: 1 SimTrack Pt: 12.7749 SimTrack eta: 1.93204 SimTrack phi: -0.285044
+4528a4736
+> Event: 9 Luminosity: 965 Run: 1 SimTrack Pt: 27.8092 SimTrack eta: 1.67182 SimTrack phi: 0.0410857
+4540a4749
+> Event: 900 Luminosity: 959 Run: 1 SimTrack Pt: 23.2492 SimTrack eta: 2.00551 SimTrack phi: 0.572159
+4546d4754
+< Event: 902 Luminosity: 204 Run: 1 SimTrack Pt: 46.0326 SimTrack eta: 2.24875 SimTrack phi: 2.74305
+4568a4777
+> Event: 905 Luminosity: 958 Run: 1 SimTrack Pt: 24.9842 SimTrack eta: 1.86527 SimTrack phi: -0.307565
+4578a4788
+> Event: 906 Luminosity: 967 Run: 1 SimTrack Pt: 25.476 SimTrack eta: 2.12535 SimTrack phi: -2.73251
+4592a4803
+> Event: 909 Luminosity: 956 Run: 1 SimTrack Pt: 12.6838 SimTrack eta: 2.13474 SimTrack phi: 0.181962
+4683a4895
+> Event: 924 Luminosity: 959 Run: 1 SimTrack Pt: 39.4019 SimTrack eta: 2.02536 SimTrack phi: -0.956016
+4698a4911
+> Event: 927 Luminosity: 960 Run: 1 SimTrack Pt: 43.8587 SimTrack eta: 1.75004 SimTrack phi: 0.592738
+4706a4920
+> Event: 929 Luminosity: 962 Run: 1 SimTrack Pt: 13.2586 SimTrack eta: 1.70216 SimTrack phi: -0.441742
+4749d4962
+< Event: 936 Luminosity: 202 Run: 1 SimTrack Pt: 30.5169 SimTrack eta: 2.34238 SimTrack phi: 1.7584
+4773a4987
+> Event: 94 Luminosity: 957 Run: 1 SimTrack Pt: 49.4885 SimTrack eta: 1.8389 SimTrack phi: -2.33396
+4781a4996
+> Event: 941 Luminosity: 967 Run: 1 SimTrack Pt: 13.9306 SimTrack eta: 2.22538 SimTrack phi: 1.20058
+4794d5008
+< Event: 944 Luminosity: 952 Run: 1 SimTrack Pt: 49.6322 SimTrack eta: 1.9882 SimTrack phi: 2.88654
+4809a5024
+> Event: 947 Luminosity: 957 Run: 1 SimTrack Pt: 21.8374 SimTrack eta: 1.72389 SimTrack phi: 0.898321
+4816a5032
+> Event: 948 Luminosity: 957 Run: 1 SimTrack Pt: 49.5444 SimTrack eta: 1.78276 SimTrack phi: 0.990412
+4836a5053
+> Event: 950 Luminosity: 968 Run: 1 SimTrack Pt: 33.2348 SimTrack eta: 1.80461 SimTrack phi: 0.577267
+4851a5069
+> Event: 954 Luminosity: 966 Run: 1 SimTrack Pt: 10.2562 SimTrack eta: 1.83769 SimTrack phi: 1.25019
+4858a5077
+> Event: 956 Luminosity: 961 Run: 1 SimTrack Pt: 15.3789 SimTrack eta: 2.14442 SimTrack phi: -0.20667
+4877a5097
+> Event: 960 Luminosity: 210 Run: 1 SimTrack Pt: 44.1084 SimTrack eta: 1.77162 SimTrack phi: -3.02334
+4879a5100
+> Event: 960 Luminosity: 956 Run: 1 SimTrack Pt: 11.8896 SimTrack eta: 1.70427 SimTrack phi: -1.55202
+4890a5112
+> Event: 962 Luminosity: 960 Run: 1 SimTrack Pt: 20.6426 SimTrack eta: 2.03953 SimTrack phi: 1.67443
+4899a5122
+> Event: 963 Luminosity: 966 Run: 1 SimTrack Pt: 22.6443 SimTrack eta: 2.28963 SimTrack phi: 0.282199
+4923c5146
+< Event: 968 Luminosity: 956 Run: 1 SimTrack Pt: 25.0558 SimTrack eta: 2.08498 SimTrack phi: 0.428066
+---
+> Event: 968 Luminosity: 964 Run: 1 SimTrack Pt: 22.6819 SimTrack eta: 2.02895 SimTrack phi: 1.27594
+4936d5158
+< Event: 97 Luminosity: 966 Run: 1 SimTrack Pt: 34.4407 SimTrack eta: 1.7587 SimTrack phi: 1.41846
+4956a5179
+> Event: 973 Luminosity: 200 Run: 1 SimTrack Pt: 38.6446 SimTrack eta: 2.16334 SimTrack phi: -1.20961
+4971a5195
+> Event: 975 Luminosity: 964 Run: 1 SimTrack Pt: 10.4715 SimTrack eta: 1.73256 SimTrack phi: -3.00316
+4972a5197
+> Event: 975 Luminosity: 968 Run: 1 SimTrack Pt: 30.0605 SimTrack eta: 1.8555 SimTrack phi: -0.679775
+5013a5239
+> Event: 982 Luminosity: 958 Run: 1 SimTrack Pt: 16.1302 SimTrack eta: 2.08242 SimTrack phi: 2.91841
+5025a5252
+> Event: 984 Luminosity: 960 Run: 1 SimTrack Pt: 35.758 SimTrack eta: 2.03405 SimTrack phi: -1.59059
+5029a5257
+> Event: 985 Luminosity: 963 Run: 1 SimTrack Pt: 42.3493 SimTrack eta: 1.90464 SimTrack phi: 2.21564
+5080a5309
+> Event: 997 Luminosity: 953 Run: 1 SimTrack Pt: 40.2607 SimTrack eta: 2.14659 SimTrack phi: -0.492362
+5111c5340
+< cms.string('hp_dimu_CMSSW_6_2_0_SLHC14_upgrade2019_w3PU140_TMB_Baseline_2_eff.root')
+---
+> cms.string('hp_CMSSW14_usingL1SLHC7_PU140_TMB_Baseline_2_eff.root')
