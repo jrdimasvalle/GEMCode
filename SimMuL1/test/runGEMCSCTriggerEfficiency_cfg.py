@@ -8,7 +8,7 @@ process = cms.Process('GEMCSCTRGANA')
 cmssw = os.getenv( "CMSSW_VERSION" )
 
 ## steering
-events = 100
+events = 10
 sample='dimu'
 globalTag = 'upgrade2019'
 #sample='minbias'
@@ -67,7 +67,7 @@ process.simCsctfTrackDigis.SectorProcessor.isCoreVerbose = cms.bool(True)
 
 process.options = cms.untracked.PSet(
     makeTriggerResults = cms.untracked.bool(False),
-    wantSummary = cms.untracked.bool(True)
+    wantSummary = cms.untracked.bool(False)
 )
 
 process.source = cms.Source("PoolSource",
@@ -77,7 +77,7 @@ process.source = cms.Source("PoolSource",
     )
 )
 
-process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1)
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000000)
 process.MessageLogger.cerr.noTimeStamps = cms.untracked.bool(True)
 process.MessageLogger.cerr.FwkReport.optionalPSet = cms.untracked.bool(False)
 process.MessageLogger.cerr.optionalPSet=cms.untracked.bool(False)
@@ -111,7 +111,7 @@ process.GEMCSCTriggerEfficiency.maxBxLCT = readout_windows[2][1]
 process.GEMCSCTriggerEfficiency.minBxMPLCT = readout_windows[3][0]
 process.GEMCSCTriggerEfficiency.maxBxMPLCT = readout_windows[3][1]
 process.GEMCSCTriggerEfficiency.minNHitsChamber = cms.untracked.int32(3)
-process.GEMCSCTriggerEfficiency.minSimTrPt = cms.untracked.double(2)
+process.GEMCSCTriggerEfficiency.minSimTrPt = cms.untracked.double(10)
 GEMmatching = process.GEMCSCTriggerEfficiency.simTrackMatching
 GEMmatching.gemRecHit.input = ""
 

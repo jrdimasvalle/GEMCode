@@ -710,27 +710,18 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
       if (odd) etrk_[1].nlayers_csc_sh_odd = nlayers;
       else etrk_[1].nlayers_csc_sh_even = nlayers;
-            }
+            
+      if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
+            //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
 
-      if (t.momentum().pt()>10){
-            std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
-
-            //std::cout<<" Run: "<<match.simhits().event().id().run()<<" lumi: "<<match.simhits().event().id().luminosityBlock()<<" event: "<<match.simhits().event().id().event()<<endl;
-            //The previous line wasn't really necessary once I activated the Want Summary option
-
+            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock()<<" Run: "<<match.simhits().event().id().run();
             auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
+            std::cout<</*"SimTrack ID: "<<csc_csh_ch_ids.size()<<*/" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi()<< std::endl;
+            //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
 
-            std::cout<<"SimTrack ID: "<<csc_csh_ch_ids.size()<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi:"<<t.momentum().phi()<< std::endl;
-           /* const auto& hits = match_sh.hitsInChamber(d);
-            auto gp = match_sh.simHitsMeanPosition(hits);
-            float mean_strip = match_sh.simHitsMeanStrip(hits);
-            std::cout << "CSC Chamber: "<<d<<" "<<id<<" layerswithhits:"<<nlayers<<" global eta:"<<gp.eta()<<" mean strip:"<<mean_strip<<" st:"<<st<<endl;
+         } // Until Here for Den 
 
-            */
-
-                    std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
-
-         }
+        }
   }
 
   // CSC strip digis
@@ -883,6 +874,18 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     if (st==2 or st==3){
       if (odd) etrk_[1].has_lct |= 1;
       else etrk_[1].has_lct |= 2;
+
+        /*
+      if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
+            //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl; This is for Numerator
+
+            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock()<<" Run: "<<match.simhits().event().id().run();
+            auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
+            std::cout<<"SimTrack ID: "<<csc_csh_ch_ids.size()<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi()<< std::endl;
+            //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+
+         } */ //Until here for Numerator -- Remove the SimTrackID since they go different in the Hist Based Ana.
+
     }
     
     auto lct = match_lct.lctInChamber(d);

@@ -1602,22 +1602,14 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
             if (has_hits_in_st[1]) {
 
                     h_eta_me1_initial->Fill(steta);
-                    std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
-                    //std::cout<<"Information on Track (loop im): "<<im<<std::endl;
-                    //std::cout<<" Event: "<<"Luminosity: "<<Event->getLuminosityBlock()<<" Run: "<<Event->Run()<<std::endl;
-                    std::cout<<"SimTrack ID: "<<match->strk->trackId()<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi:"<<stphi<<std::endl;
-                     //match->print("",1,1,0,0,1,0);
-/*
-             std::cout<<"      \t nALCT: "<<match->ALCTs.size()
-                 <<" nCLCT: "<<match->CLCTs.size()
-                 <<" nLCT: "<<match->LCTs.size()
-                 <<" nMPLCT: "<<match->MPLCTs.size()
-                 <<" TFTRACKs/All: "<<match->TFTRACKs.size() <<"/"<<match->TFTRACKsAll.size()
-                 <<" TFCANDs/All: "<<match->TFCANDs.size() <<"/"<<match->TFCANDsAll.size()<<std::endl;
-  */                  //std::cout<<"Chamber Id: "<<CSCDetId (im);
-                    std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+                
+                    if (steta>=1.65 and steta<=2.35 and stpt>10){
+                    //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
+                    std::cout<<"Event: "<<iEvent.id().event()<<" Luminosity: "<< iEvent.id().luminosityBlock()<<" Run: "<< iEvent.id().run();
+                    std::cout<</*"SimTrack ID: "<<match->strk->trackId()<<*/" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi<<std::endl;
+                    //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
                 }
-
+                }
             if (has_hits_in_st[2]) h_eta_me2_initial->Fill(steta);
             if (has_hits_in_st[3]) h_eta_me3_initial->Fill(steta);
             if (has_hits_in_st[4]) h_eta_me4_initial->Fill(steta);
@@ -2210,6 +2202,19 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
             if(okME1alctclct) 
             {
                 h_eta_me1_after_lct_okAlctClct->Fill(steta);
+
+
+                    //Here's filled the numerator, therefore: 
+                    /*
+                    if (steta>=1.65 and steta<=2.35 and stpt>10){
+                    //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
+                    std::cout<<"Event: "<<iEvent.id().event()<<" Luminosity: "<< iEvent.id().luminosityBlock()<<" Run: "<< iEvent.id().run();
+                    std::cout<<"SimTrack ID: "<<match->strk->trackId()<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi<<std::endl;
+                    //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+                }
+                    */
+
+
                 h_phi_me1_after_lct_okAlctClct->Fill(stphi);
                 h_pt_me1_after_lct_okAlctClct->Fill(stpt);
 

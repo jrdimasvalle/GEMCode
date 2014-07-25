@@ -24,7 +24,7 @@ process.source = cms.Source("PoolSource",
 )
 
 
-process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1)
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000000)
 process.MessageLogger.cerr.noTimeStamps = cms.untracked.bool(True)
 process.MessageLogger.cerr.FwkReport.optionalPSet = cms.untracked.bool(False)
 process.MessageLogger.cerr.optionalPSet=cms.untracked.bool(False)
@@ -33,7 +33,7 @@ from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import *
 from GEMCode.GEMValidation.InputFileHelpers import *
 suffix = 'PU140_TMB_Baseline_2'
 process = useInputDir(process, eosfiles[suffix], True)
-events=100
+events=10
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(events)
 )
@@ -88,7 +88,7 @@ if doGem:
   matching.cscMPLCT.minNHitsChamber = 3
 
 
-process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
+process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(False) )
 
 process.p = cms.Path(process.GEMCSCAnalyzer)
 mat = process.GEMCSCAnalyzer.simTrackMatching
