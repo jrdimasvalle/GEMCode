@@ -1273,23 +1273,34 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
   for (auto s: stations_to_use_)
   {
     tree_eff_[s]->Fill();
-        
-          if (etrk_[s].pt>10 and etrk_[s].eta>=1.65 and etrk_[s].eta<=2.35 and etrk_[1].has_csc_sh>0){
-            int mnlo=0, hsa=0;
+                                    //only add etrk_[1].has_lct>0 to form the numerator
+
+          if (etrk_[1].pt>10 and etrk_[1].eta>=1.65 and etrk_[1].eta<=2.35 and etrk_[1].has_csc_sh>0 and etrk_[1].has_lct>0 and s==1 and etrk_[1].has_lct>0){
+            int hsa=0,mnlo=0;
             int quuality=0, wga=0;
-            if (etrk_[1].has_csc_sh==1) mnlo=1, quuality=etrk_[1].quality_odd, hsa=etrk_[1].halfstrip_odd, wga=etrk_[s].wiregroup_odd;
-            else mnlo=2, quuality=etrk_[s].quality_even, hsa=etrk_[1].halfstrip_even, wga=etrk_[1].wiregroup_even;
+            if (etrk_[1].has_csc_sh==1) quuality=etrk_[1].quality_odd, hsa=etrk_[1].halfstrip_odd, wga=etrk_[1].wiregroup_odd,mnlo=1;
+            else quuality=etrk_[s].quality_even, hsa=etrk_[1].halfstrip_even, wga=etrk_[1].wiregroup_even,mnlo=2;
 
+            if (quuality>0){
+                std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
+                std::cout<<" Run: "<<match.simhits().event().id().run();
+                mnlo++;
+                //auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
+                std::cout<<" SimTrack Pt: "<<etrk_[s].pt<<" SimTrack eta: "<<etrk_[s].eta<<" SimTrack phi: "<<etrk_[s].phi;
+                std::cout<<" LCT Quality "<<quuality<<" ALCT WG: "<<wga<<" CLCT HStrip: "<<hsa;//<<" PT 1: "<<etrk_[1].pt<<" Eta 1: "<<etrk_[1].eta;
+                
+                std::cout<<" Alct Quality: ";
+                if (etrk_[1].has_csc_sh==1){ 
+                        std::cout<<etrk_[1].quality_alct_odd<<" Clct quality: "<<etrk_[1].quality_clct_odd<<std::endl;
 
-            //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
+                } else{ 
+                        std::cout<<etrk_[1].quality_alct_even<<" Clct quality: "<<etrk_[1].quality_clct_even<<std::endl;
 
-            //std::cout<<"Event: "<<etrk_[1].event<<" Luminosity: "<<etrk_[1].lumi<<" Run: "<<etrk_[1].run;
-            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock()<<" Run: "<<match.simhits().event().id().run();
-            auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
-            std::cout<<" SimTrack Pt: "<<etrk_[s].pt<<" SimTrack eta: "<<etrk_[s].eta<<" SimTrack phi: "<<etrk_[s].phi<<" Station parity: "<<mnlo<<" Quality "<<quuality<<" WG: "<<wga<<" HStrip: "<<hsa<<std::endl;
-            //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+                }
 
-         }
+            }
+
+        }
   }
 }
 

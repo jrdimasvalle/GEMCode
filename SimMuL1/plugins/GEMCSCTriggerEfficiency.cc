@@ -1602,13 +1602,16 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
             if (has_hits_in_st[1]) {
 
                     h_eta_me1_initial->Fill(steta);
-                
+                /*
                     if (steta>=1.65 and steta<=2.35 and stpt>10){
                     //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
                     std::cout<<"Event: "<<iEvent.id().event()<<" Luminosity: "<< iEvent.id().luminosityBlock()<<" Run: "<< iEvent.id().run();
-                    std::cout<</*"SimTrack ID: "<<match->strk->trackId()<<*/" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi<<std::endl;
+                    std::cout<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi;
+
+                    //std::cout<<" Quality: "<<match->getQuality();
+                    match->print("",0,,1,1,1,0);
                     //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
-                }
+                } */  // Until here for Denominator
                 }
             if (has_hits_in_st[2]) h_eta_me2_initial->Fill(steta);
             if (has_hits_in_st[3]) h_eta_me3_initial->Fill(steta);
@@ -2205,15 +2208,14 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
 
 
                     //Here's filled the numerator, therefore: 
-                    /*
+                    
                     if (steta>=1.65 and steta<=2.35 and stpt>10){
-                    //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl;
                     std::cout<<"Event: "<<iEvent.id().event()<<" Luminosity: "<< iEvent.id().luminosityBlock()<<" Run: "<< iEvent.id().run();
-                    std::cout<<"SimTrack ID: "<<match->strk->trackId()<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi<<std::endl;
-                    //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
+                    std::cout<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi;
+                    match->print("",0,0,1,1,1,0,0,0);
+                    
                 }
-                    */
-
+                    
 
                 h_phi_me1_after_lct_okAlctClct->Fill(stphi);
                 h_pt_me1_after_lct_okAlctClct->Fill(stpt);
