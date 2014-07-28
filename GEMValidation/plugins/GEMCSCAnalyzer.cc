@@ -1282,19 +1282,19 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
             else quuality=etrk_[s].quality_even, hsa=etrk_[1].halfstrip_even, wga=etrk_[1].wiregroup_even,mnlo=2;
 
             if (quuality>0){
-                std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
-                std::cout<<" Run: "<<match.simhits().event().id().run();
+                std::cout<<"Event: "<<match.simhits().event().id().event()<<" ,Luminosity: "<<match.simhits().event().id().luminosityBlock();
+                std::cout<<" ,Run: "<<match.simhits().event().id().run();
                 mnlo++;
                 //auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
-                std::cout<<" SimTrack Pt: "<<etrk_[s].pt<<" SimTrack eta: "<<etrk_[s].eta<<" SimTrack phi: "<<etrk_[s].phi;
-                std::cout<<" LCT Quality "<<quuality<<" ALCT WG: "<<wga<<" CLCT HStrip: "<<hsa;//<<" PT 1: "<<etrk_[1].pt<<" Eta 1: "<<etrk_[1].eta;
+                std::cout<<" ,SimTrack_Pt: "<<etrk_[s].pt<<" ,SimTrack_eta: "<<etrk_[s].eta<<" ,SimTrack_phi: "<<etrk_[s].phi;
+                std::cout<<" ,LCT_Quality "<<quuality<<" ,ALCT_WG: "<<wga<<" ,CLCT_HStrip: "<<hsa;//<<" PT 1: "<<etrk_[1].pt<<" Eta 1: "<<etrk_[1].eta;
                 
-                std::cout<<" Alct Quality: ";
+                std::cout<<" ,Alct_Quality: ";
                 if (etrk_[1].has_csc_sh==1){ 
-                        std::cout<<etrk_[1].quality_alct_odd<<" Clct quality: "<<etrk_[1].quality_clct_odd<<std::endl;
+                        std::cout<<etrk_[1].quality_alct_odd<<" ,Clct_Quality: "<<etrk_[1].quality_clct_odd<<std::endl;
 
                 } else{ 
-                        std::cout<<etrk_[1].quality_alct_even<<" Clct quality: "<<etrk_[1].quality_clct_even<<std::endl;
+                        std::cout<<etrk_[1].quality_alct_even<<" ,Clct_Quality: "<<etrk_[1].quality_clct_even<<std::endl;
 
                 }
 

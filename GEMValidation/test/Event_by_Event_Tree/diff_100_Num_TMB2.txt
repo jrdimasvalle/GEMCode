@@ -1,0 +1,28 @@
+#Left is Tree Based, Right is Histogram Based
+
+21,23c21,23
+< 28-Jul-2014 03:02:16 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+< 28-Jul-2014 03:02:17 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+< 28-Jul-2014 03:02:36 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+---
+> 28-Jul-2014 03:00:42 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+> 28-Jul-2014 03:00:44 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+> 28-Jul-2014 03:00:59 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+25c25
+< Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 28-Jul-2014 03:02:19.087 CDT
+---
+> Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 28-Jul-2014 03:00:45.082 CDT
+44c44
+< Event: 702 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 32.7792 ,SimTrack_eta: 1.67254 ,SimTrack_phi: -0.129012 ,LCT_Quality 14 ,ALCT_WG: 35 ,CLCT_HStrip: 120 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 702 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 32.7792 ,SimTrack_eta: 1.67254 ,SimTrack_phi: -0.129012 ,LCT_Quality 14 ,ALCT_WG: 46 ,CLCT_HStrip: 3 ,Alct_Quality: 3 ,Clct_Quality: 6
+64a65
+> Event: 788 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 14.6271 ,SimTrack_eta: 2.03762 ,SimTrack_phi: 1.62845 ,LCT_Quality 14 ,ALCT_WG: 13 ,CLCT_HStrip: 65 ,Alct_Quality: 3 ,Clct_Quality: 6
+67c68
+< Event: 804 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 23.7679 ,SimTrack_eta: 2.09474 ,SimTrack_phi: -1.92305 ,LCT_Quality 15 ,ALCT_WG: 10 ,CLCT_HStrip: 67 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 804 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 23.7679 ,SimTrack_eta: 2.09474 ,SimTrack_phi: -1.92305 ,LCT_Quality 15 ,ALCT_WG: 12 ,CLCT_HStrip: 67 ,Alct_Quality: 3 ,Clct_Quality: 5
+94c95
+< cms.string('hp_CMSSW14_usingL1SLHC7_PU140_TMB_Baseline_2_eff.root')
+---
+> cms.string('hp_dimu_CMSSW_6_2_0_SLHC14_upgrade2019_w3PU140_TMB_Baseline_2_eff.root')

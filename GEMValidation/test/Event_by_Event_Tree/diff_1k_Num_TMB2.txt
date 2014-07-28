@@ -1,0 +1,179 @@
+##  diff sorted_1k_Num_Tree.txt sorted_1k_Num_Hist.txt 
+## Left is Tree Based, Right is Histogram Based
+21,23c21,23
+< 28-Jul-2014 02:56:37 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+< 28-Jul-2014 02:56:38 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+< 28-Jul-2014 02:56:54 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+---
+> 28-Jul-2014 02:56:58 CDT  Initiating request to open file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+> 28-Jul-2014 02:56:59 CDT  Successfully opened file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+> 28-Jul-2014 02:57:22 CDT  Closed file file:/eos/uscms/store/user/jdimasva/Crab_PU140_Final/runL1_Step2/out_L1_1_1_7hd.root
+25c25
+< Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 28-Jul-2014 02:56:38.808 CDT
+---
+> Begin processing the 1st record. Run 1, Event 601, LumiSection 200 at 28-Jul-2014 02:57:00.586 CDT
+45c45
+< Event: 142 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.5099 ,SimTrack_eta: 1.82032 ,SimTrack_phi: 1.51993 ,LCT_Quality 15 ,ALCT_WG: 29 ,CLCT_HStrip: 16 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 142 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.5099 ,SimTrack_eta: 1.82032 ,SimTrack_phi: 1.51993 ,LCT_Quality 15 ,ALCT_WG: 31 ,CLCT_HStrip: 16 ,Alct_Quality: 3 ,Clct_Quality: 6
+89c89
+< Event: 238 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 38.3428 ,SimTrack_eta: 1.797 ,SimTrack_phi: -0.981246 ,LCT_Quality 15 ,ALCT_WG: 33 ,CLCT_HStrip: 10 ,Alct_Quality: 2 ,Clct_Quality: 6
+---
+> Event: 238 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 38.3428 ,SimTrack_eta: 1.797 ,SimTrack_phi: -0.981245 ,LCT_Quality 15 ,ALCT_WG: 33 ,CLCT_HStrip: 10 ,Alct_Quality: 2 ,Clct_Quality: 6
+94c94
+< Event: 248 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 41.6361 ,SimTrack_eta: 2.11431 ,SimTrack_phi: -2.11179 ,LCT_Quality 14 ,ALCT_WG: 13 ,CLCT_HStrip: 48 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 248 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 41.6361 ,SimTrack_eta: 2.1143 ,SimTrack_phi: -2.11179 ,LCT_Quality 14 ,ALCT_WG: 13 ,CLCT_HStrip: 40 ,Alct_Quality: 3 ,Clct_Quality: 5
+96,97c96
+< Event: 250 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 17.5924 ,SimTrack_eta: 2.20924 ,SimTrack_phi: -0.363268 ,LCT_Quality 14 ,ALCT_WG: 9 ,CLCT_HStrip: 19 ,Alct_Quality: 3 ,Clct_Quality: 5
+< Event: 251 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 11.2192 ,SimTrack_eta: 1.95451 ,SimTrack_phi: 1.42802 ,LCT_Quality 15 ,ALCT_WG: 20 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+---
+> Event: 250 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 17.5924 ,SimTrack_eta: 2.20924 ,SimTrack_phi: -0.363268 ,LCT_Quality 14 ,ALCT_WG: 11 ,CLCT_HStrip: 19 ,Alct_Quality: 3 ,Clct_Quality: 5
+101d99
+< Event: 264 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 12.7238 ,SimTrack_eta: 1.80172 ,SimTrack_phi: -0.495283 ,LCT_Quality 12 ,ALCT_WG: 31 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+114c112
+< Event: 298 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 22.3337 ,SimTrack_eta: 2.02561 ,SimTrack_phi: 2.85316 ,LCT_Quality 15 ,ALCT_WG: 18 ,CLCT_HStrip: 78 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 298 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 22.3337 ,SimTrack_eta: 2.02561 ,SimTrack_phi: 2.85316 ,LCT_Quality 15 ,ALCT_WG: 21 ,CLCT_HStrip: 78 ,Alct_Quality: 3 ,Clct_Quality: 6
+145c143
+< Event: 352 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 49.7762 ,SimTrack_eta: 1.66965 ,SimTrack_phi: -0.590333 ,LCT_Quality 15 ,ALCT_WG: 43 ,CLCT_HStrip: 3 ,Alct_Quality: 2 ,Clct_Quality: 5
+---
+> Event: 352 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 49.7762 ,SimTrack_eta: 1.66965 ,SimTrack_phi: -0.590333 ,LCT_Quality 15 ,ALCT_WG: 39 ,CLCT_HStrip: 121 ,Alct_Quality: 3 ,Clct_Quality: 5
+156d153
+< Event: 366 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 11.8152 ,SimTrack_eta: 1.95068 ,SimTrack_phi: -1.94463 ,LCT_Quality 15 ,ALCT_WG: 18 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+161c158
+< Event: 377 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 32.788 ,SimTrack_eta: 2.24056 ,SimTrack_phi: -0.370636 ,LCT_Quality 15 ,ALCT_WG: 8 ,CLCT_HStrip: 51 ,Alct_Quality: 3 ,Clct_Quality: 4
+---
+> Event: 377 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 32.788 ,SimTrack_eta: 2.24056 ,SimTrack_phi: -0.370636 ,LCT_Quality 15 ,ALCT_WG: 13 ,CLCT_HStrip: 51 ,Alct_Quality: 3 ,Clct_Quality: 4
+174c171
+< Event: 41 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 41.2613 ,SimTrack_eta: 1.76437 ,SimTrack_phi: -2.72666 ,LCT_Quality 15 ,ALCT_WG: 34 ,CLCT_HStrip: 5 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 41 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 41.2613 ,SimTrack_eta: 1.76437 ,SimTrack_phi: -2.72666 ,LCT_Quality 15 ,ALCT_WG: 31 ,CLCT_HStrip: 124 ,Alct_Quality: 3 ,Clct_Quality: 6
+185c182
+< Event: 442 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 36.534 ,SimTrack_eta: 1.73643 ,SimTrack_phi: -1.78819 ,LCT_Quality 15 ,ALCT_WG: 39 ,CLCT_HStrip: 16 ,Alct_Quality: 2 ,Clct_Quality: 6
+---
+> Event: 442 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 36.5341 ,SimTrack_eta: 1.73643 ,SimTrack_phi: -1.78819 ,LCT_Quality 15 ,ALCT_WG: 39 ,CLCT_HStrip: 16 ,Alct_Quality: 2 ,Clct_Quality: 6
+192c189
+< Event: 456 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 10.2673 ,SimTrack_eta: 1.77189 ,SimTrack_phi: 2.80401 ,LCT_Quality 15 ,ALCT_WG: 28 ,CLCT_HStrip: 110 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 456 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 10.2673 ,SimTrack_eta: 1.77189 ,SimTrack_phi: 2.80402 ,LCT_Quality 15 ,ALCT_WG: 28 ,CLCT_HStrip: 110 ,Alct_Quality: 3 ,Clct_Quality: 6
+195,196c192
+< Event: 460 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 34.3989 ,SimTrack_eta: 1.68862 ,SimTrack_phi: 2.69168 ,LCT_Quality 15 ,ALCT_WG: 45 ,CLCT_HStrip: 20 ,Alct_Quality: 3 ,Clct_Quality: 5
+< Event: 465 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 17.3056 ,SimTrack_eta: 1.98269 ,SimTrack_phi: 0.200553 ,LCT_Quality 15 ,ALCT_WG: 21 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+---
+> Event: 460 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 34.3989 ,SimTrack_eta: 1.68862 ,SimTrack_phi: 2.69169 ,LCT_Quality 15 ,ALCT_WG: 45 ,CLCT_HStrip: 20 ,Alct_Quality: 3 ,Clct_Quality: 5
+208d203
+< Event: 49 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.7226 ,SimTrack_eta: 1.9952 ,SimTrack_phi: -2.46407 ,LCT_Quality 15 ,ALCT_WG: 20 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+214c209
+< Event: 500 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 39.3742 ,SimTrack_eta: 2.05837 ,SimTrack_phi: -2.09118 ,LCT_Quality 15 ,ALCT_WG: 17 ,CLCT_HStrip: 52 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 500 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 39.3742 ,SimTrack_eta: 2.05837 ,SimTrack_phi: -2.09118 ,LCT_Quality 15 ,ALCT_WG: 23 ,CLCT_HStrip: 52 ,Alct_Quality: 3 ,Clct_Quality: 6
+217c212
+< Event: 505 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 45.9645 ,SimTrack_eta: 1.92602 ,SimTrack_phi: -2.68233 ,LCT_Quality 15 ,ALCT_WG: 25 ,CLCT_HStrip: 7 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 505 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 45.9645 ,SimTrack_eta: 1.92602 ,SimTrack_phi: -2.68233 ,LCT_Quality 15 ,ALCT_WG: 22 ,CLCT_HStrip: 124 ,Alct_Quality: 3 ,Clct_Quality: 5
+285c280
+< Event: 618 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 44.8419 ,SimTrack_eta: 1.68576 ,SimTrack_phi: -0.269294 ,LCT_Quality 15 ,ALCT_WG: 39 ,CLCT_HStrip: 19 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 618 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 44.8419 ,SimTrack_eta: 1.68575 ,SimTrack_phi: -0.269294 ,LCT_Quality 15 ,ALCT_WG: 39 ,CLCT_HStrip: 19 ,Alct_Quality: 3 ,Clct_Quality: 5
+289c284
+< Event: 622 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 20.8408 ,SimTrack_eta: 1.89761 ,SimTrack_phi: -0.948782 ,LCT_Quality 15 ,ALCT_WG: 23 ,CLCT_HStrip: 47 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 622 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 20.8408 ,SimTrack_eta: 1.89761 ,SimTrack_phi: -0.948782 ,LCT_Quality 15 ,ALCT_WG: 25 ,CLCT_HStrip: 47 ,Alct_Quality: 3 ,Clct_Quality: 5
+298d292
+< Event: 637 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 23.4284 ,SimTrack_eta: 2.0147 ,SimTrack_phi: -1.32355 ,LCT_Quality 14 ,ALCT_WG: 18 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+303c297
+< Event: 641 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 43.5467 ,SimTrack_eta: 1.76237 ,SimTrack_phi: 2.04005 ,LCT_Quality 15 ,ALCT_WG: 40 ,CLCT_HStrip: 8 ,Alct_Quality: 2 ,Clct_Quality: 5
+---
+> Event: 641 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 43.5467 ,SimTrack_eta: 1.76237 ,SimTrack_phi: 2.04005 ,LCT_Quality 15 ,ALCT_WG: 40 ,CLCT_HStrip: 8 ,Alct_Quality: 3 ,Clct_Quality: 5
+318d311
+< Event: 670 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 36.3011 ,SimTrack_eta: 1.6836 ,SimTrack_phi: -1.22566 ,LCT_Quality 13 ,ALCT_WG: 36 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+326d318
+< Event: 681 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 46.6532 ,SimTrack_eta: 2.01547 ,SimTrack_phi: -0.47275 ,LCT_Quality 14 ,ALCT_WG: 15 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+336c328
+< Event: 691 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 30.8069 ,SimTrack_eta: 2.24933 ,SimTrack_phi: 1.25354 ,LCT_Quality 15 ,ALCT_WG: 4 ,CLCT_HStrip: 75 ,Alct_Quality: 3 ,Clct_Quality: 4
+---
+> Event: 691 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 30.8069 ,SimTrack_eta: 2.24933 ,SimTrack_phi: 1.25354 ,LCT_Quality 15 ,ALCT_WG: 9 ,CLCT_HStrip: 75 ,Alct_Quality: 3 ,Clct_Quality: 4
+345c337
+< Event: 702 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 32.7792 ,SimTrack_eta: 1.67254 ,SimTrack_phi: -0.129012 ,LCT_Quality 14 ,ALCT_WG: 35 ,CLCT_HStrip: 120 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 702 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 32.7792 ,SimTrack_eta: 1.67254 ,SimTrack_phi: -0.129012 ,LCT_Quality 14 ,ALCT_WG: 46 ,CLCT_HStrip: 3 ,Alct_Quality: 3 ,Clct_Quality: 6
+348c340
+< Event: 703 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.2441 ,SimTrack_eta: 2.1984 ,SimTrack_phi: -1.29474 ,LCT_Quality 15 ,ALCT_WG: 10 ,CLCT_HStrip: 4 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 703 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.2441 ,SimTrack_eta: 2.1984 ,SimTrack_phi: -1.29474 ,LCT_Quality 15 ,ALCT_WG: 8 ,CLCT_HStrip: 93 ,Alct_Quality: 3 ,Clct_Quality: 6
+363a356
+> Event: 73 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 41.8309 ,SimTrack_eta: 1.65207 ,SimTrack_phi: -2.79921 ,LCT_Quality 15 ,ALCT_WG: 42 ,CLCT_HStrip: 80 ,Alct_Quality: 3 ,Clct_Quality: 5
+366,367d358
+< Event: 734 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 44.6156 ,SimTrack_eta: 1.8242 ,SimTrack_phi: 3.08922 ,LCT_Quality 14 ,ALCT_WG: 33 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+< Event: 742 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 25.7834 ,SimTrack_eta: 2.14989 ,SimTrack_phi: 0.25839 ,LCT_Quality 14 ,ALCT_WG: 15 ,CLCT_HStrip: -1 ,Alct_Quality: 2 ,Clct_Quality: -1
+382c373
+< Event: 761 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 26.4241 ,SimTrack_eta: 1.9999 ,SimTrack_phi: -0.48181 ,LCT_Quality 15 ,ALCT_WG: 16 ,CLCT_HStrip: 116 ,Alct_Quality: 2 ,Clct_Quality: 5
+---
+> Event: 761 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 26.4241 ,SimTrack_eta: 1.9999 ,SimTrack_phi: -0.48181 ,LCT_Quality 11 ,ALCT_WG: 21 ,CLCT_HStrip: 35 ,Alct_Quality: 2 ,Clct_Quality: 6
+386d376
+< Event: 769 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 13.6735 ,SimTrack_eta: 1.9893 ,SimTrack_phi: 0.460338 ,LCT_Quality 15 ,ALCT_WG: 19 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+394d383
+< Event: 780 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.2632 ,SimTrack_eta: 2.21361 ,SimTrack_phi: -1.84322 ,LCT_Quality 15 ,ALCT_WG: 6 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+395a385
+> Event: 788 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 14.6271 ,SimTrack_eta: 2.03762 ,SimTrack_phi: 1.62845 ,LCT_Quality 14 ,ALCT_WG: 13 ,CLCT_HStrip: 65 ,Alct_Quality: 3 ,Clct_Quality: 6
+408c398
+< Event: 804 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 23.7679 ,SimTrack_eta: 2.09474 ,SimTrack_phi: -1.92305 ,LCT_Quality 15 ,ALCT_WG: 10 ,CLCT_HStrip: 67 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 804 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 23.7679 ,SimTrack_eta: 2.09474 ,SimTrack_phi: -1.92305 ,LCT_Quality 15 ,ALCT_WG: 12 ,CLCT_HStrip: 67 ,Alct_Quality: 3 ,Clct_Quality: 5
+416c406
+< Event: 814 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 22 ,SimTrack_eta: 2.33616 ,SimTrack_phi: -1.89438 ,LCT_Quality 15 ,ALCT_WG: 1 ,CLCT_HStrip: 78 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 814 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 22 ,SimTrack_eta: 2.33616 ,SimTrack_phi: -1.89439 ,LCT_Quality 15 ,ALCT_WG: 1 ,CLCT_HStrip: 78 ,Alct_Quality: 3 ,Clct_Quality: 5
+418d407
+< Event: 818 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 31.0089 ,SimTrack_eta: 2.06246 ,SimTrack_phi: -1.92751 ,LCT_Quality 13 ,ALCT_WG: 12 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+420d408
+< Event: 820 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 31.5406 ,SimTrack_eta: 2.03899 ,SimTrack_phi: -0.687955 ,LCT_Quality 15 ,ALCT_WG: 16 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+423c411
+< Event: 822 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 20.0186 ,SimTrack_eta: 1.97618 ,SimTrack_phi: 0.701675 ,LCT_Quality 15 ,ALCT_WG: 22 ,CLCT_HStrip: 40 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 822 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 20.0186 ,SimTrack_eta: 1.97618 ,SimTrack_phi: 0.701674 ,LCT_Quality 15 ,ALCT_WG: 22 ,CLCT_HStrip: 40 ,Alct_Quality: 3 ,Clct_Quality: 6
+465d452
+< Event: 883 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 34.5304 ,SimTrack_eta: 1.69542 ,SimTrack_phi: 2.09025 ,LCT_Quality 15 ,ALCT_WG: 39 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+480a468
+> Event: 902 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 46.0326 ,SimTrack_eta: 2.24875 ,SimTrack_phi: 2.74305 ,LCT_Quality 15 ,ALCT_WG: 11 ,CLCT_HStrip: 13 ,Alct_Quality: 3 ,Clct_Quality: 5
+484c472
+< Event: 906 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 30.8439 ,SimTrack_eta: 2.04124 ,SimTrack_phi: -1.199 ,LCT_Quality 15 ,ALCT_WG: 14 ,CLCT_HStrip: 64 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 906 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 30.8439 ,SimTrack_eta: 2.04125 ,SimTrack_phi: -1.199 ,LCT_Quality 15 ,ALCT_WG: 14 ,CLCT_HStrip: 64 ,Alct_Quality: 3 ,Clct_Quality: 5
+508c496
+< Event: 930 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 25.8616 ,SimTrack_eta: 1.78262 ,SimTrack_phi: 1.84918 ,LCT_Quality 15 ,ALCT_WG: 33 ,CLCT_HStrip: 105 ,Alct_Quality: 3 ,Clct_Quality: 4
+---
+> Event: 930 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 25.8616 ,SimTrack_eta: 1.78262 ,SimTrack_phi: 1.84918 ,LCT_Quality 14 ,ALCT_WG: 33 ,CLCT_HStrip: 111 ,Alct_Quality: 3 ,Clct_Quality: 5
+511c499
+< Event: 933 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 31.0952 ,SimTrack_eta: 2.21598 ,SimTrack_phi: 0.531696 ,LCT_Quality 12 ,ALCT_WG: 6 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+---
+> Event: 933 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 31.0952 ,SimTrack_eta: 2.21598 ,SimTrack_phi: 0.531696 ,LCT_Quality 12 ,ALCT_WG: 6 ,CLCT_HStrip: 68 ,Alct_Quality: 3 ,Clct_Quality: 4
+513a502
+> Event: 936 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 30.5169 ,SimTrack_eta: 2.34238 ,SimTrack_phi: 1.7584 ,LCT_Quality 15 ,ALCT_WG: 5 ,CLCT_HStrip: 63 ,Alct_Quality: 3 ,Clct_Quality: 6
+517c506
+< Event: 940 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 21.5171 ,SimTrack_eta: 2.03378 ,SimTrack_phi: -2.77917 ,LCT_Quality 15 ,ALCT_WG: 16 ,CLCT_HStrip: 98 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 940 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 21.5171 ,SimTrack_eta: 2.03378 ,SimTrack_phi: -2.77916 ,LCT_Quality 15 ,ALCT_WG: 16 ,CLCT_HStrip: 98 ,Alct_Quality: 3 ,Clct_Quality: 6
+528c517
+< Event: 963 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 24.6226 ,SimTrack_eta: 2.00885 ,SimTrack_phi: 2.60324 ,LCT_Quality 14 ,ALCT_WG: 14 ,CLCT_HStrip: 76 ,Alct_Quality: 3 ,Clct_Quality: 5
+---
+> Event: 963 ,Luminosity: 202 ,Run: 1 ,SimTrack_Pt: 24.6226 ,SimTrack_eta: 2.00885 ,SimTrack_phi: 2.60324 ,LCT_Quality 14 ,ALCT_WG: 16 ,CLCT_HStrip: 76 ,Alct_Quality: 3 ,Clct_Quality: 5
+532c521
+< Event: 966 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 14.2885 ,SimTrack_eta: 2.33698 ,SimTrack_phi: -3.0836 ,LCT_Quality 14 ,ALCT_WG: 5 ,CLCT_HStrip: 9 ,Alct_Quality: 2 ,Clct_Quality: 4
+---
+> Event: 966 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 14.2885 ,SimTrack_eta: 2.33698 ,SimTrack_phi: -3.0836 ,LCT_Quality 12 ,ALCT_WG: 5 ,CLCT_HStrip: 68 ,Alct_Quality: 2 ,Clct_Quality: 5
+538c527
+< Event: 970 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 36.3191 ,SimTrack_eta: 1.7398 ,SimTrack_phi: -1.81221 ,LCT_Quality 15 ,ALCT_WG: 30 ,CLCT_HStrip: 118 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 970 ,Luminosity: 204 ,Run: 1 ,SimTrack_Pt: 36.3191 ,SimTrack_eta: 1.73981 ,SimTrack_phi: -1.81221 ,LCT_Quality 15 ,ALCT_WG: 30 ,CLCT_HStrip: 118 ,Alct_Quality: 3 ,Clct_Quality: 6
+541d529
+< Event: 973 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 38.6446 ,SimTrack_eta: 2.16334 ,SimTrack_phi: -1.20961 ,LCT_Quality 12 ,ALCT_WG: 8 ,CLCT_HStrip: -1 ,Alct_Quality: 3 ,Clct_Quality: -1
+555c543
+< Event: 991 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 29.5916 ,SimTrack_eta: 1.66363 ,SimTrack_phi: 2.15117 ,LCT_Quality 15 ,ALCT_WG: 43 ,CLCT_HStrip: 73 ,Alct_Quality: 3 ,Clct_Quality: 6
+---
+> Event: 991 ,Luminosity: 200 ,Run: 1 ,SimTrack_Pt: 29.5916 ,SimTrack_eta: 1.66363 ,SimTrack_phi: 2.15116 ,LCT_Quality 15 ,ALCT_WG: 43 ,CLCT_HStrip: 73 ,Alct_Quality: 3 ,Clct_Quality: 6
+576c564
+< cms.string('hp_CMSSW14_usingL1SLHC7_PU140_TMB_Baseline_2_eff.root')
+---
+> cms.string('hp_dimu_CMSSW_6_2_0_SLHC14_upgrade2019_w3PU140_TMB_Baseline_2_eff.root')

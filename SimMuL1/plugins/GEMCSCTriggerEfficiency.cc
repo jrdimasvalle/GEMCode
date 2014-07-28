@@ -2210,8 +2210,8 @@ GEMCSCTriggerEfficiency::analyze(const edm::Event& iEvent, const edm::EventSetup
                     //Here's filled the numerator, therefore: 
                     
                     if (steta>=1.65 and steta<=2.35 and stpt>10){
-                    std::cout<<"Event: "<<iEvent.id().event()<<" Luminosity: "<< iEvent.id().luminosityBlock()<<" Run: "<< iEvent.id().run();
-                    std::cout<<" SimTrack Pt: "<<stpt<<" SimTrack eta: "<<steta<<" SimTrack phi: "<<stphi;
+                    std::cout<<"Event: "<<iEvent.id().event()<<" ,Luminosity: "<< iEvent.id().luminosityBlock()<<" ,Run: "<< iEvent.id().run();
+                    std::cout<<" ,SimTrack_Pt: "<<stpt<<" ,SimTrack_eta: "<<steta<<" ,SimTrack_phi: "<<stphi;
                     match->print("",0,0,1,1,1,0,0,0);
                     
                 }
