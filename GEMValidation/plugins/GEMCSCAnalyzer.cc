@@ -1273,20 +1273,22 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
   for (auto s: stations_to_use_)
   {
     tree_eff_[s]->Fill();
-    if (s==1){
+    if (s==1) //Station 1 only , change to >0 for all stations. Add here the event run and lumi constrains for the interesting events and such.
+            {
                                     //only add etrk_[1].has_lct>0 to form the numerator, csc_sh>0 implies at least 4 layers (CSC4)
           if (etrk_[s].pt>10 and etrk_[s].eta>=1.65 and etrk_[s].eta<=2.35 and etrk_[s].has_csc_sh>0 and etrk_[s].has_lct>0){
             int hsa=0;
+            int tmpa=0; // change to -1 to let quality zero pass or not.
             int quuality=0, wga=0;
             if (etrk_[s].has_csc_sh==1) quuality=etrk_[s].quality_odd, hsa=etrk_[s].halfstrip_odd, wga=etrk_[s].wiregroup_odd;
             else quuality=etrk_[s].quality_even, hsa=etrk_[s].halfstrip_even, wga=etrk_[s].wiregroup_even;
 
-            if (quuality>0){
+            if (quuality>tmpa){
                 std::cout<<"Event: "<<etrk_[s].event<<" ,Luminosity: "<<etrk_[s].lumi<<" ,Run: "<<etrk_[s].run;
                 cout<<" ,SimTrack_Pt: "<<etrk_[s].pt<<" ,SimTrack_eta: "<<etrk_[s].eta<<" ,SimTrack_phi: "<<etrk_[s].phi;
                 std::cout<<" ,LCT_Quality "<<quuality<<" ,ALCT_WG: "<<wga<<" ,CLCT_HStrip: "<<hsa;//<<" PT 1: "<<etrk_[s].pt<<" Eta 1: "<<etrk_[s].eta;
                 std::cout<<" ,Alct_Quality: ";
-                if (etrk_[1].has_csc_sh==1){ 
+                if (etrk_[s].has_csc_sh==1){ 
                         std::cout<<etrk_[s].quality_alct_odd<<" ,Clct_Quality: "<<etrk_[s].quality_clct_odd<<std::endl;
                 } else{ 
                         std::cout<<etrk_[s].quality_alct_even<<" ,Clct_Quality: "<<etrk_[s].quality_clct_even<<std::endl;
