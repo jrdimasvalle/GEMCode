@@ -639,7 +639,6 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
   const CSCStubMatcher& match_lct = match.cscStubs();
   //const TrackMatcher& match_track = match.tracks();
   const SimTrack &t = match_sh.trk();
-   
   for (auto s: stations_to_use_)
   {
 
@@ -876,22 +875,36 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     if (st==2 or st==3){
       if (odd) etrk_[1].has_lct |= 1;
       else etrk_[1].has_lct |= 2;
-/*
-        
-      if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
+
+      if (match.simhits().event().id().event()==788 and match.simhits().event().id().luminosityBlock()==200){  
+          if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
             //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl; This is for Numerator
 
-            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock()<<" Run: "<<match.simhits().event().id().run();
+            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
+            std::cout<<" Run: "<<match.simhits().event().id().run();
+
             auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
             std::cout<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi();
+
             //std::cout<<" ####################### End of Informatione ################################################ " <<std::endl;
 
-            auto lcts = match_lct.allLCTsInChamber(d);
-            for (auto p : lcts)
-                std::cout<< p <<std::endl;
+                 auto lcts = match_lct.allLCTsInChamber(d);
+                    for (auto p : lcts)
+                        std::cout<< p <<std::endl;
 
 
-         } */ //Until here for Numerator -- Remove the SimTrackID since they go different in the Hist Based Ana. 
+                 auto alcts = match_lct.allALCTsInChamber(d);
+                    for (auto p : alcts)
+                        std::cout<< p <<std::endl;
+
+                 auto clcts = match_lct.allCLCTsInChamber(d);
+                     for (auto p : clcts)
+                        std::cout<< p <<std::endl;
+
+
+         }
+        }
+             //Until here for Numerator -- Remove the SimTrackID since they go different in the Hist Based Ana. 
 
     }
     
@@ -1273,12 +1286,14 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
   for (auto s: stations_to_use_)
   {
     tree_eff_[s]->Fill();
-    if (s==1) //Station 1 only , change to >0 for all stations. Add here the event run and lumi constrains for the interesting events and such.
+    
+    int tmpa=0; // change to -1 to let quality zero pass or not.
+    bool exer=false; // Run it?
+    if (s==1 and exer) //Station 1 only , change to >0 for all stations. Add here the event run and lumi constrains for the interesting events and such.
             {
                                     //only add etrk_[1].has_lct>0 to form the numerator, csc_sh>0 implies at least 4 layers (CSC4)
           if (etrk_[s].pt>10 and etrk_[s].eta>=1.65 and etrk_[s].eta<=2.35 and etrk_[s].has_csc_sh>0 and etrk_[s].has_lct>0){
             int hsa=0;
-            int tmpa=0; // change to -1 to let quality zero pass or not.
             int quuality=0, wga=0;
             if (etrk_[s].has_csc_sh==1) quuality=etrk_[s].quality_odd, hsa=etrk_[s].halfstrip_odd, wga=etrk_[s].wiregroup_odd;
             else quuality=etrk_[s].quality_even, hsa=etrk_[s].halfstrip_even, wga=etrk_[s].wiregroup_even;
