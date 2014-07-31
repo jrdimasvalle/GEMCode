@@ -709,6 +709,41 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
       if (odd) etrk_[1].nlayers_csc_sh_odd = nlayers;
       else etrk_[1].nlayers_csc_sh_even = nlayers;
+
+
+        //Double Checking Numerator Flags and Printing from Sim Hits.
+
+      if (match.simhits().event().id().event()==788 and match.simhits().event().id().luminosityBlock()==200 and match.simhits().event().id().run()==1){
+          if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
+
+            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
+            std::cout<<" Run: "<<match.simhits().event().id().run();
+
+            auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
+            std::cout<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi()<<std::endl;
+
+                 auto lcts = match_lct.allLCTsInChamber(d);
+                    for (auto p : lcts)
+                        std::cout<< p <<std::endl;
+
+
+                 auto alcts = match_lct.allALCTsInChamber(d);
+                    for (auto p : alcts)
+                        std::cout<< p <<std::endl;
+
+                 auto clcts = match_lct.allCLCTsInChamber(d);
+                     for (auto p : clcts)
+                        std::cout<< p <<std::endl;
+
+
+         }
+        }
+
+
+
+
+
+
        /* int mals=0;
         if (odd) mals=1;
         else mals=2;       // Den
@@ -875,7 +910,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     if (st==2 or st==3){
       if (odd) etrk_[1].has_lct |= 1;
       else etrk_[1].has_lct |= 2;
-
+/*
       if (match.simhits().event().id().event()==788 and match.simhits().event().id().luminosityBlock()==200){  
           if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
             //std::cout<<"##################### Start Printing  Informatione ########################### "<<std::endl; This is for Numerator
@@ -904,7 +939,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
          }
         }
-             //Until here for Numerator -- Remove the SimTrackID since they go different in the Hist Based Ana. 
+  */           //Until here for Numerator -- Remove the SimTrackID since they go different in the Hist Based Ana. 
 
     }
     
