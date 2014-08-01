@@ -376,7 +376,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
 
 //    const bool caseAlctClct(is_valid(alct) and is_valid(clct));
 
-    std::cout<<" #################################### Starting Shuffling ############################################# "<<std::endl;
+    std::cout<<" ################################## Starting Shuffling for LCT ############################################ "<<std::endl;
     bool caseAlctClct[4][4];
     for (unsigned int i=0; i<clct.size();i++){
         for (unsigned int j=0; j<alct.size();j++){
@@ -521,7 +521,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
     }
 
 
-    std::cout<<" ####################################### End of Function ############################################## "<<std::endl;
+    std::cout<<" ##################################### End of LCT check ############################################ "<<std::endl;
   }
 
   if (verbose() and n_minLayers > 0)
@@ -631,35 +631,80 @@ CSCStubMatcher::matchMPLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& mplc
     }
 
     // find a matching LCT
-    auto clct = clctInChamber(id);
-    if (!is_valid(clct)) continue;
+   // auto clct = clctInChamber(id);
+   // if (!is_valid(clct)) continue;
 
-    auto alct = alctInChamber(id);
-    if (!is_valid(alct)) continue;
+   // auto alct = alctInChamber(id);
+   // if (!is_valid(alct)) continue;
+    auto clct(allCLCTsInChamber(id));
+    auto alct(allALCTsInChamber(id));
 
-    int my_hs = digi_channel(clct);
-    int my_wg = digi_wg(alct);
-    int my_bx = digi_bx(alct);
+     std::cout<<" ################################## Starting Shuffling for MP ########################################### "<<std::endl;
+     bool bcaseAlctClct[4][4];
+     for (unsigned int i=0; i<clct.size();i++){
+         for (unsigned int j=0; j<alct.size();j++){
+             std::cout<<" Clct Number: "<<i;
+             if (is_valid(clct[i])) std::cout<<" is Valid."<<std::endl;
+             else std::cout<<" is Not valid."<<std::endl;
 
-    if (verbose()) cout<<"will match hs"<<my_hs<<" wg"<<my_wg<<" bx"<<my_bx<<" to #lct "<<n_lct<<endl;
-    for (auto &lct: mplcts_tmp)
-    {
-      if (verbose()) cout<<" corlct "<<lct;
-      if ( !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and my_wg == digi_wg(lct)) ){
-        if (verbose()) cout<<"  BAD"<<endl;
-        continue;
-      }
-      if (verbose()) cout<<"  GOOD"<<endl;
+             std::cout<<" Alct Number: "<<j;
+             if (is_valid(alct[j])) std::cout<<" is Valid."<<std::endl;
+             else std::cout<<" is Not valid."<<std::endl;
 
-      if (chamber_to_lct_.find(id) != chamber_to_lct_.end())
-      {
-        //cout<<"ALARM!!! there already was matching LCT "<<chamber_to_lct_[id]<<endl;
-        //cout<<"   new digi: "<<lct<<endl;
-      }
-      chamber_to_lct_[id] = lct;
-    }
+             if (is_valid(clct[i]) and is_valid(alct[j])) {
+                 bcaseAlctClct[i][j]=true;
+                 std::cout<<" Thus both are Valid "<<std::endl;
+             }else{
+                 std::cout<<" Not a valid pair Clct and Alct "<<std::endl;
+                 bcaseAlctClct[i][j]=false;
+                 }
+
+         }
+
+     }
+     std::cout<<"  ----------------------- End Shuffling MPC ----------------------------------- "<<std::endl;
+
+
+    //int my_hs = digi_channel(clct);
+    //int my_wg = digi_wg(alct);
+    //int my_bx = digi_bx(alct);
+
+    //Added for here MPC
+    std::cout<<"  ----------------------- Start Matching MPC ---------------------------------- "<<std::endl;
+    for (unsigned int i=0; i<clct.size();i++){
+        const int my_hs(digi_channel(clct[i]));
+        for (unsigned j=0; j<alct.size();j++){ 
+            const int my_wg(digi_wg(alct[j]));
+            const int my_bx(digi_bx(alct[j]));
+
+            std::cout<<"will match hs "<<my_hs<<" wg"<<my_wg<<" bx"<<my_bx<<" to #lct "<<n_lct<<std::endl;
+
+            if (bcaseAlctClct[i][j]){
+                for (auto &lct: mplcts_tmp)
+                {
+                    std::cout<<" corlct "<<lct;
+                    if ( !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and my_wg == digi_wg(lct)) ){
+                        std::cout<<"  BAD"<<endl;
+                        continue;
+                    }
+                    std::cout<<"  GOOD"<<endl;
+
+                    if (chamber_to_lct_.find(id) != chamber_to_lct_.end()){   
+                        std::cout<<"ALARM!!! there already was matching LCT "<<chamber_to_lct_[id]<<endl;
+                        std::cout<<"   new digi: "<<lct<<endl;
+                    }
+                    chamber_to_lct_[id] = lct;
+                    std::cout<<" Stored lct: "<<lct<<std::endl;
+                }   
+            } else {
+                std::cout<<" Not a valid Alct and Clct pair "<<std::endl;
+                continue;
+            }
+        } // Inner for alct
+    } // Unti here for added for MP    
+   std::cout<<" ############################### End MPC function #################################### "<<std::endl;    
   }
-
+    std::cout<<" Passed thing: "<<chamber_to_lct_.size()<<std::endl;
   if (verbose() and n_minLayers > 0)
   {
     if (chamber_to_lct_.size() == 0)
