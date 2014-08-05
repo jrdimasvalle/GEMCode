@@ -469,7 +469,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
             const int my_hs(digi_channel(clct[i]));
 
             if (digi_strips.find(my_hs) == digi_strips.end()) {
-                 std::cout<<" No tengo idea CLCT Revisar "<<std::endl;
+                 std::cout<<" CLCT Revisar "<<std::endl;
                  continue;
             }
             std::cout<<" Digi Strips: ";
@@ -486,7 +486,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
                   copy(digi_wgs.begin(), digi_wgs.end(), ostream_iterator<int>(cout, " ")); cout<<endl;
                 
                 if (digi_wgs.find(my_wg) == digi_wgs.end()) {
-                    std::cout<<" No tengo idea ALCT revisar "<<std::endl;
+                    std::cout<<" ALCT revisar "<<std::endl;
                     continue;
                 
                 }
@@ -698,9 +698,31 @@ CSCStubMatcher::matchMPLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& mplc
     std::cout<<"  ----------------------- Start Matching MPC ---------------------------------- "<<std::endl;
     for (unsigned int i=0; i<clct.size();i++){
         const int my_hs(digi_channel(clct[i]));
+        auto digi_strips = digi_matcher_->stripsInChamber(id, 0);
+
+        if (digi_strips.find(my_hs) == digi_strips.end()) {
+               std::cout<<" CLCT Revisar "<<std::endl;
+               continue;
+         }
+          std::cout<<" Digi Strips: ";
+          copy(digi_strips.begin(), digi_strips.end(), ostream_iterator<int>(cout, " ")); cout<<endl;
+
+
         for (unsigned j=0; j<alct.size();j++){ 
             const int my_wg(digi_wg(alct[j]));
             const int my_bx(digi_bx(alct[j]));
+
+
+
+                auto digi_wgs = digi_matcher_->wiregroupsInChamber(id,0);
+                cout<<"Digi WGs ";
+                copy(digi_wgs.begin(), digi_wgs.end(), ostream_iterator<int>(cout, " ")); cout<<endl;
+
+                if (digi_wgs.find(my_wg) == digi_wgs.end()) {
+                    std::cout<<" ALCT revisar "<<std::endl;
+                    continue;
+                }
+
 
             //std::cout<<"will match hs "<<my_hs<<" wg"<<my_wg<<" bx"<<my_bx<<" to #lct "<<n_lct<<std::endl;
             if (bcaseAlctClct[i][j]){
