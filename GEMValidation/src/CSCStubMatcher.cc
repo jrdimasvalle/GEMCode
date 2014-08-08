@@ -372,85 +372,166 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
     const int rpc_trig_subsect((csc_trig_chid-1)%3+1);
     const RPCDetId rpcDetId(RPCDetId(ch_id.zendcap(),1,ch_id.station(),rpc_trig_sect,1,rpc_trig_subsect,0));
 
-    auto clct(clctInChamber(id));
-    auto alct(alctInChamber(id));
+    auto clct(clctsInChamber(id));
+    auto alct(alctsInChamber(id));
     auto pads(gem_digi_matcher_->coPadsInSuperChamber(gemDetId));
     auto rpcDigis(rpc_digi_matcher_->digisInChamber(rpcDetId));
-    auto hasPad(pads.size()!=0);
-    auto hasDigis(rpcDigis.size()!=0);
-
-    const bool caseAlctClct(is_valid(alct) and is_valid(clct));
-
-    const bool caseAlctGem(is_valid(alct) and hasPad and !is_valid(clct) and (ch_id.station() == 1 or ch_id.station() == 2));
-    const bool caseClctGem(is_valid(clct) and hasPad and !is_valid(alct) and (ch_id.station() == 1 or ch_id.station() == 2));
-
-    const bool caseAlctRpc(is_valid(alct) and hasDigis and !is_valid(clct) and (ch_id.station() == 3 or ch_id.station() == 4));
-    const bool caseClctRpc(is_valid(clct) and hasDigis and !is_valid(alct) and (ch_id.station() == 3 or ch_id.station() == 4));
-
-    const CSCChamber* cscChamber(cscGeometry_->chamber(CSCDetId(id)));
-    const CSCLayer* cscKeyLayer(cscChamber->layer(3));
-    const CSCLayerGeometry* cscKeyLayerGeometry(cscKeyLayer->geometry());
-    const int nStrips(cscKeyLayerGeometry->numberOfStrips());
-    const float averageZ((cscKeyLayer->centerOfStrip(0)).z());
-    auto GpME(propagateToZ(averageZ));
-    auto lpME(cscKeyLayer->toLocal(GpME));
-
-    const int my_hs(digi_channel(clct));
-    const int my_wg(digi_wg(alct));
-    const int my_bx(digi_bx(alct));
-    // remember that trigger strips are wrapped-around
-    const int my_hs_gem_propagate((nStrips-cscKeyLayerGeometry->nearestStrip(lpME))*2);
-    
     const auto hits = sh_matcher_->hitsInChamber(id);
-    const float my_hs_gemrpc_mean(sh_matcher_->simHitsMeanStrip(hits));
-    const float my_wg_gemrpc_mean(sh_matcher_->simHitsMeanStrip(hits));
-    /*
-    if (caseAlctClct) std::cout << "caseAlctClct" << std::endl;
-    else if(matchAlctGem_)std::cout << "caseAlctGem" << std::endl;
-    std::cout << "mean half strip from simhits " << sh_matcher_->simHitsMeanStrip(hits) 
-	<<"   half strip by propagating track " << my_hs_gem_propagate << std::endl; 
-    */
-    float my_hs_gemrpc;
-    if (hsFromSimHitMean_)  my_hs_gemrpc= my_hs_gemrpc_mean;
-    else my_hs_gemrpc = my_hs_gem_propagate;
 
-    if (verbose()) cout<<"will match hs"<<my_hs<<" wg"<<my_wg<<" bx"<<my_bx<<" to #lct "<<n_lct<<endl;
-    for (auto &lct: lcts_tmp)
-    {
-      if (verbose()) cout<<" corlct "<<lct;
-      if (caseAlctClct and !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and my_wg == digi_wg(lct) ) ){
-        if (verbose()) cout<<"  BAD"<<endl;
-        continue;
-      }
-      if (matchAlctGem_ and caseAlctGem and !(my_bx == digi_bx(lct) and std::abs(my_hs_gemrpc - digi_channel(lct))<3 and my_wg == digi_wg(lct) ) ){
-        if (verbose()) cout<<"  BAD"<<endl;
-        continue;
-      }
-      if (matchClctGem_ and caseClctGem and !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and std::abs(my_wg_gemrpc_mean - digi_wg(lct))<3) ){
-        if (verbose()) cout<<"  BAD"<<endl;
-        continue;
-      }
-      if (matchAlctRpc_ and caseAlctRpc and !(my_bx == digi_bx(lct) and std::abs(my_hs_gemrpc - digi_channel(lct))<3 and my_wg == digi_wg(lct) ) ){
-        if (verbose()) cout<<"  BAD"<<endl;
-        continue;
-      }
-      if (matchClctRpc_ and caseClctRpc and !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and std::abs(my_wg_gemrpc_mean - digi_wg(lct))<3) ){
-        if (verbose()) cout<<"  BAD"<<endl;
-        continue;
-      }
+    bool debuggjs=false;
+        //The above one is to chose if or not print the information
 
-      if (verbose()) cout<<"  GOOD"<<endl;
+    bool caseAlctClct[4][4];
+    for (unsigned int i=0; i<clct.size();i++){
 
-      if (chamber_to_lct_.find(id) != chamber_to_lct_.end())
-      {
-        //cout<<"ALARM!!! there already was matching LCT "<<chamber_to_lct_[id]<<endl;
-        //cout<<"   new digi: "<<lct<<endl;
-      }
-      chamber_to_lct_[id] = lct;
+        
+        for (unsigned int j=0; j<alct.size();j++){
 
-      // assign the matching LCTs
-      chamber_to_lcts_[id].push_back(lct);
+            if (debuggjs) {
+              std::cout<<" Clct Number: "<<i;
+               if (is_valid(clct[i])) std::cout<<" is Valid."<<std::endl;
+               else std::cout<<" is Not valid."<<std::endl;
+
+               std::cout<<" Alct Number: "<<j;
+               if (is_valid(alct[j])) std::cout<<" is Valid."<<std::endl;
+               else std::cout<<" is Not valid."<<std::endl;
+            }
+
+            if (is_valid(clct[i]) and is_valid(alct[j])) {
+                caseAlctClct[i][j]=true;
+                if (debuggjs) std::cout<<" Thus both are Valid "<<std::endl;
+            }else{
+                if (debuggjs)std::cout<<" Not a valid pair Clct and Alct "<<std::endl;
+                caseAlctClct[i][j]=false;
+                }
+
+            //Now we have the possible values for caseAlctClct [i][j]
+
+           auto hasPad(pads.size()!=0);
+           auto hasDigis(rpcDigis.size()!=0);
+
+
+           const bool caseAlctGem(is_valid(alct[j]) and hasPad and !is_valid(clct[i]) and (ch_id.station() == 1 or ch_id.station() == 2));
+           const bool caseClctGem(is_valid(clct[i]) and hasPad and !is_valid(alct[j]) and (ch_id.station() == 1 or ch_id.station() == 2));
+           const bool caseAlctRpc(is_valid(alct[j]) and hasDigis and !is_valid(clct[i]) and (ch_id.station() == 3 or ch_id.station() == 4));
+           const bool caseClctRpc(is_valid(clct[i]) and hasDigis and !is_valid(alct[j]) and (ch_id.station() == 3 or ch_id.station() == 4));
+
+          const CSCChamber* cscChamber(cscGeometry_->chamber(CSCDetId(id)));
+          const CSCLayer* cscKeyLayer(cscChamber->layer(3));
+          const CSCLayerGeometry* cscKeyLayerGeometry(cscKeyLayer->geometry());
+          const int nStrips(cscKeyLayerGeometry->numberOfStrips());
+          const float averageZ((cscKeyLayer->centerOfStrip(0)).z());
+          auto GpME(propagateToZ(averageZ));
+          auto lpME(cscKeyLayer->toLocal(GpME));
+
+          const int my_hs_gem_propagate((nStrips-cscKeyLayerGeometry->nearestStrip(lpME))*2);
+          const auto hits = sh_matcher_->hitsInChamber(id);
+          const float my_hs_gemrpc_mean(sh_matcher_->simHitsMeanStrip(hits));
+          const float my_wg_gemrpc_mean(sh_matcher_->simHitsMeanStrip(hits));
+
+        if (debuggjs) {
+              if (caseAlctClct[i][j]) std::cout << "caseAlctClct" << std::endl;
+              else if(matchAlctGem_)std::cout << "caseAlctGem" << std::endl;
+              std::cout << "mean half strip from simhits " << sh_matcher_->simHitsMeanStrip(hits)
+              <<"   half strip by propagating track " << my_hs_gem_propagate << std::endl;
+        }
+         float my_hs_gemrpc;
+         if (hsFromSimHitMean_)  my_hs_gemrpc= my_hs_gemrpc_mean;
+         else my_hs_gemrpc = my_hs_gem_propagate;
+
+            //All the matching information can go here.
+
+
+             for (auto &lct: lcts_tmp)
+             {
+        
+
+                 auto digi_strips = digi_matcher_->stripsInChamber(id, 0);
+                 const int my_hs(digi_channel(clct[i]));
+
+                if (digi_strips.find(my_hs) == digi_strips.end()) {
+                      //std::cout<<" CLCT Revisar "<<std::endl;
+                     continue;
+                }
+
+
+                if (debuggjs){
+                     std::cout<<" Digi Strips: ";
+                     copy(digi_strips.begin(), digi_strips.end(), ostream_iterator<int>(cout, " ")); cout<<endl;
+                }
+                const int my_wg(digi_wg(alct[j]));
+                const int my_bx(digi_bx(alct[j]));
+                auto digi_wgs = digi_matcher_->wiregroupsInChamber(id,0);
+
+                if (debuggjs) {
+                    cout<<"Digi WGs ";
+                    copy(digi_wgs.begin(), digi_wgs.end(), ostream_iterator<int>(cout, " ")); cout<<endl;
+                }
+
+                if (digi_wgs.find(my_wg) == digi_wgs.end()) {
+                    //std::cout<<" ALCT revisar "<<std::endl;
+                    continue;
+
+                }
+            if (debuggjs){
+                std::cout<<" LCT info: "<<lct<<std::endl;
+                std::cout<<" CLCT: "<<clct[i]<<std::endl;
+                std::cout<<" ALCT: "<<alct[j]<<std::endl;
+            }
+
+
+               if (caseAlctClct[i][j] and !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and my_wg == digi_wg(lct))){
+                    if (verbose()) cout<<"  BAD"<<endl;
+                    if (debuggjs) std::cout<<" Not Matched "<<std::endl;
+                    continue;
+                }
+
+
+               if (matchAlctGem_ and caseAlctGem and !(my_bx == digi_bx(lct) and std::abs(my_hs_gemrpc - digi_channel(lct))<3 and my_wg == digi_wg(lct) ) ){
+                    if (verbose()) cout<<"  BAD"<<endl;
+                    if (debuggjs) std::cout<<" Not Matched "<<std::endl;
+                    continue;
+               }
+
+               if (matchClctGem_ and caseClctGem and !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and std::abs(my_wg_gemrpc_mean - digi_wg(lct))<3) ){
+                    if (verbose()) cout<<"  BAD"<<endl;
+                    if (debuggjs) std::cout<<" Not Matched "<<std::endl;
+                    continue;
+               }
+
+              if (matchAlctRpc_ and caseAlctRpc and !(my_bx == digi_bx(lct) and std::abs(my_hs_gemrpc - digi_channel(lct))<3 and my_wg == digi_wg(lct) ) ){
+                   if (verbose()) cout<<"  BAD"<<endl;
+                   if (debuggjs)std::cout<<" Not Matched "<<std::endl;
+                   continue;
+              }
+              if (matchClctRpc_ and caseClctRpc and !(my_bx == digi_bx(lct) and my_hs == digi_channel(lct) and std::abs(my_wg_gemrpc_mean - digi_wg(lct))<3) ){
+                    if (verbose()) cout<<"  BAD"<<endl;
+                    if (debuggjs)std::cout<<" Not Matched "<<std::endl;
+                    continue;
+              }
+
+
+
+             if (debuggjs) std::cout<<" Matched! "<<std::endl;
+
+             if (chamber_to_lct_.find(id) != chamber_to_lct_.end()){
+                         cout<<"ALARM!!! ihere already was matching LCT "<<chamber_to_lct_[id]<<endl;
+                         cout<<"   new digi: "<<lct<<endl;
+             }
+             
+              chamber_to_lct_[id] = lct;
+              chamber_to_lcts_[id].push_back(lct);
+             if (debuggjs) std::cout<<" Stored lct: "<<lct<<std::endl;
+
+
+
+
+            } //Until here
+        }
+
     }
+    //std::cout<<"  ----------------------- End Shuffling ------------------------------------- "<<std::endl;
+
   }
 
   if (verbose() and n_minLayers > 0)
