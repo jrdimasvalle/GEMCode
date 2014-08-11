@@ -378,7 +378,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
     auto rpcDigis(rpc_digi_matcher_->digisInChamber(rpcDetId));
     const auto hits = sh_matcher_->hitsInChamber(id);
 
-    bool debuggjs=false;
+    bool debuggjs=true;
         //The above one is to chose if or not print the information
 
     bool caseAlctClct[4][4];
@@ -388,11 +388,11 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
         for (unsigned int j=0; j<alct.size();j++){
 
             if (debuggjs) {
-              std::cout<<" Clct Number: "<<i;
+              std::cout<<" Clct: "<<clct[i];
                if (is_valid(clct[i])) std::cout<<" is Valid."<<std::endl;
                else std::cout<<" is Not valid."<<std::endl;
 
-               std::cout<<" Alct Number: "<<j;
+               std::cout<<" Alct: "<<alct[j];
                if (is_valid(alct[j])) std::cout<<" is Valid."<<std::endl;
                else std::cout<<" is Not valid."<<std::endl;
             }
@@ -515,15 +515,16 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
              if (debuggjs) std::cout<<" Matched! "<<std::endl;
 
              if (chamber_to_lct_.find(id) != chamber_to_lct_.end()){
-                         cout<<"ALARM!!! ihere already was matching LCT "<<chamber_to_lct_[id]<<endl;
-                         cout<<"   new digi: "<<lct<<endl;
+                        cout<<"ALARM!!! here already was matching LCT "<<chamber_to_lct_[id]<<endl;
+                        cout<<"   new digi: "<<lct<<endl;
              }
              
               chamber_to_lct_[id] = lct;
               chamber_to_lcts_[id].push_back(lct);
-             if (debuggjs) std::cout<<" Stored lct: "<<lct<<std::endl;
-
-
+              std::cout<<" Stored LCT: "<<lct<<" ";
+              unsigned int dfid = digi_id(lct);
+              CSCDetId asdfid(dfid); 
+              //std::cout<<" DetId: "<<asdfid<<" LCT: "<<lct<<" ";
 
 
             } //Until here

@@ -650,11 +650,11 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
    
   for (auto s: stations_to_use_)
   {
+
+    etrk_[s].init();
     etrk_[s].run = match.simhits().event().id().run();
     etrk_[s].lumi = match.simhits().event().id().luminosityBlock();
     etrk_[s].event = match.simhits().event().id().event();
-
-    etrk_[s].init();
     etrk_[s].pt = t.momentum().pt();
     etrk_[s].phi = t.momentum().phi();
     etrk_[s].eta = t.momentum().eta();
@@ -666,6 +666,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
   auto csc_simhits(match_sh.chamberIdsCSC(0));
   for(auto d: csc_simhits)
   {
+
     CSCDetId id(d);
     const int st(detIdToMEStation(id.station(),id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
@@ -704,36 +705,37 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
       if (odd) etrk_[1].nlayers_csc_sh_odd = nlayers;
       else etrk_[1].nlayers_csc_sh_even = nlayers;
 
-    bool debuggjs=false;
+    bool debuggjs=true;
 
     if(debuggjs){
-    std::cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Printing Information from the Denominator. @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"<<std::endl;
+  //  std::cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Printing Information from the Denominator. @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"<<std::endl;
 
-          if (t.momentum().pt()>10 and t.momentum().eta()>=1.65 and t.momentum().eta()<=2.35){
+          if (t.momentum().pt()>10 ) {
 
-            std::cout<<"Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
+            std::cout<<"Denominator: Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
             std::cout<<" Run: "<<match.simhits().event().id().run();
 
             auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
-            std::cout<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi()<<std::endl;
+            std::cout<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi()<<" ";
 
                  auto lcts = match_lct.allLCTsInChamber(d);
                     for (auto p : lcts)
-                        std::cout<< p <<std::endl;
+                        std::cout<< p <<" ";
 
 
                  auto alcts = match_lct.allALCTsInChamber(d);
                     for (auto p : alcts)
-                        std::cout<< p <<std::endl;
+                        std::cout<< p <<" ";
 
                  auto clcts = match_lct.allCLCTsInChamber(d);
                      for (auto p : clcts)
-                        std::cout<< p <<std::endl;
-
+                        std::cout<< p <<" ";
+                
+                std::cout<<" "<<std::endl;
 
          }
 
-    std::cout<<" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ End of Den @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2@@@@@@@@@@ "<<std::endl;
+//    std::cout<<" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ End of Den @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2@@@@@@@@@@ "<<std::endl;
 
     }
 
@@ -890,6 +892,34 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     if (st==2 or st==3){
       if (odd) etrk_[1].has_lct |= 1;
       else etrk_[1].has_lct |= 2;
+
+          if (t.momentum().pt()>10 ) {
+
+            std::cout<<"Numerator:: Event: "<<match.simhits().event().id().event()<<" Luminosity: "<<match.simhits().event().id().luminosityBlock();
+            std::cout<<" Run: "<<match.simhits().event().id().run();
+
+            auto csc_csh_ch_ids = match_sh.chamberIdsCSC();
+            std::cout<<" SimTrack Pt: "<<t.momentum().pt()<<" SimTrack eta: "<<t.momentum().eta()<<" SimTrack phi: "<<t.momentum().phi()<<" ";
+
+                 auto lcts = match_lct.allLCTsInChamber(d);
+                    for (auto p : lcts)
+                        std::cout<< p <<" ";
+
+
+                 auto alcts = match_lct.allALCTsInChamber(d);
+                    for (auto p : alcts)
+                        std::cout<< p <<" ";
+
+                 auto clcts = match_lct.allCLCTsInChamber(d);
+                     for (auto p : clcts)
+                        std::cout<< p <<" ";
+                std::cout<<" "<<std::endl;
+
+         }
+
+
+
+
     }
     
     auto lct = match_lct.lctInChamber(d);
@@ -1289,7 +1319,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
                                     //only add etrk_[1].has_lct>0 for numerator (CSC4)
 
 
-          if (etrk_[s].pt>10 and etrk_[s].eta>=1.65 and etrk_[s].eta<=2.35 and etrk_[s].has_csc_sh>0  ){
+          if (etrk_[s].pt>10 ) {
             int hsa=0, lhs=0, lwg=0;
             int quuality=0, wga=0;
             if (etrk_[s].has_csc_sh==1) quuality=etrk_[s].quality_odd, hsa=etrk_[s].halfstrip_odd, wga=etrk_[s].wiregroup_odd, lhs=etrk_[s].hs_lct_odd,lwg=etrk_[s].wg_lct_odd;
@@ -1302,14 +1332,15 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
              //   if(etrk_[s].has_csc_sh==1) std::cout<<" Odd ";
              //   else std::cout<<" Even ";
-
+                hsa++;
                 std::cout<<" LCT Quality "<<quuality<<" LCT HS: "<<lhs<<" LCT WG: "<<lwg;
                 std::cout<<" ALCT WG: "<<wga<<" Alct Quality: ";
                 if (etrk_[s].has_csc_sh==1){
-                        std::cout<<etrk_[s].quality_alct_odd<<" CLCT Strip: "<<hsa<<" Clct Quality: "<<etrk_[s].quality_clct_odd<<std::endl;
+                        std::cout<<etrk_[s].quality_alct_odd<<std::endl; //<<" CLCT Strip: "<<hsa<<" Clct Quality: "<<etrk_[s].quality_clct_odd<<std::endl;
                 } else{
-                        std::cout<<etrk_[s].quality_alct_even<<" CLCT Strip: "<<hsa<<" Clct Quality: "<<etrk_[s].quality_clct_even<<std::endl;
+                        std::cout<<etrk_[s].quality_alct_even<<std::endl; //<<" CLCT Strip: "<<hsa<<" Clct Quality: "<<etrk_[s].quality_clct_even<<std::endl;
                 }
+                
             }
         }
     } // Until here for printing
