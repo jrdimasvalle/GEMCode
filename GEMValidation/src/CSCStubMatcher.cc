@@ -137,6 +137,10 @@ CSCStubMatcher::matchCLCTsToSimTrack(const CSCCLCTDigiCollection& clcts)
       }
       if (verbose()) cout<<"clctGOOD"<<endl;
 
+
+      // store matching CLCTs in this chamber
+      chamber_to_clcts_[id].push_back(mydigi);
+
       if (chamber_to_clct_.find(id) != chamber_to_clct_.end())
       {
         cout<<"WARNING!!! there already was matching CLCT "<<chamber_to_clct_[id]<<endl;
@@ -157,8 +161,6 @@ CSCStubMatcher::matchCLCTsToSimTrack(const CSCCLCTDigiCollection& clcts)
 
       chamber_to_clct_[id] = mydigi;
 
-      // store matching CLCTs in this chamber
-      chamber_to_clcts_[id].push_back(mydigi);
     }
     if (chamber_to_clcts_[id].size() > 2)
     {
@@ -233,6 +235,9 @@ CSCStubMatcher::matchALCTsToSimTrack(const CSCALCTDigiCollection& alcts)
       }
       if (verbose()) cout<<"alctGOOD"<<endl;
 
+      // store matching ALCTs in this chamber
+      chamber_to_alcts_[id].push_back(mydigi);
+
       if (chamber_to_alct_.find(id) != chamber_to_alct_.end())
       {
         //cout<<"WARNING!!! there already was matching ALCT "<<chamber_to_alct_[id]<<endl;
@@ -247,8 +252,6 @@ CSCStubMatcher::matchALCTsToSimTrack(const CSCALCTDigiCollection& alcts)
 
       chamber_to_alct_[id] = mydigi;
 
-      // store matching ALCTs in this chamber
-      chamber_to_alcts_[id].push_back(mydigi);
     }
     if (chamber_to_alcts_[id].size() > 2)
     {
@@ -378,7 +381,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
     auto rpcDigis(rpc_digi_matcher_->digisInChamber(rpcDetId));
     const auto hits = sh_matcher_->hitsInChamber(id);
 
-    bool debuggjs=true;
+    bool debuggjs=false;
         //The above one is to chose if or not print the information
 
     bool caseAlctClct[4][4];
@@ -388,11 +391,11 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
         for (unsigned int j=0; j<alct.size();j++){
 
             if (debuggjs) {
-              std::cout<<" Clct: "<<clct[i];
+              std::cout<<" Clct Number: "<<i;
                if (is_valid(clct[i])) std::cout<<" is Valid."<<std::endl;
                else std::cout<<" is Not valid."<<std::endl;
 
-               std::cout<<" Alct: "<<alct[j];
+               std::cout<<" Alct Number: "<<j;
                if (is_valid(alct[j])) std::cout<<" is Valid."<<std::endl;
                else std::cout<<" is Not valid."<<std::endl;
             }
@@ -446,12 +449,11 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
              {
         
 
-                 auto digi_strips = digi_matcher_->stripsInChamber(id, 0);
+                 auto digi_strips = digi_matcher_->stripsInChamber(id, 1);
                  const int my_hs(digi_channel(clct[i]));
 
                 if (digi_strips.find(my_hs) == digi_strips.end()) {
-                      //std::cout<<" CLCT Revisar "<<std::endl;
-                     continue;
+                    std::cout<<" CLCT Revisar "<<std::endl;
                 }
 
 
@@ -461,7 +463,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
                 }
                 const int my_wg(digi_wg(alct[j]));
                 const int my_bx(digi_bx(alct[j]));
-                auto digi_wgs = digi_matcher_->wiregroupsInChamber(id,0);
+                auto digi_wgs = digi_matcher_->wiregroupsInChamber(id,1);
 
                 if (debuggjs) {
                     cout<<"Digi WGs ";
@@ -469,8 +471,7 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
                 }
 
                 if (digi_wgs.find(my_wg) == digi_wgs.end()) {
-                    //std::cout<<" ALCT revisar "<<std::endl;
-                    continue;
+                    std::cout<<" ALCT revisar "<<std::endl;
 
                 }
             if (debuggjs){
@@ -515,16 +516,15 @@ CSCStubMatcher::matchLCTsToSimTrack(const CSCCorrelatedLCTDigiCollection& lcts)
              if (debuggjs) std::cout<<" Matched! "<<std::endl;
 
              if (chamber_to_lct_.find(id) != chamber_to_lct_.end()){
-                        cout<<"ALARM!!! here already was matching LCT "<<chamber_to_lct_[id]<<endl;
-                        cout<<"   new digi: "<<lct<<endl;
+                         cout<<"ALARM!!! here already was matching LCT "<<chamber_to_lct_[id]<<endl;
+                         cout<<"   new digi: "<<lct<<endl;
              }
              
               chamber_to_lct_[id] = lct;
               chamber_to_lcts_[id].push_back(lct);
-              std::cout<<" Stored LCT: "<<lct<<" ";
-              unsigned int dfid = digi_id(lct);
-              CSCDetId asdfid(dfid); 
-              //std::cout<<" DetId: "<<asdfid<<" LCT: "<<lct<<" ";
+             if (debuggjs) std::cout<<" Stored lct: "<<lct<<std::endl;
+
+
 
 
             } //Until here
