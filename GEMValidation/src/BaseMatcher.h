@@ -21,6 +21,7 @@
 
 #include "MagneticField/Engine/interface/MagneticField.h"
 #include "TrackingTools/GeomPropagators/interface/Propagator.h"
+#include <SimDataFormats/TrackingHit/interface/PSimHitContainer.h>
 
 #include "Geometry/Records/interface/MuonGeometryRecord.h"
 #include "Geometry/GEMGeometry/interface/GEMGeometry.h"
@@ -28,11 +29,18 @@
 #include "Geometry/RPCGeometry/interface/RPCGeometry.h"
 #include "Geometry/CSCGeometry/interface/CSCGeometry.h"
 #include "Geometry/CSCGeometry/interface/CSCLayerGeometry.h"
+#include "Geometry/DTGeometry/interface/DTGeometry.h"
 
+#include "DataFormats/MuonDetId/interface/DTChamberId.h"
+#include "DataFormats/MuonDetId/interface/DTWireId.h"
 #include "DataFormats/MuonDetId/interface/CSCDetId.h"
 #include "DataFormats/MuonDetId/interface/GEMDetId.h"
 #include "DataFormats/MuonDetId/interface/RPCDetId.h"
 #include "DataFormats/MuonDetId/interface/ME0DetId.h"
+
+#include "DataFormats/MuonDetId/interface/DTChamberId.h"
+#include "DataFormats/MuonDetId/interface/DTBtiId.h"
+
 
 inline bool is_gem(unsigned int detId) {
   return (DetId(detId)).subdetId() == MuonSubdetId::GEM;
@@ -48,6 +56,10 @@ inline bool is_rpc(unsigned int detId) {
 
 inline bool is_me0(unsigned int detId) {
   return (DetId(detId)).subdetId() == MuonSubdetId::ME0;
+}
+
+inline bool is_dt(unsigned int detId) {
+  return (DetId(detId)).subdetId() == MuonSubdetId::DT;
 }
 
 int chamber(const DetId& id);
@@ -120,11 +132,13 @@ public:
   void setRPCGeometry(const RPCGeometry *geom) {rpcGeometry_ = geom;}
   void setME0Geometry(const ME0Geometry *geom) {me0Geometry_ = geom;}
   void setCSCGeometry(const CSCGeometry *geom) {cscGeometry_ = geom;}
+  void setDTGeometry(const DTGeometry *geom) {dtGeometry_ = geom;}
 
   const GEMGeometry* getGEMGeometry() const {return gemGeometry_;}
   const RPCGeometry* getRPCGeometry() const {return rpcGeometry_;}
   const ME0Geometry* getME0Geometry() const {return me0Geometry_;}
   const CSCGeometry* getCSCGeometry() const {return cscGeometry_;}
+  const DTGeometry* getDTGeometry() const {return dtGeometry_;}
 
   unsigned int gemDetFromCSCDet(unsigned int id,int layer);
 
@@ -136,12 +150,13 @@ public:
   const RPCGeometry* rpcGeometry_;
   const GEMGeometry* gemGeometry_;
   const ME0Geometry* me0Geometry_;
-
+  const DTGeometry* dtGeometry_;
   bool hasGEMGeometry_;
   bool hasRPCGeometry_;
   bool hasME0Geometry_;
   bool hasCSCGeometry_;
-  
+  bool hasDTGeometry_;
+
  private:
 
   const SimTrack& trk_;
@@ -164,6 +179,7 @@ public:
   edm::ESHandle<RPCGeometry> rpc_geom;
   edm::ESHandle<GEMGeometry> gem_geom;
   edm::ESHandle<ME0Geometry> me0_geom;
+  edm::ESHandle<DTGeometry> dt_geom;
 };
 
 #endif

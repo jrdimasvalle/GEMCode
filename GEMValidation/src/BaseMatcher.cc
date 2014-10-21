@@ -32,7 +32,6 @@ BaseMatcher::BaseMatcher(const SimTrack& t, const SimVertex& v,
   hasRPCGeometry_ = false;
   hasCSCGeometry_ = false;
   hasME0Geometry_ = false;
-
   try {
     es.get<MuonGeometryRecord>().get(gem_geom);
     gemGeometry_ = &*gem_geom;
@@ -64,6 +63,8 @@ BaseMatcher::BaseMatcher(const SimTrack& t, const SimVertex& v,
     hasRPCGeometry_ = false;
     LogDebug("MuonSimHitAnalyzer") << "+++ Info: RPC geometry is unavailable. +++\n";
   }
+
+  
 }
 
 
@@ -150,6 +151,11 @@ chamber(const DetId& id)
   case MuonSubdetId::ME0:
     chamberN = ME0DetId(id).chamber();
     break;
+
+  case MuonSubdetId::DT:
+     chamberN = DTChamberId(id);
+     break;
+
   };
   return chamberN;
 }

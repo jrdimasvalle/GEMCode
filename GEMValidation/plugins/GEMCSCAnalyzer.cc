@@ -81,11 +81,15 @@ struct MyTrackEff
   Int_t event;
 
   Float_t pt, eta, phi;
+  Float_t Z_Dt, R_Dt, eta_detect_DT, phi_detect_DT;
+  Float_t pt_DT, eta_DT, phi_DT;
+
   Char_t charge;
   Char_t endcap;
   Char_t chamber_odd; // bit1: has GEM pad   bit2: has CSC LCT
   Char_t chamber_even; // bit1: has GEM pad   bit2: has CSC LCT
-
+  
+  Char_t has_dt_sh; // #layres with hits in DT
   Char_t has_csc_sh; // #layers with SimHits > minHitsChamber    bit1: in odd, bit2: even
   Char_t has_csc_strips; // #layers with comparator digis > minHitsChamber    bit1: in odd, bit2: even
   Char_t has_csc_wires; // #layers with wire digis > minHitsChamber    bit1: in odd, bit2: even
@@ -203,6 +207,17 @@ void MyTrackEff::init()
   quality_odd = 0;
   quality_even = 0;
 
+
+  Z_Dt=0;
+  R_Dt=0;
+  eta_detect_DT=0;
+  phi_detect_DT=0;
+  pt_DT=0;
+  eta_DT=0;
+  phi_DT=0;
+
+
+  has_dt_sh=0;
   has_csc_sh = 0;
   has_csc_strips = 0;
   has_csc_wires = 0;
@@ -310,6 +325,16 @@ TTree* MyTrackEff::book(TTree *t, const std::string & name)
   t->Branch("chamber_even", &chamber_even);
   t->Branch("quality_odd", &quality_odd);
   t->Branch("quality_even", &quality_even);
+  
+  t->Branch("Z_Dt", &Z_Dt);
+  t->Branch("R_Dt", &R_Dt);
+  t->Branch("eta_detect_DT", &eta_detect_DT);
+  t->Branch("phi_detect_DT", &phi_detect_DT);
+  t->Branch("pt_DT", &pt_DT);
+  t->Branch("eta_DT", &eta_DT);
+  t->Branch("phi_DT", &phi_DT);
+
+  t->Branch("has_dt_sh", &has_dt_sh);
   t->Branch("has_csc_sh", &has_csc_sh);
   t->Branch("has_csc_strips", &has_csc_strips);
   t->Branch("has_csc_wires", &has_csc_wires);
@@ -429,7 +454,7 @@ private:
 
   bool isSimTrackGood(const SimTrack &t);
   int detIdToMEStation(int st, int ri);
-  
+  int detIdToDTStation(int st , int wh); 
   edm::ParameterSet cfg_;
   edm::InputTag simInputLabel_;
   double simTrackMinPt_;
@@ -441,10 +466,14 @@ private:
   bool ntupleTrackEff_;
   bool matchprint_;
   std::vector<string> cscStations_;
+  std::vector<string> dtStations_;
+  std::vector<std::pair<int,int> > dtStationsCo_;
   std::vector<std::pair<int,int> > cscStationsCo_;
   std::set<int> stations_to_use_;
+  std::set<int> wheels_to_use_;
 
   TTree *tree_eff_[12]; // for up to 9 stations
+  TTree *tree_dt_eff_[12];
   TTree *tree_delta_;
   
   MyTrackEff  etrk_[12];
@@ -517,6 +546,31 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
     }
   }
 
+ dtStations_.push_back("MB01");
+ dtStations_.push_back("MB11");
+ dtStations_.push_back("MB21");
+
+
+ vector<int> wheels_to_use;
+
+  for (int i=0; i<3; i++)
+    {
+        wheels_to_use[i]=i;
+        }
+
+  for(auto s: wheels_to_use_)
+      {
+        stringstream ss;
+        ss << "trk_eff_dt"<< dtStations_[s];
+        tree_dt_eff_[s] = etrk_[s].book(tree_dt_eff_[s], ss.str());
+      }
+
+  dtStationsCo_.push_back(std::make_pair(-99,-99));
+  dtStationsCo_.push_back(std::make_pair(1,-99));
+  dtStationsCo_.push_back(std::make_pair(0,1));
+  dtStationsCo_.push_back(std::make_pair(1,1));
+  dtStationsCo_.push_back(std::make_pair(2,1));
+
   cscStationsCo_.push_back(std::make_pair(-99,-99));
   cscStationsCo_.push_back(std::make_pair(1,-99));
   cscStationsCo_.push_back(std::make_pair(1,4));
@@ -532,12 +586,21 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
 }
 
 
+
+
 int GEMCSCAnalyzer::detIdToMEStation(int st, int ri)
 {
   auto p(std::make_pair(st, ri));
   return std::find(cscStationsCo_.begin(), cscStationsCo_.end(), p) - cscStationsCo_.begin();
 }
 
+
+
+int GEMCSCAnalyzer::detIdToDTStation(int st, int wh)
+{
+  auto p(std::make_pair(st, wh));
+  return std::find(dtStationsCo_.begin(),dtStationsCo_.end(), p) - dtStationsCo_.begin();
+}
 
 void GEMCSCAnalyzer::beginRun(const edm::Run &iRun, const edm::EventSetup &iSetup)
 {
@@ -661,6 +724,39 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_[s].charge = t.charge();
     etrk_[s].endcap = (etrk_[s].eta > 0.) ? 1 : -1;
   }
+
+  for (auto sdt: wheels_to_use_)
+  { 
+
+   etrk_[sdt].init();
+   etrk_[sdt].run= match.simhits().event().id().run();
+   etrk_[sdt].lumi= match.simhits().event().id().luminosityBlock();
+   etrk_[sdt].event = match.simhits().event().id().event();
+
+
+  }
+  //DT Hits
+
+  auto dt_simhits(match_sh.chamberIdsDT());
+  for (auto d: dt_simhits)
+
+  {
+
+   DTWireId id(d);  
+   int nlayers(match_sh.hitsInChamber(d).size());
+   const int stdt(detIdToDTStation(id.station(), id.wheel()));
+   if (wheels_to_use_.count(stdt)==0) continue;
+
+   if (nlayers <1) {
+             std::cout<<"No layers";
+             continue;
+    }
+
+   etrk_[stdt].has_dt_sh=1;
+
+
+  }
+
 
   // SimHits
   auto csc_simhits(match_sh.chamberIdsCSC(0));

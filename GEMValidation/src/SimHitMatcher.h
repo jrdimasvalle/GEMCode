@@ -21,6 +21,7 @@ class CSCGeometry;
 class GEMGeometry;
 class ME0Geometry;
 class RPCGeometry;
+class DTGeometry;
 
 class SimHitMatcher : public BaseMatcher
 {
@@ -39,6 +40,13 @@ public:
   const edm::PSimHitContainer& simHitsME0() const {return me0_hits_;}
   /// access to all the RPC SimHits
   const edm::PSimHitContainer& simHitsRPC() const {return rpc_hits_;}
+  /// access to the DT stuff
+  const edm::PSimHitContainer& simHitsDT() const {return dt_hits_;}
+
+
+  ///DT stuff
+  std::set<unsigned int> detIdsDT() const;
+
 
   /// GEM partitions' detIds with SimHits
   std::set<unsigned int> detIdsGEM() const;
@@ -49,6 +57,7 @@ public:
   /// CSC layers' detIds with SimHits
   /// by default, only returns those from ME1b
   std::set<unsigned int> detIdsCSC(int csc_type = CSC_ME1b) const;
+
 
   /// GEM detid's with hits in 2 layers of coincidence pads
   /// those are layer==1 only detid's
@@ -63,6 +72,11 @@ public:
   std::set<unsigned int> chamberIdsME0() const;
   /// RPC chamber detIds with SimHits
   std::set<unsigned int> chamberIdsRPC() const;
+
+    //DT Stuff
+  std::set<unsigned int> chamberIdsDT() const;
+  
+
   /// CSC chamber detIds with SimHits
   std::set<unsigned int> chamberIdsCSC(int csc_type = CSC_ME1b) const;
 
@@ -124,21 +138,24 @@ private:
                               const edm::PSimHitContainer& csc_hits, 
                               const edm::PSimHitContainer& gem_hits,
                               const edm::PSimHitContainer& rpc_hits,
-                              const edm::PSimHitContainer& me0_hits);
+                              const edm::PSimHitContainer& me0_hits,
+                              const edm::PSimHitContainer& dt_hits);
 
   bool simMuOnlyCSC_;
   bool simMuOnlyGEM_;
   bool simMuOnlyRPC_;
   bool simMuOnlyME0_;
+  bool simMuOnlyDT_;
 
   bool discardEleHitsCSC_;
   bool discardEleHitsGEM_;
   bool discardEleHitsRPC_;
   bool discardEleHitsME0_;
-
+  bool discardEleHitsDT_;
   bool runCSCSimHit_;
   bool runGEMSimHit_;
   bool runRPCSimHit_;
+  bool runDTSimHit_;
   bool runME0SimHit_;
 
   std::string simInputLabel_;
@@ -165,6 +182,10 @@ private:
   std::map<unsigned int, edm::PSimHitContainer > rpc_detid_to_hits_;
   std::map<unsigned int, edm::PSimHitContainer > rpc_chamber_to_hits_;
 
+  edm::PSimHitContainer dt_hits_;
+  std::map<unsigned int, edm::PSimHitContainer > dt_detid_to_hits_;
+  std::map<unsigned int, edm::PSimHitContainer > dt_chamber_to_hits_;
+
   // detids with hits in pads
   std::map<unsigned int, std::set<int> > gem_detids_to_pads_;
   // detids with hits in 2-layer pad coincidences
@@ -174,15 +195,16 @@ private:
   bool verboseCSC_;
   bool verboseRPC_;
   bool verboseME0_;
-
+  bool verboseDT_;
   edm::InputTag gemSimHitInput_;
   edm::InputTag cscSimHitInput_;
   edm::InputTag rpcSimHitInput_;
   edm::InputTag me0SimHitInput_;
-
+  edm::InputTag dtSimHitInput_;
   edm::Handle<edm::PSimHitContainer> csc_hits;
   edm::Handle<edm::PSimHitContainer> gem_hits;
   edm::Handle<edm::PSimHitContainer> rpc_hits;
+  edm::Handle<edm::PSimHitContainer> dt_hits;
   edm::Handle<edm::PSimHitContainer> me0_hits;
   edm::Handle<edm::SimTrackContainer> sim_tracks;
   edm::Handle<edm::SimVertexContainer> sim_vertices;

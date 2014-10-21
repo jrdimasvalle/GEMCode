@@ -38,6 +38,13 @@ SimHitMatcher::SimHitMatcher(const SimTrack& t, const SimVertex& v,
   discardEleHitsRPC_ = rpcSimHit_.getParameter<bool>("discardEleHits");
   runRPCSimHit_ = rpcSimHit_.getParameter<bool>("run");
 
+  auto dtSimHit_ = conf().getParameter<edm::ParameterSet> ("dtSimHit");
+  verboseDT_= dtSimHit_.getParameter<int>("verbose");
+  dtSimHitInput_ = dtSimHit_.getParameter<edm::InputTag>("input");
+  simMuOnlyDT_ = dtSimHit_.getParameter<bool>("simMuOnly");
+  discardEleHitsDT_ = dtSimHit_.getParameter<bool>("discardEleHits");
+  runDTSimHit_ = dtSimHit_.getParameter<bool>("run");
+
   simInputLabel_ = conf().getUntrackedParameter<std::string>("simInputLabel", "g4SimHits");
 
   setVerbose(conf().getUntrackedParameter<int>("verboseSimHit", 0));
@@ -58,7 +65,7 @@ SimHitMatcher::init()
   event().getByLabel(gemSimHitInput_, gem_hits);
   event().getByLabel(rpcSimHitInput_, rpc_hits);
   event().getByLabel(me0SimHitInput_, me0_hits);
-
+  event().getByLabel(dtSimHitInput_, dt_hits);
   // fill trkId2Index associoation:
   int no = 0;
   trkid_to_index_.clear();
@@ -78,7 +85,7 @@ SimHitMatcher::init()
   }
 
   matchSimHitsToSimTrack(track_ids, csc_hits_select, *gem_hits.product(),
-                         *rpc_hits.product(),*me0_hits.product());
+                         *rpc_hits.product(),*me0_hits.product(),*dt_hits.product());
 
   if (verboseCSC_)
   {
@@ -162,7 +169,8 @@ SimHitMatcher::matchSimHitsToSimTrack(std::vector<unsigned int> track_ids,
                                       const edm::PSimHitContainer& csc_hits, 
                                       const edm::PSimHitContainer& gem_hits,
                                       const edm::PSimHitContainer& rpc_hits, 
-                                      const edm::PSimHitContainer& me0_hits)
+                                      const edm::PSimHitContainer& me0_hits,
+                                      const edm::PSimHitContainer& dt_hits)
 {
   for (auto& track_id: track_ids)
   {
@@ -207,6 +215,25 @@ SimHitMatcher::matchSimHitsToSimTrack(std::vector<unsigned int> track_ids,
       RPCDetId layer_id( h.detUnitId() );
       rpc_chamber_to_hits_[ layer_id.chamberId().rawId() ].push_back(h);
     }
+
+   //changed DT here
+    if (runDTSimHit_) for (auto& h: dt_hits)
+    {
+      if (h.trackId() != track_id) continue;
+      int pdgid = h.particleType();
+      if (simMuOnlyDT_ && std::abs(pdgid) != 13) continue;
+      // discard electron hits in the RPC chambers
+      if (discardEleHitsDT_ && pdgid == 11) continue;
+
+      dt_detid_to_hits_[ h.detUnitId() ].push_back(h);
+      dt_hits_.push_back(h);
+      DTWireId layer_id( h.detUnitId() );
+      dt_chamber_to_hits_[ layer_id.chamberId().rawId() ].push_back(h);
+    }
+
+
+
+
     if (runME0SimHit_) for (auto& h: me0_hits)
     {
       if (h.trackId() != track_id) continue;
@@ -292,6 +319,14 @@ SimHitMatcher::detIdsRPC() const
 }
 
 
+std::set<unsigned int>
+SimHitMatcher::detIdsDT() const
+{
+   std::set<unsigned int> result;
+   for (auto& p: dt_detid_to_hits_) result.insert(p.first);
+   return result;
+}
+
 std::set<unsigned int> 
 SimHitMatcher::detIdsME0() const
 {
@@ -362,6 +397,16 @@ SimHitMatcher::chamberIdsRPC() const
   for (auto& p: rpc_chamber_to_hits_) result.insert(p.first);
   return result;
 }
+
+std::set<unsigned int>
+SimHitMatcher::chamberIdsDT() const
+{
+   std::set<unsigned int> result;
+   for (auto& p: dt_chamber_to_hits_) result.insert(p.first);
+   return result;
+}
+
+
 
 
 std::set<unsigned int> 
@@ -445,6 +490,13 @@ SimHitMatcher::hitsInDetId(unsigned int detid) const
     if (rpc_detid_to_hits_.find(detid) == rpc_detid_to_hits_.end()) return no_hits_;
     return rpc_detid_to_hits_.at(detid);
   }
+
+ if (is_dt(detid))
+  {
+    if (dt_detid_to_hits_.find(detid) == dt_detid_to_hits_.end()) return no_hits_;
+    return dt_detid_to_hits_.at(detid);
+  }
+
   return no_hits_;
 }
 
@@ -476,6 +528,15 @@ SimHitMatcher::hitsInChamber(unsigned int detid) const
     if (rpc_chamber_to_hits_.find(id.chamberId().rawId()) == rpc_chamber_to_hits_.end()) return no_hits_;
     return rpc_chamber_to_hits_.at(id.chamberId().rawId());
   }
+
+  if (is_dt(detid))
+   {
+    DTWireId id(detid);
+    if (dt_chamber_to_hits_.find(id.chamberId().rawId()) == dt_chamber_to_hits_.end()) return no_hits_;
+    return dt_chamber_to_hits_.at(id.chamberId().rawId());
+  }
+
+
   return no_hits_;
 }
 
@@ -522,6 +583,13 @@ SimHitMatcher::nLayersWithHitsInSuperChamber(unsigned int detid) const
       RPCDetId idd(h.detUnitId());
       layers_with_hits.insert(idd.layer());
     }
+
+     if (is_dt(detid))
+     {
+       DTWireId idd(h.detUnitId());
+       layers_with_hits.insert(idd.layer());
+     }
+
   }
   return layers_with_hits.size();
 }
@@ -554,6 +622,9 @@ SimHitMatcher::simHitsMeanPosition(const edm::PSimHitContainer& sim_hits) const
     else if (is_rpc(h.detUnitId()))
     {
       gp = rpcGeometry_->idToDet(h.detUnitId())->surface().toGlobal(lp);
+    } else if (is_dt(h.detUnitId()))
+    {
+      gp = dtGeometry_->idToDet(h.detUnitId())->surface().toGlobal(lp);
     }
     else continue;
     sumx += gp.x();
@@ -596,7 +667,16 @@ SimHitMatcher::simHitsMeanStrip(const edm::PSimHitContainer& sim_hits) const
     {
       s = rpcGeometry_->roll(d)->strip(lp);
     }
-    else continue;
+
+
+
+///    else if (is_dt(d))
+   /// {
+    ///  s = dtGeometry_-> DTTopology(d)->channel(lp);
+  ///  }
+  
+
+  else continue;
     sums += s;
     ++n;
   }
@@ -702,6 +782,27 @@ SimHitMatcher::hitStripsInDetId(unsigned int detid, int margin_n_strips) const
     }
   
   }
+
+/// Problem 2 Here
+/*
+  else if ( is_dt(detid) )
+  {
+    DTWireId id(detid);
+    int max_nstrips = dtGeometry_->roll(id)->nstrips();
+    for (auto& h: simhits)
+    {
+      LocalPoint lp = h.entryPoint();
+      int central_strip = 1 + static_cast<int>(rpcGeometry_->roll(id)->topology().channel(lp));
+    //  int central_strip2 = 1 + static_cast<int>(rpcGeometry_->roll(id)->strip(lp));
+    //  std::cout <<"strip from topology"<< central_strip <<" strip from roll" << central_strip2 <<std::endl;
+      int smin = central_strip - margin_n_strips;
+      smin = (smin > 0) ? smin : 1;
+      int smax = central_strip + margin_n_strips;
+      smax = (smax <= max_nstrips) ? smax : max_nstrips;
+      for (int ss = smin; ss <= smax; ++ss) result.insert(ss);
+    }
+  }
+*/
   return result;
 }
 
