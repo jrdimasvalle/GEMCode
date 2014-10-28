@@ -429,7 +429,7 @@ private:
 
   bool isSimTrackGood(const SimTrack &t);
   int detIdToMEStation(int st, int ri);
-  
+  int detIdToMBStation(int st, int wh);
   edm::ParameterSet cfg_;
   edm::InputTag simInputLabel_;
   double simTrackMinPt_;
@@ -441,13 +441,17 @@ private:
   bool ntupleTrackEff_;
   bool matchprint_;
   std::vector<string> cscStations_;
+  std::vector<string> dtStations_;
   std::vector<std::pair<int,int> > cscStationsCo_;
+  std::vector<std::pair<int,int> > dtStationsCo_;
   std::set<int> stations_to_use_;
-
+  std::set<int> stationsdt_to_use_;
   TTree *tree_eff_[12]; // for up to 9 stations
+  TTree *tree_eff_dt_[24];
   TTree *tree_delta_;
   
   MyTrackEff  etrk_[12];
+  MyTrackEff etrk_dt_[24];
   MyTrackChamberDelta dtrk_;
 
   int minNHitsChamberCSCSimHit_;
@@ -464,6 +468,8 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
 : cfg_(ps.getParameterSet("simTrackMatching"))
 , verbose_(ps.getUntrackedParameter<int>("verbose", 0))
 {
+
+  dtStations_ = cfg_.getParameter<std::vector<string> >("dtStations");
   cscStations_ = cfg_.getParameter<std::vector<string> >("cscStations");
   ntupleTrackChamberDelta_ = cfg_.getParameter<bool>("ntupleTrackChamberDelta");
   ntupleTrackEff_ = cfg_.getParameter<bool>("ntupleTrackEff");
@@ -497,6 +503,16 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
   auto cscMPLCT = cfg_.getParameter<edm::ParameterSet>("cscMPLCT");
   minNHitsChamberMPLCT_ = cscMPLCT.getParameter<int>("minNHitsChamber");
 
+  vector<int> stationsDT = ps.getParameter<vector<int> >("DTSTationsToUSE");
+  copy(stationsDT.begin(), stationsDT.end(), inserter(stationsdt_to_use_,stationsdt_to_use_.end()));
+
+  for (auto m: stationsdt_to_use_)
+    {
+    stringstream ss;
+    ss<< "trk_eff_dt_" << dtStations_[m];
+    tree_eff_dt_[m] = etrk_dt_[m].book(tree_eff_dt_[m], ss.str()); 
+ 
+    }
   /*
   auto tfTrack = cfg_.getParameter<edm::ParameterSet>("tfTrack");
   auto tfCand = cfg_.getParameter<edm::ParameterSet>("tfCand");
@@ -529,6 +545,25 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
   cscStationsCo_.push_back(std::make_pair(3,2));
   cscStationsCo_.push_back(std::make_pair(4,1));
   cscStationsCo_.push_back(std::make_pair(4,2));
+
+  dtStationsCo_.push_back(std::make_pair(-10,-10));
+  dtStationsCo_.push_back(std::make_pair(1,-10));
+  dtStationsCo_.push_back(std::make_pair(1,0));
+  dtStationsCo_.push_back(std::make_pair(1,1));
+  dtStationsCo_.push_back(std::make_pair(1,2));
+  dtStationsCo_.push_back(std::make_pair(2,0));
+  dtStationsCo_.push_back(std::make_pair(2,1));
+  dtStationsCo_.push_back(std::make_pair(2,2));
+  dtStationsCo_.push_back(std::make_pair(3,0));
+  dtStationsCo_.push_back(std::make_pair(3,1));
+  dtStationsCo_.push_back(std::make_pair(3,1));
+  dtStationsCo_.push_back(std::make_pair(4,0));
+  dtStationsCo_.push_back(std::make_pair(4,1));
+  dtStationsCo_.push_back(std::make_pair(4,2));
+  
+
+
+
 }
 
 
@@ -536,6 +571,13 @@ int GEMCSCAnalyzer::detIdToMEStation(int st, int ri)
 {
   auto p(std::make_pair(st, ri));
   return std::find(cscStationsCo_.begin(), cscStationsCo_.end(), p) - cscStationsCo_.begin();
+}
+
+int GEMCSCAnalyzer::detIdToMBStation(int st,  int wh)
+{
+    auto p(std::make_pair(st, wh));
+    return std::find(dtStationsCo_.begin(), dtStationsCo_.end(),p) - dtStationsCo_.begin();
+
 }
 
 
@@ -661,6 +703,35 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_[s].charge = t.charge();
     etrk_[s].endcap = (etrk_[s].eta > 0.) ? 1 : -1;
   }
+
+
+  std::cout<<" Running before DT"<<std::endl;
+
+  auto dt_simhits(match_sh.layerIdsDT());
+
+  std::cout<<" Size DT: "<<dt_simhits.size()<<std::endl;
+ 
+  for (auto ddt: dt_simhits)
+  {
+
+
+    DTWireId iddt(ddt);
+    const int st(detIdToMBStation(iddt.station(),iddt.wheel()));
+
+    if (stationsdt_to_use_.count(st) == 0 ) {
+        std::cout<<"Bad Station Super Layer for DT "<<std::endl;
+        continue;
+        }
+
+    int nlayersdt(match_sh.nLayerWithHitsDT(ddt));
+
+    std::cout<<" Station ID: "<<iddt<<" for a: "<<ddt<<" has "<<nlayersdt<<std::endl;
+
+
+   } 
+
+
+
 
   // SimHits
   auto csc_simhits(match_sh.chamberIdsCSC(0));

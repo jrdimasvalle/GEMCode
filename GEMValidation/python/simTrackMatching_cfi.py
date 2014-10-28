@@ -3,6 +3,7 @@ import FWCore.ParameterSet.Config as cms
 SimTrackMatching = cms.PSet(
     # common
     useCSCChamberTypes = cms.untracked.vint32(0,1,2,3,4,5,6,7,8,9,10),
+    dtStations = cms.vstring('ALL', 'MB10', 'MB11', 'MB12', 'MB20', 'MB21', 'MB22', 'MB30', 'MB31', 'MB32', 'MB40', 'MB41', 'MB42'),
     ## endcap stations
     cscStations = cms.vstring('ALL','ME11','ME1a','ME1b','ME12','ME13',
                               'ME21','ME22','ME31','ME32','ME41','ME42'),

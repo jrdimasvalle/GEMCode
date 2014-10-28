@@ -28,11 +28,21 @@
 #include "Geometry/RPCGeometry/interface/RPCGeometry.h"
 #include "Geometry/CSCGeometry/interface/CSCGeometry.h"
 #include "Geometry/CSCGeometry/interface/CSCLayerGeometry.h"
+#include "Geometry/DTGeometry/interface/DTGeometry.h"
+
 
 #include "DataFormats/MuonDetId/interface/CSCDetId.h"
 #include "DataFormats/MuonDetId/interface/GEMDetId.h"
 #include "DataFormats/MuonDetId/interface/RPCDetId.h"
 #include "DataFormats/MuonDetId/interface/ME0DetId.h"
+#include "DataFormats/MuonDetId/interface/DTWireId.h"
+
+
+
+inline bool is_dt(unsigned int detId) {
+  return (DetId(detId)).subdetId() == MuonSubdetId::DT;
+}
+
 
 inline bool is_gem(unsigned int detId) {
   return (DetId(detId)).subdetId() == MuonSubdetId::GEM;
@@ -83,6 +93,9 @@ public:
   enum RPCType {RPC_ALL = 0, RPC_ME12, RPC_ME13, RPC_ME22, RPC_ME23, 
                 RPC_ME31, RPC_ME32, RPC_ME33, RPC_ME41, RPC_ME42, RPC_ME43};
 
+  ///DT Barrel stuff
+  enum DTType { DT_ALL = 0, MB10, MB11, MB12, MB20, MB21, MB22, MB30, MB31, MB32, MB40, MB41, MB42};
+
   BaseMatcher(const SimTrack& t, const SimVertex& v,
       const edm::ParameterSet& ps, const edm::Event& ev, const edm::EventSetup& es);
 
@@ -121,10 +134,14 @@ public:
   void setME0Geometry(const ME0Geometry *geom) {me0Geometry_ = geom;}
   void setCSCGeometry(const CSCGeometry *geom) {cscGeometry_ = geom;}
 
+  void setDTGeometry(const DTGeometry *geom) {dtGeometry_ = geom;}
+
   const GEMGeometry* getGEMGeometry() const {return gemGeometry_;}
   const RPCGeometry* getRPCGeometry() const {return rpcGeometry_;}
   const ME0Geometry* getME0Geometry() const {return me0Geometry_;}
   const CSCGeometry* getCSCGeometry() const {return cscGeometry_;}
+  const DTGeometry* getDTGeometry() const {return dtGeometry_;}
+
 
   unsigned int gemDetFromCSCDet(unsigned int id,int layer);
 
@@ -136,12 +153,13 @@ public:
   const RPCGeometry* rpcGeometry_;
   const GEMGeometry* gemGeometry_;
   const ME0Geometry* me0Geometry_;
+  const DTGeometry* dtGeometry_;
 
   bool hasGEMGeometry_;
   bool hasRPCGeometry_;
   bool hasME0Geometry_;
   bool hasCSCGeometry_;
-  
+  bool hasDTGeometry_; 
  private:
 
   const SimTrack& trk_;
@@ -164,6 +182,9 @@ public:
   edm::ESHandle<RPCGeometry> rpc_geom;
   edm::ESHandle<GEMGeometry> gem_geom;
   edm::ESHandle<ME0Geometry> me0_geom;
+  edm::ESHandle<DTGeometry> dt_geom;
+
+
 };
 
 #endif
