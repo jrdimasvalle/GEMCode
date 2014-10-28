@@ -71,6 +71,24 @@ struct MyTrackChamberDelta
 };
 
 
+struct MyTrackEffDT
+{
+ void init();
+ TTree*book(TTree *t, const std::string & name = "trk_eff_dt_");
+ Int_t lumi;
+ Int_t run;
+ Int_t event;
+
+ Float_t pt_dt;
+ Float_t eta_dt;
+ Float_t phi_dt;
+ Char_t barrel;
+ Char_t has_dt_sh;
+ Char_t nlayerdt;
+
+
+};
+
 struct MyTrackEff
 {
   void init(); // initialize to default values
@@ -187,6 +205,24 @@ struct MyTrackEff
 
 };
 
+
+void MyTrackEffDT::init()
+{
+ lumi = -99;
+ run= -99;
+ event = -99;
+ 
+ pt_dt = 0.;
+ eta_dt=-9.;
+ phi_dt=0.;
+
+ barrel= -9;
+ has_dt_sh=0;
+ nlayerdt = 0;
+
+}
+
+
 void MyTrackEff::init()
 {
   lumi = -99;
@@ -291,6 +327,25 @@ void MyTrackEff::init()
   deta_rpcstrip_even = -9.;
 }
 
+TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
+{
+  edm::Service< TFileService > fs;
+  t = fs->make<TTree>(name.c_str(),name.c_str());
+
+  t->Branch("lumi", &lumi);
+  t->Branch("run", &run);
+  t->Branch("event", &event);
+  t->Branch("pt_dt", &pt_dt);
+  t->Branch("eta_dt", &eta_dt);
+  t->Branch("phi_dt", &phi_dt);
+  t->Branch("barrel", &barrel);
+  t->Branch("has_dt_sh", &has_dt_sh);
+  t->Branch("nlayerdt", &nlayerdt);
+
+  return t;
+
+
+}
 
 TTree* MyTrackEff::book(TTree *t, const std::string & name)
 {
@@ -451,7 +506,7 @@ private:
   TTree *tree_delta_;
   
   MyTrackEff  etrk_[12];
-  MyTrackEff etrk_dt_[24];
+  MyTrackEffDT etrk_dt_[24];
   MyTrackChamberDelta dtrk_;
 
   int minNHitsChamberCSCSimHit_;
@@ -561,7 +616,14 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
   dtStationsCo_.push_back(std::make_pair(4,1));
   dtStationsCo_.push_back(std::make_pair(4,2));
   
-
+  dtStationsCo_.push_back(std::make_pair(1,-1));
+  dtStationsCo_.push_back(std::make_pair(1,-2));
+  dtStationsCo_.push_back(std::make_pair(2,-1));
+  dtStationsCo_.push_back(std::make_pair(2,-2));
+  dtStationsCo_.push_back(std::make_pair(3,-1));
+  dtStationsCo_.push_back(std::make_pair(3,-2));
+  dtStationsCo_.push_back(std::make_pair(4,-1));
+  dtStationsCo_.push_back(std::make_pair(4,-2));
 
 
 }
@@ -597,8 +659,8 @@ bool GEMCSCAnalyzer::isSimTrackGood(const SimTrack &t)
   // pt selection
   if (t.momentum().pt() < simTrackMinPt_) return false;
   // eta selection
-  const float eta(std::abs(t.momentum().eta()));
-  if (eta > simTrackMaxEta_ || eta < simTrackMinEta_) return false; 
+   // const float eta(std::abs(t.momentum().eta()));
+  //if (eta > simTrackMaxEta_ || eta < simTrackMinEta_) return false; 
   return true;
 }
 
@@ -654,6 +716,7 @@ void GEMCSCAnalyzer::analyze(const edm::Event& ev, const edm::EventSetup& es)
         <<endl;
   }
   */
+
   int trk_no=0;
   for (auto& t: *sim_tracks.product())
   {
@@ -704,30 +767,32 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_[s].endcap = (etrk_[s].eta > 0.) ? 1 : -1;
   }
 
+  for (auto asdt: stationsdt_to_use_)
+    {
+    etrk_dt_[asdt].init();
+    etrk_dt_[asdt].run = match.simhits().event().id().run();
+    etrk_dt_[asdt].lumi= match.simhits().event().id().luminosityBlock();
+    etrk_dt_[asdt].event = match.simhits().event().id().event();
+   
+    etrk_dt_[asdt].pt_dt=t.momentum().pt();
+    etrk_dt_[asdt].eta_dt=t.momentum().eta();
+    etrk_dt_[asdt].phi_dt = t.momentum().phi();
+    
 
-  std::cout<<" Running before DT"<<std::endl;
+    }
+
 
   auto dt_simhits(match_sh.layerIdsDT());
-
-  std::cout<<" Size DT: "<<dt_simhits.size()<<std::endl;
- 
   for (auto ddt: dt_simhits)
   {
 
 
     DTWireId iddt(ddt);
-    const int st(detIdToMBStation(iddt.station(),iddt.wheel()));
-
-    if (stationsdt_to_use_.count(st) == 0 ) {
-        std::cout<<"Bad Station Super Layer for DT "<<std::endl;
-        continue;
-        }
-
+    const int stdt(detIdToMBStation(iddt.station(),iddt.wheel()));
+   
     int nlayersdt(match_sh.nLayerWithHitsDT(ddt));
-
-    std::cout<<" Station ID: "<<iddt<<" for a: "<<ddt<<" has "<<nlayersdt<<std::endl;
-
-
+    etrk_dt_[stdt].has_dt_sh |= 1;
+    etrk_dt_[stdt].nlayerdt  = nlayersdt;
    } 
 
 
@@ -1259,6 +1324,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
+    if (t.momentum().eta()<1.4) continue; //avoid using DT to create "CSC Chamber"
     int cscchamber = CSCTriggerNumbering::chamberFromTriggerLabels(id.sector(), 0, id.station(), id.subsector());
     cscchamber = (cscchamber+16)%18+1; 
     if ( (match_sh.hitsInChamber(d)).size() >0 )
@@ -1280,6 +1346,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     //meanstrip in rpc 
     auto rpcdigis = match_rd.digisInDetId(id); 
     int rpc_medianstrip(match_rd.median(rpcdigis));
+    if (t.momentum().eta()<1.4) continue; //avoid using DT to create "CSC Chamber"
     int cscchamber = CSCTriggerNumbering::chamberFromTriggerLabels(id.sector(), 0, id.station(), id.subsector());
     //std::cout <<"rpc detid " << id << " csc chamebr:"<< cscchamber << std::endl;
     bool odd(cscchamber%2 == 1);
@@ -1325,6 +1392,13 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
 
   }
+
+  for (auto sdt: stationsdt_to_use_)
+    {
+    tree_eff_dt_[sdt]->Fill();
+    
+    }
+
 }
 
 

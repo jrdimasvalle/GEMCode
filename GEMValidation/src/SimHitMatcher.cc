@@ -92,19 +92,6 @@ SimHitMatcher::init()
                          *rpc_hits.product(),*me0_hits.product(),*dt_hits.product());
 
 
-    auto ddtt_stwh = layerIdsDT();
-
-    std::cout<<" It does run here "<<ddtt_stwh.size()<<std::endl;
-    for(auto iddts: ddtt_stwh)
-    {
-        auto ssdt_sh = hitsInDetIdDT(iddts);
-        
-        
-        std::cout<<" ID: "<<DTWireId(iddts)<<"; "<<ssdt_sh.size()<<" If this one is zero ff "<<std::endl;
-
-
-
-    }
 
   if (verboseCSC_)
   {
@@ -236,31 +223,24 @@ SimHitMatcher::matchSimHitsToSimTrack(std::vector<unsigned int> track_ids,
     }
 
 
-    std::cout<<"From Matcher. DT Hits size: "<<dt_hits.size()<<std::endl;
-
     runDTSimHit_=true;
    //changed DT here
     if (runDTSimHit_) for (auto& h: dt_hits)
     {
-      std::cout<<" This has to be printed "<<std::endl;
       if (h.trackId() != track_id) {
-            std::cout<<" Problem comparing the tracks "<<std::endl;
             continue; }
       int pdgid = h.particleType();
       if (simMuOnlyDT_ && std::abs(pdgid) != 13) {
-            std::cout<<" Problem with particle type "<<std::endl;
             continue; }
       // discard electron hits in the RPC chambers
       if (discardEleHitsDT_ && pdgid == 11) {
-
-            std::cout<<" Only Electrons "<<std::endl;
             continue; }
 
-    
+      //std::cout<<"DT Working"<<std::endl;
       dt_detid_to_hits_[ h.detUnitId() ].push_back(h);
       dt_hits_.push_back(h);
       DTWireId layer_id( h.detUnitId() );
-      dt_layer_to_hits_[ layer_id.layerId().rawId() ].push_back(h);
+      dt_layer_to_hits_[ layer_id.superlayerId().rawId() ].push_back(h);
     }
 
 
@@ -620,7 +600,7 @@ SimHitMatcher::nLayerWithHitsDT(unsigned int detid) const
     if (is_dt(detid))
         {
         DTWireId idd(h.detUnitId());
-        DT_Layer_with_hits.insert(idd.layer());
+        DT_Layer_with_hits.insert(idd.superlayer());
 
         }
     }
