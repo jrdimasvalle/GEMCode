@@ -484,6 +484,37 @@ SimHitMatcher::hitsInChamberDT(unsigned int detid) const
 
 
 //DT 
+GlobalPoint
+SimHitMatcher::detidToGlobalDT(const edm::PSimHitContainer& sim_hits) const
+{
+  if (sim_hits.empty()) return GlobalPoint();
+  GlobalPoint GP;
+  float sumx, sumy, sumz;
+  sumx = sumy = sumz = 0.f;
+  size_t n = 0;
+
+  for(auto& h: sim_hits) {
+
+    if (is_dt(h.detUnitId())) {
+        LocalPoint lp = h.localPosition();
+        
+        GP = dtGeometry_->idToDet(h.detUnitId())->surface().toGlobal(lp);
+
+         std::cout<<" Worked on Global Point "<<std::endl;
+    } else continue;
+    sumx += GP.x();
+    sumy += GP.y();
+    sumz += GP.z();
+    ++n;
+  }
+
+ if (n == 0) return GlobalPoint();
+
+ return GlobalPoint(sumx/n, sumy/n, sumz/n);
+ 
+}
+
+
 
 //DT Function
 int

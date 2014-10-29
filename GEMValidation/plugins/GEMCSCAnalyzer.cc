@@ -822,9 +822,10 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].has_dt_sh |= 1;
     etrk_dt_[stdt].nlayerdt  = nlayersdtch;
    
+    GlobalPoint hitGP = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(ddt));
+
     //auto ylm = match_sh.hitsInLayerDT(ddt);
-    
-    //std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<std::endl;
+    std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<std::endl;
     
   }
 

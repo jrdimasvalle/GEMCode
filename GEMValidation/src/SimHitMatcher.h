@@ -127,7 +127,8 @@ public:
   std::set<int> hitWiregroupsInDetId(unsigned int, int margin_n_wg = 0) const; // CSC
   std::set<int> hitPadsInDetId(unsigned int) const; // GEM
   std::set<int> hitCoPadsInDetId(unsigned int) const; // GEM coincidence pads with hits
-
+  GlobalPoint detidToGlobalDT(const edm::PSimHitContainer& sim_hits) const;
+  GlobalPoint GlobalASDT (unsigned int );;
   // what unique partitions numbers were hit by this simtrack?
   std::set<int> hitPartitions() const; // GEM
 
@@ -192,8 +193,6 @@ private:
   std::map<unsigned int, edm::PSimHitContainer > dt_detid_to_hits_;
   std::map<unsigned int, edm::PSimHitContainer > dt_chamber_to_hits_;
   std::map<unsigned int, edm::PSimHitContainer > dt_layer_to_hits_;
-
-
 
   // detids with hits in pads
   std::map<unsigned int, std::set<int> > gem_detids_to_pads_;
