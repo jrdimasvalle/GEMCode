@@ -70,6 +70,31 @@ struct MyTrackChamberDelta
   Float_t deta_lct_pad;
 };
 
+//DT Change
+struct MyTrackEffDT
+{
+ void init();
+ TTree*book(TTree *t, const std::string & name = "trk_eff_dt_");
+ Int_t lumi;
+ Int_t run;
+ Int_t event;
+
+ Float_t pt_dt;
+ Float_t eta_dt;
+ Float_t phi_dt;
+ Char_t barrel;
+ Char_t has_dt_sh;
+ Char_t nlayerdt;
+ Float_t GlobalEta_dt;
+ Float_t GlobalPhi_dt;
+ Float_t GlobalR_dt;
+ Float_t GlobalZ_dt;
+ Float_t GlobalX_dt;
+ Float_t GlobalY_dt;
+
+
+};
+
 
 struct MyTrackEff
 {
@@ -187,6 +212,32 @@ struct MyTrackEff
 
 };
 
+
+//DT Changes:
+
+void MyTrackEffDT::init()
+{
+ lumi = -99;
+ run= -99;
+ event = -99;
+
+ pt_dt = 0.;
+ eta_dt=-9.;
+ phi_dt=0.;
+
+ barrel= -9;
+ has_dt_sh=0;
+ nlayerdt = 0;
+ GlobalEta_dt=0.;
+ GlobalPhi_dt=0.;
+ GlobalR_dt=0.;
+ GlobalZ_dt=0.;
+ GlobalX_dt=0.;
+ GlobalY_dt=0.;
+
+}
+
+
 void MyTrackEff::init()
 {
   lumi = -99;
@@ -289,6 +340,38 @@ void MyTrackEff::init()
   dphi_rpcstrip_even = -9.;
   deta_rpcstrip_odd = -9.;
   deta_rpcstrip_even = -9.;
+}
+
+
+
+//DT Changes
+
+
+TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
+{
+  edm::Service< TFileService > fs;
+  t = fs->make<TTree>(name.c_str(),name.c_str());
+
+  t->Branch("lumi", &lumi);
+  t->Branch("run", &run);
+  t->Branch("event", &event);
+  t->Branch("pt_dt", &pt_dt);
+  t->Branch("eta_dt", &eta_dt);
+  t->Branch("phi_dt", &phi_dt);
+  t->Branch("barrel", &barrel);
+  t->Branch("has_dt_sh", &has_dt_sh);
+  t->Branch("nlayerdt", &nlayerdt);
+  t->Branch("GlobalEta_dt", &GlobalEta_dt);
+  t->Branch("GlobalPhi_dt", &GlobalPhi_dt);
+  t->Branch("GlobalR_dt", &GlobalR_dt);
+  t->Branch("GlobalZ_dt", &GlobalZ_dt);
+  t->Branch("GlobalX_dt", &GlobalX_dt);
+  t->Branch("GlobalY_dt", &GlobalY_dt);
+
+
+  return t;
+
+
 }
 
 
@@ -429,7 +512,16 @@ private:
 
   bool isSimTrackGood(const SimTrack &t);
   int detIdToMEStation(int st, int ri);
-  
+
+  //DT Changes
+  int detIdToMBStation(int st, int wh);
+  std::vector<string> dtStations_;
+  std::vector<std::pair<int,int> > dtStationsCo_;
+  std::set<int> stationsdt_to_use_;
+  TTree *tree_eff_dt_[24];
+  MyTrackEffDT etrk_dt_[24];
+ 
+
   edm::ParameterSet cfg_;
   edm::InputTag simInputLabel_;
   double simTrackMinPt_;
@@ -497,6 +589,20 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
   auto cscMPLCT = cfg_.getParameter<edm::ParameterSet>("cscMPLCT");
   minNHitsChamberMPLCT_ = cscMPLCT.getParameter<int>("minNHitsChamber");
 
+  //DT Changes
+  dtStations_ = cfg_.getParameter<std::vector<string> >("dtStations");
+  vector<int> stationsDT = ps.getParameter<vector<int> >("DTSTationsToUSE");
+  copy(stationsDT.begin(), stationsDT.end(), inserter(stationsdt_to_use_,stationsdt_to_use_.end()));
+
+  for (auto m: stationsdt_to_use_)
+    {
+    stringstream ss;
+    ss<< "trk_eff_dt_" << dtStations_[m];
+    tree_eff_dt_[m] = etrk_dt_[m].book(tree_eff_dt_[m], ss.str());
+
+    }
+
+
   /*
   auto tfTrack = cfg_.getParameter<edm::ParameterSet>("tfTrack");
   auto tfCand = cfg_.getParameter<edm::ParameterSet>("tfCand");
@@ -516,6 +622,23 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
       tree_eff_[s] = etrk_[s].book(tree_eff_[s], ss.str());
     }
   }
+        //DT Changes
+  dtStationsCo_.push_back(std::make_pair(-10,-10));
+  dtStationsCo_.push_back(std::make_pair(1,0));
+  dtStationsCo_.push_back(std::make_pair(1,1));
+  dtStationsCo_.push_back(std::make_pair(1,2));
+  dtStationsCo_.push_back(std::make_pair(2,0));
+  dtStationsCo_.push_back(std::make_pair(2,1));
+  dtStationsCo_.push_back(std::make_pair(2,2));
+  dtStationsCo_.push_back(std::make_pair(3,0));
+  dtStationsCo_.push_back(std::make_pair(3,1));
+  dtStationsCo_.push_back(std::make_pair(3,2));
+  dtStationsCo_.push_back(std::make_pair(4,0));
+  dtStationsCo_.push_back(std::make_pair(4,1));
+  dtStationsCo_.push_back(std::make_pair(4,2));
+
+
+
 
   cscStationsCo_.push_back(std::make_pair(-99,-99));
   cscStationsCo_.push_back(std::make_pair(1,-99));
@@ -530,6 +653,14 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
   cscStationsCo_.push_back(std::make_pair(4,1));
   cscStationsCo_.push_back(std::make_pair(4,2));
 }
+
+//DT Function:
+int GEMCSCAnalyzer::detIdToMBStation(int st,  int wh)
+{
+    auto p(std::make_pair(st, wh));
+    return std::find(dtStationsCo_.begin(), dtStationsCo_.end(),p) - dtStationsCo_.begin();
+}
+
 
 
 int GEMCSCAnalyzer::detIdToMEStation(int st, int ri)
@@ -555,8 +686,8 @@ bool GEMCSCAnalyzer::isSimTrackGood(const SimTrack &t)
   // pt selection
   if (t.momentum().pt() < simTrackMinPt_) return false;
   // eta selection
-  const float eta(std::abs(t.momentum().eta()));
-  if (eta > simTrackMaxEta_ || eta < simTrackMinEta_) return false; 
+  //const float eta(std::abs(t.momentum().eta()));
+  //if (eta > simTrackMaxEta_ || eta < simTrackMinEta_) return false; 
   return true;
 }
 
@@ -661,6 +792,43 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_[s].charge = t.charge();
     etrk_[s].endcap = (etrk_[s].eta > 0.) ? 1 : -1;
   }
+
+  //DT Changes
+  for (auto asdt: stationsdt_to_use_)
+    {
+    etrk_dt_[asdt].init();
+    etrk_dt_[asdt].run = match.simhits().event().id().run();
+    etrk_dt_[asdt].lumi= match.simhits().event().id().luminosityBlock();
+    etrk_dt_[asdt].event = match.simhits().event().id().event();
+
+    etrk_dt_[asdt].pt_dt=t.momentum().pt();
+    etrk_dt_[asdt].eta_dt=t.momentum().eta();
+    etrk_dt_[asdt].phi_dt = t.momentum().phi();
+
+    }
+
+  //DT Changes
+  auto dt_simhits(match_sh.layerIdsDT());
+  for (auto ddt: dt_simhits)
+  {
+    DTWireId iddt(ddt);
+    const int stdt(detIdToMBStation(iddt.station(),iddt.wheel()));
+    if (stationsdt_to_use_.count(stdt) == 0) continue;
+    //std::cout<<" The station number: "<<stdt<<" is the one for: "<<iddt<<" Or equal to "<<ddt<<std::endl;
+    int nlayersdtch = match_sh.nLayerWithHitsInLayerDT(ddt);
+
+    if(nlayersdtch == 0) continue;
+    //std::cout<<" There are: "<<nlayersdtch<<" hits in "<<ddt<<" or equal to "<<iddt<<" chamber in DT."<<std::endl;
+    etrk_dt_[stdt].has_dt_sh |= 1;
+    etrk_dt_[stdt].nlayerdt  = nlayersdtch;
+   
+    //auto ylm = match_sh.hitsInLayerDT(ddt);
+    
+    //std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<std::endl;
+    
+  }
+
+
 
   // SimHits
   auto csc_simhits(match_sh.chamberIdsCSC(0));
@@ -1188,6 +1356,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
+    if (t.momentum().eta() < 1.4) continue;
     int cscchamber = CSCTriggerNumbering::chamberFromTriggerLabels(id.sector(), 0, id.station(), id.subsector());
     cscchamber = (cscchamber+16)%18+1; 
     if ( (match_sh.hitsInChamber(d)).size() >0 )
@@ -1206,6 +1375,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
+    if (t.momentum().eta() < 1.4) continue;
     //meanstrip in rpc 
     auto rpcdigis = match_rd.digisInDetId(id); 
     int rpc_medianstrip(match_rd.median(rpcdigis));
@@ -1254,6 +1424,16 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 
 
   }
+
+
+  for (auto sdt: stationsdt_to_use_)
+    {
+    tree_eff_dt_[sdt]->Fill();
+
+    }
+
+
+
 }
 
 
@@ -1605,6 +1785,7 @@ void GEMCSCAnalyzer::bookSimTracksDeltaTree()
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
+    if (t.momentum().eta() < 1.4) continue;
     int nlayers = match_sh.nLayersWithHitsInSuperChamber(d);
     const auto& hits = match_sh.hitsInChamber(d);
     auto gp = match_sh.simHitsMeanPosition(hits);
