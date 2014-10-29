@@ -85,7 +85,7 @@ struct MyTrackEffDT
  Char_t barrel;
  Char_t has_dt_sh;
  Char_t nlayerdt;
-
+ Float_t pt_entry;
 
 };
 
@@ -219,7 +219,7 @@ void MyTrackEffDT::init()
  barrel= -9;
  has_dt_sh=0;
  nlayerdt = 0;
-
+ pt_entry =0.;
 }
 
 
@@ -331,7 +331,7 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
 {
   edm::Service< TFileService > fs;
   t = fs->make<TTree>(name.c_str(),name.c_str());
-
+  
   t->Branch("lumi", &lumi);
   t->Branch("run", &run);
   t->Branch("event", &event);
@@ -341,7 +341,7 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("barrel", &barrel);
   t->Branch("has_dt_sh", &has_dt_sh);
   t->Branch("nlayerdt", &nlayerdt);
-
+  t->Branch("pt_entry", &pt_entry);
   return t;
 
 
@@ -777,12 +777,24 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[asdt].pt_dt=t.momentum().pt();
     etrk_dt_[asdt].eta_dt=t.momentum().eta();
     etrk_dt_[asdt].phi_dt = t.momentum().phi();
-    
+    /*
+    LocalPoint lp = t.entryPoint();
+    GlobalPoint gp;
+
+    if( is_dt(t.detUnitId())){
+        gp =dtGeometry_->idToDet(t.detUnitId())->surface().toGlobal(lp);
+        etrk_dt_[stdt].pt_entry= gp.momentumAtEntry();
+
+
+    }
+    */ 
 
     }
 
+  int nlayersdtch=0;
+  int nlayersdtly = 0;
 
-  auto dt_simhits(match_sh.layerIdsDT());
+  auto dt_simhits(match_sh.chamberIdsDT());
   for (auto ddt: dt_simhits)
   {
 
@@ -790,12 +802,29 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     DTWireId iddt(ddt);
     const int stdt(detIdToMBStation(iddt.station(),iddt.wheel()));
    
-    int nlayersdt(match_sh.nLayerWithHitsDT(ddt));
+    nlayersdtch = match_sh.nLayerWithHitsInChamberDT(ddt);
+    
+
+    if (nlayersdtch > 0 ) std::cout<<" There are: "<<nlayersdtch<<" hits in "<<ddt<<" or equal to "<<iddt<<" chamber in DT."<<std::endl;
     etrk_dt_[stdt].has_dt_sh |= 1;
-    etrk_dt_[stdt].nlayerdt  = nlayersdt;
+    //etrk_dt_[stdt].nlayerdt  = nlayersdt;
+
+
+
    } 
 
+  auto dt_sh22(match_sh.superlayerIdsDT());
+  for (auto abcde: dt_sh22) 
+  {
 
+   DTWireId id22(abcde);
+   nlayersdtly = match_sh.nLayerWithHitsInSuperlayerDT(abcde);
+
+   if (nlayersdtly > 0 ) std::cout<<" There are: "<<nlayersdtly<<" hits in "<<abcde<<" or equal to "<<id22<<" Super Layer  in DT."<<std::endl;
+
+
+
+  } 
 
 
   // SimHits

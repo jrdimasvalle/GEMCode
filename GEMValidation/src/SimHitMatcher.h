@@ -44,8 +44,6 @@ public:
   const edm::PSimHitContainer& simHitsDT() const {return dt_hits_;}
 
 
-  //DT DetIds
-  std::set<unsigned int> detIdsDT() const;
 
   /// GEM partitions' detIds with SimHits
   std::set<unsigned int> detIdsGEM() const;
@@ -70,9 +68,6 @@ public:
   std::set<unsigned int> chamberIdsME0() const;
   /// RPC chamber detIds with SimHits
   std::set<unsigned int> chamberIdsRPC() const;
-  //DT Other container
-  std::set<unsigned int> layerIdsDT() const;
-
   /// CSC chamber detIds with SimHits
   std::set<unsigned int> chamberIdsCSC(int csc_type = CSC_ME1b) const;
 
@@ -93,14 +88,22 @@ public:
 
   /// #layers with hits
   /// for CSC: "super-chamber" means chamber
-  int nLayersWithHitsInSuperChamber(unsigned int) const;
 
 
   /// DT STuff
-  int nLayerWithHitsDT (unsigned int) const;
-  const edm::PSimHitContainer& hitsInDetIdDT(unsigned int) const;
-  const edm::PSimHitContainer& hitsInLayerDT(unsigned int) const;
+  int nLayersWithHitsInSuperChamber(unsigned int) const;
 
+  //DT DetIds
+  std::set<unsigned int> detIdsDT() const;
+  //DT Other container
+  std::set<unsigned int> superlayerIdsDT() const;
+  std::set<unsigned int> chamberIdsDT() const;
+
+  int nLayerWithHitsInChamberDT (unsigned int) const;
+  int nLayerWithHitsInSuperlayerDT (unsigned int) const;
+  const edm::PSimHitContainer& hitsInDetIdDT(unsigned int) const;
+  const edm::PSimHitContainer& hitsInSuperlayerDT(unsigned int) const;
+  const edm::PSimHitContainer& hitsInChamberDT(unsigned int) const;
 
   /// How many pads with simhits in GEM did this simtrack get?
   int nPadsWithHits() const;
@@ -188,7 +191,8 @@ private:
 
   edm::PSimHitContainer dt_hits_;
   std::map<unsigned int, edm::PSimHitContainer > dt_detid_to_hits_;
-  std::map<unsigned int, edm::PSimHitContainer > dt_layer_to_hits_;
+  std::map<unsigned int, edm::PSimHitContainer > dt_superlayer_to_hits_;
+  std::map<unsigned int, edm::PSimHitContainer > dt_chamber_to_hits_;
 
   // detids with hits in pads
   std::map<unsigned int, std::set<int> > gem_detids_to_pads_;
