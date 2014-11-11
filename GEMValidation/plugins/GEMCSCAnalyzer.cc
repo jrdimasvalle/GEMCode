@@ -79,6 +79,13 @@ struct MyTrackEffDT
  Int_t run;
  Int_t event;
 
+ Float_t eta_gp;
+ Float_t x_gp;
+ Float_t y_gp;
+ Float_t z_gp;
+ Float_t r_gp;
+ Float_t phi_gp;
+
  Float_t pt_dt;
  Float_t eta_dt;
  Float_t phi_dt;
@@ -224,6 +231,13 @@ void MyTrackEffDT::init()
  pt_dt = 0.;
  eta_dt=-9.;
  phi_dt=0.;
+ eta_gp = -9.;
+ z_gp = -9900.;
+ x_gp = -9900.;
+ y_gp = -9900.;
+ r_gp = -9900.;
+ phi_gp = -99;
+
 
  barrel= -9;
  has_dt_sh=0;
@@ -355,8 +369,14 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("lumi", &lumi);
   t->Branch("run", &run);
   t->Branch("event", &event);
-  t->Branch("pt_dt", &pt_dt);
   t->Branch("eta_dt", &eta_dt);
+  t->Branch("pt_dt", &pt_dt);
+  t->Branch("eta_gp", &eta_gp);
+  t->Branch("z_gp", &z_gp);
+  t->Branch("x_gp", &x_gp);
+  t->Branch("y_gp", &y_gp);
+  t->Branch("r_gp", &r_gp);
+  t->Branch("phi_gp", &phi_gp);
   t->Branch("phi_dt", &phi_dt);
   t->Branch("barrel", &barrel);
   t->Branch("has_dt_sh", &has_dt_sh);
@@ -822,11 +842,18 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].has_dt_sh |= 1;
     etrk_dt_[stdt].nlayerdt  = nlayersdtch;
    
-    GlobalPoint hitGP = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(ddt));
-
-    //auto ylm = match_sh.hitsInLayerDT(ddt);
-    std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<std::endl;
+    GlobalPoint hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(ddt));
+    //std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<" Y: "<<hitGP.y()<<" PHI: "<<hitGP.phi()<<" Z "<<hitGP.z()<<std::endl;
     
+    etrk_dt_[stdt].eta_gp = hitGp.eta();
+    etrk_dt_[stdt].x_gp = hitGp.x();
+    etrk_dt_[stdt].y_gp = hitGp.y();
+    etrk_dt_[stdt].z_gp = hitGp.z();
+    etrk_dt_[stdt].r_gp = hitGp.perp();
+    etrk_dt_[stdt].phi_gp = hitGp.phi();
+
+
+
   }
 
 
