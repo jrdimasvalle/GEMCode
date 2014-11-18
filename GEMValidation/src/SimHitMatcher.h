@@ -128,7 +128,7 @@ public:
   std::set<int> hitPadsInDetId(unsigned int) const; // GEM
   std::set<int> hitCoPadsInDetId(unsigned int) const; // GEM coincidence pads with hits
   GlobalPoint detidToGlobalDT(const edm::PSimHitContainer& sim_hits) const;
-  float detDTGlobalPT(const edm::PSimHitContainer& sim_hits) const;
+  GlobalVector detDTGlobalPT(const edm::PSimHitContainer& sim_hits) const;
 
 
   // what unique partitions numbers were hit by this simtrack?

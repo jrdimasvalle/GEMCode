@@ -482,22 +482,20 @@ SimHitMatcher::hitsInChamberDT(unsigned int detid) const
     return no_hits_;
 }
 
-float 
+
+GlobalVector
 SimHitMatcher::detDTGlobalPT(const edm::PSimHitContainer& sim_hits) const
 {
 
-if (sim_hits.empty()) return -999.;
+if (sim_hits.empty()) return GlobalVector();;
 
 for(auto& h: sim_hits) {
-    LocalPoint lp = h.localPosition();
-    auto y = dtGeometry_->idToDet(h.detUnitId())->surface().toGlobal(h.momentumAtEntry());
-    std::cout<<" PT GP"<<std::endl;
-
-    return y.first;    
-
+    GlobalVector globalMomentum = dtGeometry_->idToDet(h.detUnitId())->surface().toGlobal(h.momentumAtEntry());
+    //std::cout<<" PT GP"<<std::endl;
+    return globalMomentum;
     }
     std::cout<<"Didn't work"<<std::endl;
-    return -999.;
+    return GlobalVector();
 
 }
 

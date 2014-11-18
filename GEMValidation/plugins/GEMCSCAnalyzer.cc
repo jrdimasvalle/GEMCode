@@ -83,6 +83,13 @@ struct MyTrackEffDT
  Float_t x_gp;
  Float_t y_gp;
  Float_t z_gp;
+ Float_t deltaphi_h_g;
+ Float_t deltaphi_t_h;
+ Float_t deltaphi_t_g;
+ Float_t deltar_;
+ Float_t pt_gvv;
+ Float_t phi_gvv;
+ Float_t eta_gvv;
  Float_t r_gp;
  Float_t phi_gp;
 
@@ -232,7 +239,14 @@ void MyTrackEffDT::init()
  eta_dt=-9.;
  phi_dt=0.;
  eta_gp = -9.;
+ eta_gvv = -9.;
+ phi_gvv= -9.;
+ pt_gvv= -9.;
  z_gp = -9900.;
+ deltaphi_h_g = -9.;
+ deltaphi_t_g = -9.;
+ deltar_ = -999.;
+ deltaphi_t_h = -9.;
  x_gp = -9900.;
  y_gp = -9900.;
  r_gp = -9900.;
@@ -371,8 +385,15 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("event", &event);
   t->Branch("eta_dt", &eta_dt);
   t->Branch("pt_dt", &pt_dt);
+  t->Branch("eta_gvv", &eta_gvv);
+  t->Branch("pt_gvv", &pt_gvv);
+  t->Branch("phi_gvv", &phi_gvv);
   t->Branch("eta_gp", &eta_gp);
+  t->Branch("deltaphi_h_g", &deltaphi_h_g);
+  t->Branch("deltaphi_t_h", &deltaphi_t_h);
+  t->Branch("deltaphi_t_g", &deltaphi_t_g);
   t->Branch("z_gp", &z_gp);
+  t->Branch("deltar_", &deltar_);
   t->Branch("x_gp", &x_gp);
   t->Branch("y_gp", &y_gp);
   t->Branch("r_gp", &r_gp);
@@ -842,6 +863,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].has_dt_sh |= 1;
     etrk_dt_[stdt].nlayerdt  = nlayersdtch;
    
+    // This one is the Global Point of the hit, as measured from the detector position (Actual bending of the muon)
     GlobalPoint hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(ddt));
     //std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<" Y: "<<hitGP.y()<<" PHI: "<<hitGP.phi()<<" Z "<<hitGP.z()<<std::endl;
     
@@ -853,6 +875,18 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].phi_gp = hitGp.phi();
 
 
+    //Global Vector for the hit. This is actually the one gotten from the middle point not really in the surface
+    GlobalVector ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(ddt));
+   // std::cout<<" SH eta: "<<ym.eta()<<" SH phi: "<<ym.phi()<<" Sh pt: "<<ym.mag()<<std::endl;
+
+    etrk_dt_[stdt].eta_gvv = ym.eta();
+    etrk_dt_[stdt].pt_gvv = ym.perp();
+    etrk_dt_[stdt].phi_gvv = ym.phi();
+
+    etrk_dt_[stdt].deltaphi_t_h = t.momentum().phi() - hitGp.phi();
+    etrk_dt_[stdt].deltaphi_t_g = t.momentum().phi() - ym.phi();
+    etrk_dt_[stdt].deltaphi_h_g = hitGp.phi() - ym.phi();
+    
 
   }
 

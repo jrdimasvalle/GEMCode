@@ -32,6 +32,7 @@ BaseMatcher::BaseMatcher(const SimTrack& t, const SimVertex& v,
   hasRPCGeometry_ = false;
   hasCSCGeometry_ = false;
   hasME0Geometry_ = false;
+  hasDTGeometry_ = false;
 
   try {
     es.get<MuonGeometryRecord>().get(gem_geom);
@@ -64,6 +65,15 @@ BaseMatcher::BaseMatcher(const SimTrack& t, const SimVertex& v,
     hasRPCGeometry_ = false;
     LogDebug("MuonSimHitAnalyzer") << "+++ Info: RPC geometry is unavailable. +++\n";
   }
+  try {
+    es.get<MuonGeometryRecord>().get(dt_geom);
+    dtGeometry_ = &*dt_geom;
+    } catch (edm::eventsetup::NoProxyException<DTGeometry>& e){
+      hasDTGeometry_ = false;
+      LogDebug("MuonSimHitAnalyzer") <<" +++ Informatione: DT geometry is unavailable. ++++ \n";
+
+    }
+
 }
 
 
@@ -150,6 +160,9 @@ chamber(const DetId& id)
   case MuonSubdetId::ME0:
     chamberN = ME0DetId(id).chamber();
     break;
+
+    case MuonSubdetId::DT:
+    chamberN = DTWireId(id).layer();
   };
   return chamberN;
 }
