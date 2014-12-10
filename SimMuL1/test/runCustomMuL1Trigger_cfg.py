@@ -37,7 +37,7 @@ if scenario is 1 or scenario is 2:
 elif scenario is 3:
     process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:upgradePLS3', '')    
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
 
@@ -56,12 +56,31 @@ process.source = cms.Source("PoolSource",
 )
 
 ## input
+'''
 from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import eosfiles
 from GEMCode.GEMValidation.InputFileHelpers import useInputDir
 dataset = '_Nu_SLHC12_2023Muon_PU140'
 dataset = "_pt2-50_SLHC11_2023Muon_PU140"
 dataset = '_Nu_SLHC12_2023Muon_PU140_geonmo'
 process = useInputDir(process, eosfiles[dataset], True)
+'''
+secFiles = cms.untracked.vstring()
+readFiles.extend([
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_cb.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_cc.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_cd.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_ci.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_cf.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_cg.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_ch.root',
+        '/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/digi3/out_digi_cj.root'
+
+secFiles.extend( [
+                ] )
+
+
+process.source = cms.Source ("PoolSource",fileNames = readFiles, secondaryFileNames = secFiles)
 
 
 physics = False

@@ -88,7 +88,7 @@ process.GEMCSCAnalyzer = cms.EDAnalyzer("GEMCSCAnalyzer",
 
 
 matching = process.GEMCSCAnalyzer.simTrackMatching
-matching.simTrack.minPt = 1.5
+matching.simTrack.minPt = 2.0
 matching.gemRecHit.input = ""
 """
 matching.cscTfTrack.input = ""
@@ -112,7 +112,8 @@ process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
 
 process.p = cms.Path(process.GEMCSCAnalyzer)
 mat = process.GEMCSCAnalyzer.simTrackMatching
-mat.simTrack.minEta = cms.double(1.4)
+mat.simTrack.minEta = cms.double(-2.5)
+mat.simTrack.maxEta = cms.double(2.5)
 mat.me0Segment.run = cms.bool(False)
 mat.me0Muon.run = cms.bool(False)
 mat.me0SimHit.run = cms.bool(False)

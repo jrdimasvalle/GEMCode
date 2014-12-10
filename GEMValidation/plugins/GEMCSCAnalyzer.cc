@@ -882,7 +882,10 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].eta_gvv = ym.eta();
     etrk_dt_[stdt].pt_gvv = ym.perp();
     etrk_dt_[stdt].phi_gvv = ym.phi();
-
+    etrk_dt_[stdt].GlobalR_dt = sqrt (ym.x()*ym.x()+ym.y()*ym.y());
+    etrk_dt_[stdt].GlobalZ_dt = ym.z();
+    etrk_dt_[stdt].GlobalX_dt = ym.x();
+    etrk_dt_[stdt].GlobalY_dt = ym.y();
     etrk_dt_[stdt].deltaphi_t_h = t.momentum().phi() - hitGp.phi();
     etrk_dt_[stdt].deltaphi_t_g = t.momentum().phi() - ym.phi();
     etrk_dt_[stdt].deltaphi_h_g = hitGp.phi() - ym.phi();
