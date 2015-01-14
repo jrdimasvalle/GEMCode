@@ -28,29 +28,26 @@ process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(100)
 ## input
 from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import *
 from GEMCode.GEMValidation.InputFileHelpers import *
-suffix = 'DT'
 
 
 maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 readFiles = cms.untracked.vstring()
 secFiles = cms.untracked.vstring() 
+
 readFiles.extend([
-       '/store/relval/CMSSW_6_2_0_SLHC17/RelValSingleMuPt10/GEN-SIM-DIGI-RAW/DES23_62_V1_UPG2023Muon-v1/00000/22B17A60-432D-E411-9D2D-003048FF86CA.root',
-       '/store/relval/CMSSW_6_2_0_SLHC17/RelValSingleMuPt10/GEN-SIM-DIGI-RAW/DES23_62_V1_UPG2023Muon-v1/00000/24C876AF-432D-E411-8ABF-00261894394A.root',
-       '/store/relval/CMSSW_6_2_0_SLHC17/RelValSingleMuPt10/GEN-SIM-DIGI-RAW/DES23_62_V1_UPG2023Muon-v1/00000/60E99312-432D-E411-BE9E-0025905A609A.root'] )
-
-
+       'file:/eos/uscms/store/user/jdimasva/January_2014/Displaced_L1/mGammaDark400MeV/out_L1_ctau10_14TeV_.root'
+])
 secFiles.extend( [
                ] )
 
 
 process.source = cms.Source ("PoolSource",fileNames = readFiles, secondaryFileNames = secFiles)
-
+SkipEvent = cms.untracked.vstring('ProductNotFound')
 events=-1
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(events)
 )
-outputFileName = suffix + '.root'
+outputFileName = 'DT_400MeVDark_ctau10.root'
 
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string(outputFileName)

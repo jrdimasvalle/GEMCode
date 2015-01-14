@@ -145,7 +145,6 @@ private:
                               const edm::PSimHitContainer& csc_hits, 
                               const edm::PSimHitContainer& gem_hits,
                               const edm::PSimHitContainer& rpc_hits,
-                              const edm::PSimHitContainer& me0_hits,
                               const edm::PSimHitContainer& dt_hits);
 
   bool simMuOnlyCSC_;

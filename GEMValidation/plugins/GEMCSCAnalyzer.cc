@@ -86,25 +86,29 @@ struct MyTrackEffDT
  Float_t deltaphi_h_g;
  Float_t deltaphi_t_h;
  Float_t deltaphi_t_g;
+ Float_t a1deltaphi_h_g;
+ Float_t a1deltaphi_t_h;
+ Float_t a1deltaphi_t_g;
  Float_t deltar_;
- Float_t pt_gvv;
- Float_t phi_gvv;
- Float_t eta_gvv;
+ Float_t pt_gv;
+ Float_t apt_SimTrack_dt;
+ Float_t phi_gv;
+ Float_t eta_gv;
  Float_t r_gp;
  Float_t phi_gp;
 
- Float_t pt_dt;
- Float_t eta_dt;
- Float_t phi_dt;
+ Float_t pt_SimTrack_dt;
+ Float_t eta_SimTrack_dt;
+ Float_t phi_SimTrack_dt;
  Char_t barrel;
  Char_t has_dt_sh;
  Char_t nlayerdt;
  Float_t GlobalEta_dt;
  Float_t GlobalPhi_dt;
- Float_t GlobalR_dt;
- Float_t GlobalZ_dt;
- Float_t GlobalX_dt;
- Float_t GlobalY_dt;
+ Float_t R_gv;
+ Float_t Z_gv;
+ Float_t X_gv;
+ Float_t Y_gv;
 
 
 };
@@ -235,18 +239,22 @@ void MyTrackEffDT::init()
  run= -99;
  event = -99;
 
- pt_dt = 0.;
- eta_dt=-9.;
- phi_dt=0.;
+ pt_SimTrack_dt = 0.;
+ eta_SimTrack_dt=-9.;
+ phi_SimTrack_dt=0.;
  eta_gp = -9.;
- eta_gvv = -9.;
- phi_gvv= -9.;
- pt_gvv= -9.;
+ eta_gv = -9.;
+ phi_gv= -9.;
+ pt_gv= -9.;
  z_gp = -9900.;
  deltaphi_h_g = -9.;
  deltaphi_t_g = -9.;
  deltar_ = -999.;
  deltaphi_t_h = -9.;
+ a1deltaphi_t_g = -999.; 
+ a1deltaphi_t_h = -999.;
+ a1deltaphi_h_g = -999.;
+ apt_SimTrack_dt=-99;
  x_gp = -9900.;
  y_gp = -9900.;
  r_gp = -9900.;
@@ -256,12 +264,12 @@ void MyTrackEffDT::init()
  barrel= -9;
  has_dt_sh=0;
  nlayerdt = 0;
- GlobalEta_dt=0.;
- GlobalPhi_dt=0.;
- GlobalR_dt=0.;
- GlobalZ_dt=0.;
- GlobalX_dt=0.;
- GlobalY_dt=0.;
+ GlobalEta_dt=-99.;
+ GlobalPhi_dt=-99.;
+ R_gv=-99.;
+ Z_gv=-99.;
+ X_gv=-99.;
+ Y_gv=-99.;
 
 }
 
@@ -383,12 +391,17 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("lumi", &lumi);
   t->Branch("run", &run);
   t->Branch("event", &event);
-  t->Branch("eta_dt", &eta_dt);
-  t->Branch("pt_dt", &pt_dt);
-  t->Branch("eta_gvv", &eta_gvv);
-  t->Branch("pt_gvv", &pt_gvv);
-  t->Branch("phi_gvv", &phi_gvv);
+  t->Branch("eta_SimTrack_dt", &eta_SimTrack_dt);
+  t->Branch("pt_SimTrack_dt", &pt_SimTrack_dt);
+  t->Branch("eta_gv", &eta_gv);
+  t->Branch("pt_gv", &pt_gv);
+  t->Branch("phi_gv", &phi_gv);
   t->Branch("eta_gp", &eta_gp);
+  t->Branch("apt_SimTrack_dt", &apt_SimTrack_dt);
+
+  t->Branch("a1deltaphi_h_g", &a1deltaphi_h_g);
+  t->Branch("a1deltaphi_t_h", &a1deltaphi_t_h);
+  t->Branch("a1deltaphi_t_g", &a1deltaphi_t_g);
   t->Branch("deltaphi_h_g", &deltaphi_h_g);
   t->Branch("deltaphi_t_h", &deltaphi_t_h);
   t->Branch("deltaphi_t_g", &deltaphi_t_g);
@@ -398,16 +411,16 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("y_gp", &y_gp);
   t->Branch("r_gp", &r_gp);
   t->Branch("phi_gp", &phi_gp);
-  t->Branch("phi_dt", &phi_dt);
+  t->Branch("phi_SimTrack_dt", &phi_SimTrack_dt);
   t->Branch("barrel", &barrel);
   t->Branch("has_dt_sh", &has_dt_sh);
   t->Branch("nlayerdt", &nlayerdt);
   t->Branch("GlobalEta_dt", &GlobalEta_dt);
   t->Branch("GlobalPhi_dt", &GlobalPhi_dt);
-  t->Branch("GlobalR_dt", &GlobalR_dt);
-  t->Branch("GlobalZ_dt", &GlobalZ_dt);
-  t->Branch("GlobalX_dt", &GlobalX_dt);
-  t->Branch("GlobalY_dt", &GlobalY_dt);
+  t->Branch("R_gv", &R_gv);
+  t->Branch("Z_gv", &Z_gv);
+  t->Branch("X_gv", &X_gv);
+  t->Branch("Y_gv", &Y_gv);
 
 
   return t;
@@ -842,9 +855,17 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[asdt].lumi= match.simhits().event().id().luminosityBlock();
     etrk_dt_[asdt].event = match.simhits().event().id().event();
 
-    etrk_dt_[asdt].pt_dt=t.momentum().pt();
-    etrk_dt_[asdt].eta_dt=t.momentum().eta();
-    etrk_dt_[asdt].phi_dt = t.momentum().phi();
+    etrk_dt_[asdt].pt_SimTrack_dt=t.momentum().pt(); //This one
+    etrk_dt_[asdt].eta_SimTrack_dt=t.momentum().eta();
+    etrk_dt_[asdt].phi_SimTrack_dt = t.momentum().phi();
+
+    if (!(t.momentum().pt()==0)){
+     etrk_dt_[asdt].apt_SimTrack_dt =1/ t.momentum().pt();  //This one
+    }else{
+     etrk_dt_[asdt].apt_SimTrack_dt = 0;
+   }
+
+
 
     }
 
@@ -879,17 +900,39 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     GlobalVector ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(ddt));
    // std::cout<<" SH eta: "<<ym.eta()<<" SH phi: "<<ym.phi()<<" Sh pt: "<<ym.mag()<<std::endl;
 
-    etrk_dt_[stdt].eta_gvv = ym.eta();
-    etrk_dt_[stdt].pt_gvv = ym.perp();
-    etrk_dt_[stdt].phi_gvv = ym.phi();
-    etrk_dt_[stdt].GlobalR_dt = sqrt (ym.x()*ym.x()+ym.y()*ym.y());
-    etrk_dt_[stdt].GlobalZ_dt = ym.z();
-    etrk_dt_[stdt].GlobalX_dt = ym.x();
-    etrk_dt_[stdt].GlobalY_dt = ym.y();
+    etrk_dt_[stdt].eta_gv = ym.eta();
+    etrk_dt_[stdt].pt_gv = ym.perp();
+    etrk_dt_[stdt].phi_gv = ym.phi();
+    etrk_dt_[stdt].R_gv = sqrt (ym.x()*ym.x()+ym.y()*ym.y());
+    etrk_dt_[stdt].Z_gv = ym.z();
+    etrk_dt_[stdt].X_gv = ym.x();
+    etrk_dt_[stdt].Y_gv = ym.y();
     etrk_dt_[stdt].deltaphi_t_h = t.momentum().phi() - hitGp.phi();
     etrk_dt_[stdt].deltaphi_t_g = t.momentum().phi() - ym.phi();
-    etrk_dt_[stdt].deltaphi_h_g = hitGp.phi() - ym.phi();
+    etrk_dt_[stdt].deltaphi_h_g = hitGp.phi() - ym.phi();     //This one
     
+
+    if (!(t.momentum().phi() - hitGp.phi() ==0)) {
+
+    etrk_dt_[stdt].a1deltaphi_t_h = 1/(t.momentum().phi() - hitGp.phi());
+
+    }else{
+
+    }
+
+    if(!(t.momentum().phi() - ym.phi() == 0)) {
+    etrk_dt_[stdt].a1deltaphi_t_g = 1/(t.momentum().phi() - ym.phi());
+
+    }else{
+
+    etrk_dt_[stdt].a1deltaphi_t_g = 0;
+    }
+
+    if(!(hitGp.phi() - ym.phi())==0){
+    etrk_dt_[stdt].a1deltaphi_h_g = 1/(hitGp.phi() - ym.phi()); // This one 
+    }else{
+    etrk_dt_[stdt].a1deltaphi_h_g = 0;
+    }
 
   }
 
