@@ -325,6 +325,7 @@ SimHitMatcher::detIdsRPC() const
 }
 
 
+//DT Function//DT Function
 std::set<unsigned int>
 SimHitMatcher::detIdsDT() const
 {
@@ -444,6 +445,8 @@ SimHitMatcher::hitsInDetIdDT(unsigned int detid) const
 
  return no_hits_;
 }
+
+
 
 
 //DT Function

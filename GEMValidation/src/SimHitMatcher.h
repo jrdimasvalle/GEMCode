@@ -12,6 +12,8 @@
 
 #include "SimDataFormats/TrackingHit/interface/PSimHitContainer.h"
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
+#include "SimDataFormats/Vertex/interface/CoreSimVertex.h"
+#include "SimDataFormats/Vertex/interface/SimVertex.h"
 
 #include <vector>
 #include <map>
@@ -129,7 +131,6 @@ public:
   std::set<int> hitCoPadsInDetId(unsigned int) const; // GEM coincidence pads with hits
   GlobalPoint detidToGlobalDT(const edm::PSimHitContainer& sim_hits) const;
   GlobalVector detDTGlobalPT(const edm::PSimHitContainer& sim_hits) const;
-
 
   // what unique partitions numbers were hit by this simtrack?
   std::set<int> hitPartitions() const; // GEM

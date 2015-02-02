@@ -10,8 +10,9 @@
 
 #include "GEMCode/GEMValidation/src/BaseMatcher.h"
 #include "GEMCode/GEMValidation/src/GenericDigi.h"
-
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
+#include "SimDataFormats/Vertex/interface/CoreSimVertex.h"
+#include "SimDataFormats/Vertex/interface/SimVertex.h"
 
 class SimHitMatcher;
 

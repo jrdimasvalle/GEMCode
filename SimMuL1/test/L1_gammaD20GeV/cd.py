@@ -1,0 +1,285 @@
+## pick your scenario:
+## 1: 2019
+## 2: 2019WithGem
+## 3: 2023Muon
+
+scenario = 3
+
+## This configuration runs the DIGI+L1Emulator step
+import os
+import FWCore.ParameterSet.Config as cms
+
+process = cms.Process("MUTRG")
+
+## Standard sequence
+process.load('Configuration.StandardSequences.Services_cff')
+process.load('FWCore.MessageService.MessageLogger_cfi')
+process.load('Configuration.EventContent.EventContent_cff')
+process.load('SimGeneral.MixingModule.mixNoPU_cfi')
+if scenario is 1 or scenario is 2:
+    process.load('Configuration.Geometry.GeometryExtended2019Reco_cff')
+    process.load('Configuration.Geometry.GeometryExtended2019_cff')
+elif scenario is 3:
+    process.load('Configuration.Geometry.GeometryExtended2023MuonReco_cff')
+    process.load('Configuration.Geometry.GeometryExtended2023Muon_cff')
+else:
+    print 'Something wrong with geometry'
+process.load('Configuration.StandardSequences.MagneticField_38T_PostLS1_cff')
+process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
+process.load('Configuration.StandardSequences.EndOfProcess_cff')
+process.load("Configuration.StandardSequences.SimL1Emulator_cff")
+process.load("Configuration.StandardSequences.L1Extra_cff")
+process.load('Configuration.StandardSequences.EndOfProcess_cff')
+
+from Configuration.AlCa.GlobalTag import GlobalTag
+if scenario is 1 or scenario is 2:
+    process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:upgrade2019', '')
+elif scenario is 3:
+    process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:upgradePLS3', '')    
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100000) )
+
+process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
+
+## calibration
+from CalibMuon.CSCCalibration.CSCIndexer_cfi import CSCIndexerESProducer
+process.CSCIndexerESProducer= CSCIndexerESProducer
+
+from CalibMuon.CSCCalibration.CSCChannelMapper_cfi import CSCChannelMapperESProducer
+process.CSCChannelMapperESProducer= CSCChannelMapperESProducer
+
+## input
+'''
+from .SimMuL1.GEMCSCTriggerSamplesLib import eosfiles
+from .GEMValidation.InputFileHelpers import useInputDir
+dataset = '_Nu_SLHC12_2023Muon_PU140'
+dataset = '_Nu_SLHC12_2023Muon_PU140_geonmo'
+process = useInputDir(process, eosfiles[dataset], True)
+'''
+
+dataset = "_pt2-50"
+readFiles = cms.untracked.vstring()
+secFiles = cms.untracked.vstring()
+readFiles.extend([
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_100_1_p0O.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_101_1_Ka9.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_10_3_ujc.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_11_1_84h.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_1_1_yEP.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_12_2_jJM.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_13_2_rW5.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_14_1_DTC.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_15_1_xrA.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_16_2_snp.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_17_1_G4h.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_18_1_zd2.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_19_1_CpX.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_20_2_tk0.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_21_1_Wxv.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_2_1_AB3.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_22_1_MPF.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_23_2_h4b.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_24_1_g4b.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_25_1_E8i.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_26_1_r6U.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_28_1_MaI.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_29_1_Ab7.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_30_1_vpF.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_31_1_rYi.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_3_1_YzD.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_32_1_lEd.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_33_2_wuB.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_34_1_9x2.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_35_1_887.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_36_1_aJT.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_37_1_zUU.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_38_1_GZH.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_39_1_dsl.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_40_1_SqS.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_41_1_QCR.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_4_1_DRa.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_42_1_trc.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_43_2_fOZ.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_44_2_zWA.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_45_1_nGw.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_46_1_Z60.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_47_2_9Vt.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_48_3_KrH.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_49_1_tlX.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_50_1_Oev.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_51_1_L2d.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_5_1_nNl.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_52_1_OEo.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_53_1_eIj.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_54_1_weJ.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_55_1_8In.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_56_1_2gF.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_57_1_F6M.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_58_2_xRV.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_59_1_1bZ.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_60_1_GfR.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_61_1_m38.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_6_1_EGC.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_62_1_BGq.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_63_1_gEx.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_64_1_Uzf.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_65_1_FZb.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_66_1_2dk.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_67_2_lsx.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_68_3_AXd.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_69_1_DWx.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_70_1_sM4.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_71_1_OSo.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_7_1_76Z.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_72_1_CXb.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_73_2_NRa.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_74_1_4AP.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_75_1_Taj.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_76_1_z7C.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_77_2_RNr.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_78_1_Wse.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_79_2_Qm5.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_80_1_370.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_81_1_8dv.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_8_1_YkE.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_82_1_uIX.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_83_1_9Qo.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_84_1_v53.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_85_1_9hq.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_86_1_KAP.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_88_1_0XQ.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_89_1_ZDO.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_90_1_5z5.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_91_1_blD.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_9_1_XOP.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_92_1_mon.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_93_2_zTf.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_94_2_55W.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_95_1_Y8n.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_96_1_oYb.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_97_1_hMI.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_98_1_fKC.root',
+'file:/eos/uscms/store/user/lpcgem/dildick/dildick/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_GEN_SIM_2/DarkSUSY_mH_125_mGammaD_20000_ctau_1000_14TeV_madgraph452_bridge224_LHE_pythia6_DIGI_RECO_v4/90998fdfabd32352e84b8d7ca7f654f1/out_reco_99_1_7Xr.root'
+])
+secFiles.extend( [
+                ] )
+
+
+process.source = cms.Source ("PoolSource",
+        duplicateCheckMode = cms.untracked.string('noDuplicateCheck'),
+        fileNames = readFiles, secondaryFileNames = secFiles,
+        inputCommands = cms.untracked.vstring('keep  *_*_*_*')
+)
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
+
+physics = False
+if not physics:
+    ## drop all unnecessary collections
+    process.source.inputCommands = cms.untracked.vstring(
+        'keep  *_*_*_*',
+        'drop *_simCscTriggerPrimitiveDigis_*_*',
+        'drop *_simDtTriggerPrimitiveDigis_*_*',
+        'drop *_simRpcTriggerDigis_*_*',
+        'drop *_simCsctfTrackDigis_*_*',
+        'drop *_simDttfDigis_*_*',
+        'drop *_simCsctfDigis_*_*',
+        'drop *_simGmtDigis_*_*',
+        'drop *_l1extraParticles_*_*'
+        )
+    
+## output commands 
+theOutDir = ''
+theFileName = 'out_L1_ctau1KK_mGammaD20GeV_14TeV_.root'
+process.output = cms.OutputModule("PoolOutputModule",
+    fileName = cms.untracked.string(theOutDir + theFileName),
+    outputCommands = cms.untracked.vstring('keep  *_*_*_*')
+)
+
+physics = False
+if not physics:
+    ## drop all unnecessary collections
+    process.output.outputCommands = cms.untracked.vstring(
+        'keep  *_*_*_*',
+        # drop all CF stuff
+        'drop *_mix_*_*',
+        # drop tracker simhits
+        'drop PSimHits_*_Tracker*_*',
+        # drop calorimetry stuff
+        'drop PCaloHits_*_*_*',
+        'drop L1Calo*_*_*_*',
+        'drop L1Gct*_*_*_*',
+        # drop calorimetry l1extra
+        'drop l1extraL1Em*_*_*_*',
+        'drop l1extraL1Jet*_*_*_*',
+        'drop l1extraL1EtMiss*_*_*_*',
+        # clean up simhits from other detectors
+        'drop PSimHits_*_Totem*_*',
+        'drop PSimHits_*_FP420*_*',
+        'drop PSimHits_*_BSC*_*',
+        # drop some not useful muon digis and links
+        'drop *_*_MuonCSCStripDigi_*',
+        'drop *_*_MuonCSCStripDigiSimLinks_*',
+        'drop *SimLink*_*_*_*',
+        'drop *RandomEngineStates_*_*_*',
+        'drop *_randomEngineStateProducer_*_*'
+        )
+
+## custom sequences
+process.mul1 = cms.Sequence(
+  process.SimL1MuTriggerPrimitives *
+  process.SimL1MuTrackFinders *
+  process.simRpcTriggerDigis *
+  process.simGmtDigis *
+  process.L1Extra
+)
+
+process.muL1Short = cms.Sequence(
+  process.simCscTriggerPrimitiveDigis * 
+  process.SimL1MuTrackFinders *
+  process.simGmtDigis *
+  process.L1Extra
+)
+
+## define path-steps
+shortRun = False
+if shortRun:
+    process.L1simulation_step = cms.Path(process.muL1Short)
+else: 
+    process.L1simulation_step = cms.Path(process.mul1)
+process.endjob_step = cms.Path(process.endOfProcess)
+process.out_step = cms.EndPath(process.output)
+
+## Schedule definition
+process.schedule = cms.Schedule(
+    process.L1simulation_step,
+    process.endjob_step,
+    process.out_step
+)
+
+## customization
+if scenario is 1:
+    from SLHCUpgradeSimulations.Configuration.combinedCustoms import cust_2019
+    process = cust_2019(process)
+elif scenario is 2:
+    from SLHCUpgradeSimulations.Configuration.combinedCustoms import cust_2019WithGem
+    process = cust_2019WithGem(process)
+elif scenario is 3:
+    from SLHCUpgradeSimulations.Configuration.combinedCustoms import cust_2023Muon
+    process = cust_2023Muon(process)
+
+## some extra L1 customs
+process.l1extraParticles.centralBxOnly = cms.bool(True)
+process.l1extraParticles.produceMuonParticles = cms.bool(True)
+process.l1extraParticles.produceCaloParticles = cms.bool(False)
+process.l1extraParticles.ignoreHtMiss = cms.bool(False)
+
+## messages
+print
+print 'Input files:'
+print '----------------------------------------'
+print process.source.fileNames
+print
+print 'Output file:'
+print '----------------------------------------'
+print process.output.fileName
+print 

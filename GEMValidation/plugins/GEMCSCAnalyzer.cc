@@ -24,9 +24,8 @@
 #include "SimDataFormats/Track/interface/SimTrackContainer.h"
 
 #include "GEMCode/GEMValidation/src/SimTrackMatchManager.h"
-
 #include "TTree.h"
-
+#include <vector>
 #include <iomanip>
 #include <sstream>
 #include <memory>
@@ -78,6 +77,12 @@ struct MyTrackEffDT
  Int_t lumi;
  Int_t run;
  Int_t event;
+ Char_t charge_dt;
+
+ Double_t dtvertex_x;
+ Double_t dtvertex_y;
+ Double_t dtvertex_z;
+ Double_t dtvertex_r;
 
  Float_t eta_gp;
  Float_t x_gp;
@@ -255,12 +260,16 @@ void MyTrackEffDT::init()
  a1deltaphi_t_h = -999.;
  a1deltaphi_h_g = -999.;
  apt_SimTrack_dt=-99;
+ charge_dt = -99;
  x_gp = -9900.;
  y_gp = -9900.;
  r_gp = -9900.;
  phi_gp = -99;
 
-
+ dtvertex_x=-9999;
+ dtvertex_y=-9999;
+ dtvertex_z=-9999;
+ dtvertex_r=-9999;
  barrel= -9;
  has_dt_sh=0;
  nlayerdt = 0;
@@ -397,7 +406,13 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("pt_gv", &pt_gv);
   t->Branch("phi_gv", &phi_gv);
   t->Branch("eta_gp", &eta_gp);
+
   t->Branch("apt_SimTrack_dt", &apt_SimTrack_dt);
+  t->Branch("charge_dt", &charge_dt);
+  t->Branch("dtvertex_x", &dtvertex_x);
+  t->Branch("dtvertex_y", &dtvertex_y);
+  t->Branch("dtvertex_z", &dtvertex_z);
+  t->Branch("dtvertex_r", &dtvertex_r);
 
   t->Branch("a1deltaphi_h_g", &a1deltaphi_h_g);
   t->Branch("a1deltaphi_t_h", &a1deltaphi_t_h);
@@ -574,8 +589,10 @@ private:
   std::set<int> stationsdt_to_use_;
   TTree *tree_eff_dt_[24];
   MyTrackEffDT etrk_dt_[24];
- 
-
+  double vtx_dt;
+  double vty_dt;
+  double vtz_dt; 
+  
   edm::ParameterSet cfg_;
   edm::InputTag simInputLabel_;
   double simTrackMinPt_;
@@ -802,6 +819,11 @@ void GEMCSCAnalyzer::analyze(const edm::Event& ev, const edm::EventSetup& es)
   {
     if (!isSimTrackGood(t)) continue;
 
+    //Position of the vertices
+
+    vtx_dt = sim_vert[t.vertIndex()].position().x();
+    vty_dt = sim_vert[t.vertIndex()].position().y();
+    vtz_dt = sim_vert[t.vertIndex()].position().z();
     // match hits and digis to this SimTrack
     SimTrackMatchManager match(t, sim_vert[t.vertIndex()], cfg_, ev, es);
 
@@ -825,6 +847,7 @@ void GEMCSCAnalyzer::analyze(const edm::Event& ev, const edm::EventSetup& es)
 
 void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
 {
+
   const SimHitMatcher& match_sh = match.simhits();
   const GEMDigiMatcher& match_gd = match.gemDigis();
   const RPCDigiMatcher& match_rd = match.rpcDigis();
@@ -854,18 +877,26 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[asdt].run = match.simhits().event().id().run();
     etrk_dt_[asdt].lumi= match.simhits().event().id().luminosityBlock();
     etrk_dt_[asdt].event = match.simhits().event().id().event();
+    etrk_dt_[asdt].charge_dt=t.charge();
+
+    etrk_dt_[asdt].dtvertex_x = vtx_dt;
+    etrk_dt_[asdt].dtvertex_y = vty_dt;
+    etrk_dt_[asdt].dtvertex_z = vtz_dt;
+    etrk_dt_[asdt].dtvertex_r = sqrt(vtx_dt*vtx_dt+vty_dt*vty_dt);
 
     etrk_dt_[asdt].pt_SimTrack_dt=t.momentum().pt(); //This one
     etrk_dt_[asdt].eta_SimTrack_dt=t.momentum().eta();
     etrk_dt_[asdt].phi_SimTrack_dt = t.momentum().phi();
 
-    if (!(t.momentum().pt()==0)){
-     etrk_dt_[asdt].apt_SimTrack_dt =1/ t.momentum().pt();  //This one
-    }else{
-     etrk_dt_[asdt].apt_SimTrack_dt = 0;
-   }
+
+     if (!(t.momentum().pt()==0)){
+         etrk_dt_[asdt].apt_SimTrack_dt =1/ t.momentum().pt();  //This one
+     }else{
+         etrk_dt_[asdt].apt_SimTrack_dt = 0;
+     }
 
 
+       
 
     }
 
@@ -933,7 +964,8 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     }else{
     etrk_dt_[stdt].a1deltaphi_h_g = 0;
     }
-
+   
+     
   }
 
 
@@ -1464,7 +1496,6 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
-    if (t.momentum().eta() < 1.4) continue;
     int cscchamber = CSCTriggerNumbering::chamberFromTriggerLabels(id.sector(), 0, id.station(), id.subsector());
     cscchamber = (cscchamber+16)%18+1; 
     if ( (match_sh.hitsInChamber(d)).size() >0 )
@@ -1483,10 +1514,10 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
-    if (t.momentum().eta() < 1.4) continue;
     //meanstrip in rpc 
     auto rpcdigis = match_rd.digisInDetId(id); 
     int rpc_medianstrip(match_rd.median(rpcdigis));
+
     int cscchamber = CSCTriggerNumbering::chamberFromTriggerLabels(id.sector(), 0, id.station(), id.subsector());
     //std::cout <<"rpc detid " << id << " csc chamebr:"<< cscchamber << std::endl;
     bool odd(cscchamber%2 == 1);
