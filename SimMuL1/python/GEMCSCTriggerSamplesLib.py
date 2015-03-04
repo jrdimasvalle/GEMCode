@@ -147,3 +147,5 @@ eosfiles['S3_PU140_tmbReadoutEarliest2'] = ['/eos/uscms/store/user/jdimasva/CSC_
 eosfiles['S3_PU140_SLHC'] = ['/eos/uscms/store/user/jdimasva/CSC_Note_Upgrade_Aug14_Scenario3/PU_140/SLHC/']
 
 
+#Min Bias
+eosfiles['MinBias1']=['/eos/uscms/store/user/lpcgem/aysen/MinBias_2M_SLHC11_2023Muon_batch_01/MinBias_2M_SLHC11_2023Muon_batch_01/2890cdeab249af305f90d31aed60e06a/']

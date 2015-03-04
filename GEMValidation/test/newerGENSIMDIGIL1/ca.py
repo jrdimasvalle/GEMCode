@@ -30,24 +30,31 @@ from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import *
 from GEMCode.GEMValidation.InputFileHelpers import *
 
 
+
 maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 readFiles = cms.untracked.vstring()
 secFiles = cms.untracked.vstring() 
+
 readFiles.extend([
-       'file:/uscms_data/d3/jdimasva/Mod_DT/CMSSW_6_2_0_SLHC17/src/GEMCode/SimMuL1/test/out_L1_pt2-50.root'])
-
-
+       'file:/eos/uscms/store/user/jdimasva/January_2014/Non_Displaced_L1/out_L1_pt2-50.root'
+])
 secFiles.extend( [
                ] )
 
+SameWheelOnly = True
 
+if SameWheelOnly:
+    whab = "SameWheel"
+else:
+    whab = "All_Wheel"
+    
 process.source = cms.Source ("PoolSource",fileNames = readFiles, secondaryFileNames = secFiles)
 
 events=-1
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(events)
 )
-outputFileName = 'DT.root'
+outputFileName = 'DT_nonDsplaced_modified.root'
 
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string(outputFileName)
@@ -70,7 +77,7 @@ def enum(*sequential, **named):
   return type('Enum', (), enums)
 Stations = enum('ALL','ME11','ME1a','ME1b','ME12','ME13','ME21','ME22','ME31','ME32','ME41','ME42')
 
-StationsDT=enum('ALL', 'MB10', 'MB11', 'MB12', 'MB20', 'MB21', 'MB22', 'MB30', 'MB31', 'MB32', 'MB40', 'MB41', 'MB42')
+StationsDT=enum('ALL', 'MB01', 'MB11', 'MB21', 'MB02', 'MB12', 'MB22', 'MB03', 'MB13', 'MB23', 'MB04', 'MB14', 'MB24', 'MB11n', 'MB21n', 'MB12n', 'MB22n', 'MB13n', 'MB23n', 'MB14n', 'MB24n')
 
 
 from GEMCode.GEMValidation.simTrackMatching_cfi import SimTrackMatching
@@ -78,7 +85,7 @@ process.GEMCSCAnalyzer = cms.EDAnalyzer("GEMCSCAnalyzer",
     verbose = cms.untracked.int32(0),
     stationsToUse = cms.vint32(Stations.ME11,Stations.ME1a,Stations.ME1b,
                                Stations.ME21,Stations.ME31,Stations.ME41),
-    DTSTationsToUSE = cms.vint32(StationsDT.ALL,StationsDT.MB10, StationsDT.MB11,StationsDT.MB12,StationsDT.MB20,StationsDT.MB21,StationsDT.MB22,StationsDT.MB30,StationsDT.MB31,StationsDT.MB32,StationsDT.MB40,StationsDT.MB41,StationsDT.MB42), 
+    DTSTationsToUSE = cms.vint32(StationsDT.ALL,StationsDT.MB01, StationsDT.MB11,StationsDT.MB21,StationsDT.MB02,StationsDT.MB12,StationsDT.MB22,StationsDT.MB03,StationsDT.MB13,StationsDT.MB23,StationsDT.MB04,StationsDT.MB14,StationsDT.MB24,StationsDT.MB11n, StationsDT.MB21n, StationsDT.MB12n, StationsDT.MB22n, StationsDT.MB13n, StationsDT.MB23n, StationsDT.MB14n, StationsDT.MB24n),
     simTrackMatching = SimTrackMatching
 )
 
@@ -105,7 +112,13 @@ if doGem:
   matching.cscMPLCT.minNHitsChamber = 3
 
 
-process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
+if SameWheelOnly:
+    process.GEMCSCAnalyzer.simTrackMatching.dtSimHit.sameWheelOnly = cms.bool(True);
+else:
+    process.GEMCSCAnalyzer.simTrackMatching.dtSimHit.sameWheelOnly = cms.bool(False);
+
+process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True), SkipEvent = cms.untracked.vstring("CSCTriggerNumbering::InvalidInput")
+)
 
 process.p = cms.Path(process.GEMCSCAnalyzer)
 mat = process.GEMCSCAnalyzer.simTrackMatching

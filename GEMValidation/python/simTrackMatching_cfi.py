@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 SimTrackMatching = cms.PSet(
     # common
     useCSCChamberTypes = cms.untracked.vint32(0,1,2,3,4,5,6,7,8,9,10),
-    dtStations = cms.vstring('ALL', 'MB10', 'MB11', 'MB12', 'MB20', 'MB21', 'MB22', 'MB30', 'MB31', 'MB32', 'MB40', 'MB41', 'MB42'),
+    dtStations = cms.vstring('ALL', 'MB01', 'MB11', 'MB21', 'MB02', 'MB12', 'MB22', 'MB03', 'MB13', 'MB23', 'MB04', 'MB14', 'MB24', 'MB11n', 'MB21n', 'MB12n', 'MB22n', 'MB13n', 'MB23n', 'MB14n', 'MB24n'),
     ## endcap stations
     cscStations = cms.vstring('ALL','ME11','ME1a','ME1b','ME12','ME13',
                               'ME21','ME22','ME31','ME32','ME41','ME42'),
@@ -214,6 +214,7 @@ SimTrackMatching = cms.PSet(
         simMuOnly = cms.bool(True),
         discardEleHits = cms.bool(True),
         minNHitsChamber = cms.int32(4),
+        sameWheelOnly = cms.bool(True),
     ),
     dtDigi = cms.PSet(
         verbose = cms.int32(0),

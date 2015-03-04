@@ -41,5 +41,5 @@ def useInputDir(process, inputDir, onEOS = True):
             ## this works only if you pass the location on pnfs - FIXME for files staring with store/user/...                                                            
             theInputFiles.extend([my_dir[16:] + x for x in ls if x.endswith('root')])
 
-    process.source.fileNames = cms.untracked.vstring(*theInputFiles)
+    process.source = cms.Source ("PoolSource",fileNames=cms.untracked.vstring(*theInputFiles))
     return process

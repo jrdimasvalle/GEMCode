@@ -30,13 +30,14 @@ from GEMCode.SimMuL1.GEMCSCTriggerSamplesLib import *
 from GEMCode.GEMValidation.InputFileHelpers import *
 
 
-
+process = useInputDir(process, eosfiles['MinBias1'], True)
+'''
 maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 readFiles = cms.untracked.vstring()
 secFiles = cms.untracked.vstring() 
 
 readFiles.extend([
-       'file:/eos/uscms/store/user/jdimasva/January_2014/Displaced_L1/mGammaDark20GeV/out_L1_ctau10_mGammaD20GeV_14TeV_.root'
+       'file:/eos/uscms/store/user/jdimasva/January_2014/Non_Displaced_L1/out_L1_pt2-50.root'
 ])
 secFiles.extend( [
                ] )
@@ -49,12 +50,12 @@ else:
     whab = "All_Wheel"
     
 process.source = cms.Source ("PoolSource",fileNames = readFiles, secondaryFileNames = secFiles)
-
-events=-1
+'''
+events=200000
 process.maxEvents = cms.untracked.PSet(
      input = cms.untracked.int32(events)
 )
-outputFileName = 'DT_20GeVDark_ctau10_modified.root'
+outputFileName = 'DT_MinBias_modified.root'
 
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string(outputFileName)
@@ -94,12 +95,15 @@ process.GEMCSCAnalyzer = cms.EDAnalyzer("GEMCSCAnalyzer",
 matching = process.GEMCSCAnalyzer.simTrackMatching
 matching.simTrack.minPt = 2.0
 matching.gemRecHit.input = ""
-"""
+'''
 matching.cscTfTrack.input = ""
 matching.tfCand.input = ""
 matching.gmtCand.input = ""
 matching.l1Extra.input = ""
-"""
+
+'''
+
+
 doGem = False
 if doGem:
   matching.cscSimHit.minNHitsChamber = 3
@@ -112,10 +116,6 @@ if doGem:
   matching.cscMPLCT.minNHitsChamber = 3
 
 
-if SameWheelOnly:
-    process.GEMCSCAnalyzer.simTrackMatching.dtSimHit.sameWheelOnly = cms.bool(True);
-else:
-    process.GEMCSCAnalyzer.simTrackMatching.dtSimHit.sameWheelOnly = cms.bool(False);
 
 process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True), SkipEvent = cms.untracked.vstring("CSCTriggerNumbering::InvalidInput")
 )
@@ -129,6 +129,44 @@ mat.me0Muon.run = cms.bool(False)
 mat.me0SimHit.run = cms.bool(False)
 mat.me0SimHit.simMuOnly = cms.bool(False)
 mat.me0RecHit.run = cms.bool(False)
+mat.gemRecHit.run = cms.bool(False)
+mat.rpcPAC.run = cms.bool(False)
+mat.l1Extra.run= cms.bool(False)
+mat.dtTfCand.run = cms.bool(False)
+mat.dtTfTrack.run =cms.bool(False)
+mat.rpcfTfCand.run=cms.bool(False)
+mat.dtRecHit.run=cms.bool(False)
+mat.cscStripDigi.run=cms.bool(False)
+
+mat.cscRecHit.run =cms.bool(False)
+mat.cscRecHit.input = ""
+
+mat.rpcStripDigi.run =cms.bool(False)
+mat.rpcStripDigi.input = ""
+mat.simTrack.onlyMuon = cms.bool(False)
+
+mat.gmtCand.run =cms.bool(False)
+mat.gmtCand.input = ""
+mat.cscMPLCT.run = cms.bool(False)
+mat.gemStripDigi.run =cms.bool(False)
+mat.me0Stations.run =cms.bool(False)
+mat.cscCLCT.run =cms.bool(False)
+mat.cscALCT.run =cms.bool(False)
+mat.dtStubs.run =cms.bool(False)
+mat.me0DigiPreReco.run =cms.bool(False)
+mat.cscTfTrack.run =cms.bool(False)
+mat.rpcbTfCand.run =cms.bool(False)
+mat.cscTfCand.run =cms.bool(False)
+mat.cscWireDigi.run =cms.bool(False)
+mat.gemCoPadDigi.run =cms.bool(False)
+mat.cscLCT.run =cms.bool(False)
+mat.gemPadDigi.run =cms.bool(False)
+mat.cscStripDigi.run =cms.bool(False)
+mat.dtRecHit.run =cms.bool(False)
+mat.rpcfTfCand.run =cms.bool(False)
+mat.gmtRegCand.run =cms.bool(False)
+
+
 
 
 ## messages

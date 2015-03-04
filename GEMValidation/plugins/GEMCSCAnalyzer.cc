@@ -83,7 +83,7 @@ struct MyTrackEffDT
  Double_t dtvertex_y;
  Double_t dtvertex_z;
  Double_t dtvertex_r;
-
+ Float_t dt_dxy;
  Float_t eta_gp;
  Float_t x_gp;
  Float_t y_gp;
@@ -91,9 +91,6 @@ struct MyTrackEffDT
  Float_t deltaphi_h_g;
  Float_t deltaphi_t_h;
  Float_t deltaphi_t_g;
- Float_t a1deltaphi_h_g;
- Float_t a1deltaphi_t_h;
- Float_t a1deltaphi_t_g;
  Float_t deltar_;
  Float_t pt_gv;
  Float_t apt_SimTrack_dt;
@@ -101,6 +98,63 @@ struct MyTrackEffDT
  Float_t eta_gv;
  Float_t r_gp;
  Float_t phi_gp;
+
+ Float_t s_phi_gp;
+ Float_t s_phi_gv;
+ Float_t deltaphi_frist_second_gv;
+ Float_t deltaphi_frist_second_gp;
+ Float_t s_deltaphi_h_g;
+ Float_t s_eta_gv;
+ Float_t s_pt_gv;
+ Float_t s_eta_gp;
+ Int_t s_wheel;
+ Int_t s_station;
+ Float_t s_x_gp;
+ Float_t s_y_gp;
+ Float_t s_z_gp;
+ Float_t s_r_gp;
+ Char_t s_has_dt_sh;
+ Float_t s_z_gv;
+ Float_t s_y_gv;
+ Float_t s_x_gv;
+
+ Float_t t_phi_gp;
+ Float_t t_phi_gv;
+ Float_t deltaphi_frist_third_gv;
+ Float_t deltaphi_frist_third_gp;
+ Float_t t_deltaphi_h_g;
+ Float_t t_eta_gv;
+ Float_t t_pt_gv;
+ Float_t t_eta_gp;
+ Int_t t_wheel;
+ Int_t t_station;
+ Float_t t_x_gp;
+ Float_t t_y_gp;
+ Float_t t_z_gp;
+ Float_t t_r_gp;
+ Char_t t_has_dt_sh;
+ Float_t t_z_gv;
+ Float_t t_y_gv;
+ Float_t t_x_gv;
+
+ Float_t f_phi_gp;
+ Float_t f_phi_gv;
+ Float_t deltaphi_frist_fourth_gv;
+ Float_t deltaphi_frist_fourth_gp;
+ Float_t f_deltaphi_h_g;
+ Float_t f_eta_gv;
+ Float_t f_pt_gv;
+ Float_t f_eta_gp;
+ Int_t f_wheel;
+ Int_t f_station;
+ Float_t f_x_gp;
+ Float_t f_y_gp;
+ Float_t f_z_gp;
+ Float_t f_r_gp;
+ Char_t f_has_dt_sh;
+ Float_t f_z_gv;
+ Float_t f_y_gv;
+ Float_t f_x_gv;
 
  Float_t pt_SimTrack_dt;
  Float_t eta_SimTrack_dt;
@@ -114,8 +168,6 @@ struct MyTrackEffDT
  Float_t Z_gv;
  Float_t X_gv;
  Float_t Y_gv;
-
-
 };
 
 
@@ -253,19 +305,72 @@ void MyTrackEffDT::init()
  pt_gv= -9.;
  z_gp = -9900.;
  deltaphi_h_g = -9.;
- deltaphi_t_g = -9.;
  deltar_ = -999.;
- deltaphi_t_h = -9.;
- a1deltaphi_t_g = -999.; 
- a1deltaphi_t_h = -999.;
- a1deltaphi_h_g = -999.;
- apt_SimTrack_dt=-99;
+ apt_SimTrack_dt=-999;
  charge_dt = -99;
+
+ s_eta_gv = -99.;
+ s_pt_gv = - 999.;
+ s_eta_gp = - 99.;
+ s_wheel = - 99;
+ s_station = - 99;
+ s_x_gp = -9999.;
+ s_y_gp = - 9999.;
+ s_z_gp = - 9999.;
+ s_r_gp= - 9999.;
+ s_phi_gv = -9.;
+ s_phi_gp=-9.;
+ deltaphi_frist_second_gv= - 999.;
+ deltaphi_frist_second_gp= - 999.;
+ s_deltaphi_h_g = -999;
+ s_has_dt_sh = 0;
+ s_x_gv = - 9999.;
+ s_y_gv= - 9999.;
+ s_z_gv = - 9999.;
+ 
+ t_phi_gp=-9.;
+ t_phi_gv=-9.;
+ deltaphi_frist_third_gv=-999.;
+ deltaphi_frist_third_gp=-999.;
+ t_deltaphi_h_g=-999;
+ t_eta_gv= - 9.;
+ t_pt_gv = - 999.;
+ t_eta_gp = -9.;
+ t_wheel = -99;
+ t_station = -99;
+ t_x_gp = - 9999.;
+ t_y_gp = -9999.;
+ t_z_gp = -9999.;
+ t_r_gp = -9999.;
+ t_has_dt_sh = 0;
+ t_z_gv=-9999.;
+ t_y_gv=-9999.;
+ t_x_gv=-9999.;
+
+ f_phi_gp=-9.;
+ f_phi_gv=-9.;
+ deltaphi_frist_fourth_gv=-999.;
+ deltaphi_frist_fourth_gp=-999.;
+ f_deltaphi_h_g=-999;
+ f_eta_gv= - 9.;
+ f_pt_gv = - 999.;
+ f_eta_gp = -9.;
+ f_wheel = -99;
+ f_station = -99;
+ f_x_gp = - 9999.;
+ f_y_gp = -9999.;
+ f_z_gp = -9999.;
+ f_r_gp = -9999.;
+ f_has_dt_sh = 0;
+ f_z_gv=-9999.;
+ f_y_gv=-9999.;
+ f_x_gv=-9999.;
+
  x_gp = -9900.;
  y_gp = -9900.;
  r_gp = -9900.;
  phi_gp = -99;
-
+ dt_dxy = -9999;
  dtvertex_x=-9999;
  dtvertex_y=-9999;
  dtvertex_z=-9999;
@@ -275,10 +380,10 @@ void MyTrackEffDT::init()
  nlayerdt = 0;
  GlobalEta_dt=-99.;
  GlobalPhi_dt=-99.;
- R_gv=-99.;
- Z_gv=-99.;
- X_gv=-99.;
- Y_gv=-99.;
+ R_gv=-9999.;
+ Z_gv=-9999.;
+ X_gv=-9999.;
+ Y_gv=-9999.;
 
 }
 
@@ -403,23 +508,74 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("eta_SimTrack_dt", &eta_SimTrack_dt);
   t->Branch("pt_SimTrack_dt", &pt_SimTrack_dt);
   t->Branch("eta_gv", &eta_gv);
+ 
+  t->Branch("s_eta_gv", &s_eta_gv);
+  t->Branch("s_pt_gv", &s_pt_gv);
+  t->Branch("s_eta_gp", &s_eta_gp);
+  t->Branch("s_x_gp", &s_x_gp);
+  t->Branch("s_y_gp", &s_y_gp);
+  t->Branch("s_z_gp", &s_z_gp);
+  t->Branch("s_r_gp", &s_r_gp);
+  t->Branch("s_wheel", &s_wheel);
+  t->Branch("s_station", &s_station);
+  t->Branch("s_phi_gv", &s_phi_gv);
+  t->Branch("s_deltaphi_h_g", &s_deltaphi_h_g);
+  t->Branch("s_y_gv", &s_y_gv);
+  t->Branch("s_x_gv", &s_x_gv);
+  t->Branch("s_z_gv", &s_z_gv);
+  t->Branch("s_has_dt_sh", &s_has_dt_sh);
+  t->Branch("s_phi_gp", &s_phi_gp);
+  t->Branch("deltaphi_frist_second_gv", &deltaphi_frist_second_gv);
+  t->Branch("deltaphi_frist_second_gp", &deltaphi_frist_second_gp);
+  
+  t->Branch("t_eta_gv", &t_eta_gv);
+  t->Branch("t_pt_gv", &t_pt_gv);
+  t->Branch("t_eta_gp", &t_eta_gp);
+  t->Branch("t_x_gp", &t_x_gp);
+  t->Branch("t_y_gp", &t_y_gp);
+  t->Branch("t_z_gp", &t_z_gp);
+  t->Branch("t_r_gp", &t_r_gp);
+  t->Branch("t_wheel", &t_wheel);
+  t->Branch("t_station", &t_station);
+  t->Branch("t_phi_gv", &t_phi_gv);
+  t->Branch("t_deltaphi_h_g", &t_deltaphi_h_g);
+  t->Branch("t_y_gv", &t_y_gv);
+  t->Branch("t_x_gv", &t_x_gv);
+  t->Branch("t_z_gv", &t_z_gv);
+  t->Branch("t_has_dt_sh", &t_has_dt_sh);
+  t->Branch("t_phi_gp", &t_phi_gp);
+  t->Branch("deltaphi_frist_third_gv", &deltaphi_frist_third_gv);
+  t->Branch("deltaphi_frist_third_gp", &deltaphi_frist_third_gp);
+
+  t->Branch("f_eta_gv", &f_eta_gv);
+  t->Branch("f_pt_gv", &f_pt_gv);
+  t->Branch("f_eta_gp", &f_eta_gp);
+  t->Branch("f_x_gp", &f_x_gp);
+  t->Branch("f_y_gp", &f_y_gp);
+  t->Branch("f_z_gp", &f_z_gp);
+  t->Branch("f_r_gp", &f_r_gp);
+  t->Branch("f_wheel", &f_wheel);
+  t->Branch("f_station", &f_station);
+  t->Branch("f_phi_gv", &f_phi_gv);
+  t->Branch("f_deltaphi_h_g", &f_deltaphi_h_g);
+  t->Branch("f_y_gv", &f_y_gv);
+  t->Branch("f_x_gv", &f_x_gv);
+  t->Branch("f_z_gv", &f_z_gv);
+  t->Branch("f_has_dt_sh", &f_has_dt_sh);
+  t->Branch("f_phi_gp", &f_phi_gp);
+  t->Branch("deltaphi_frist_fourth_gv", &deltaphi_frist_fourth_gv);
+  t->Branch("deltaphi_frist_fourth_gp", &deltaphi_frist_fourth_gp);
+
   t->Branch("pt_gv", &pt_gv);
   t->Branch("phi_gv", &phi_gv);
   t->Branch("eta_gp", &eta_gp);
-
   t->Branch("apt_SimTrack_dt", &apt_SimTrack_dt);
   t->Branch("charge_dt", &charge_dt);
   t->Branch("dtvertex_x", &dtvertex_x);
   t->Branch("dtvertex_y", &dtvertex_y);
   t->Branch("dtvertex_z", &dtvertex_z);
   t->Branch("dtvertex_r", &dtvertex_r);
-
-  t->Branch("a1deltaphi_h_g", &a1deltaphi_h_g);
-  t->Branch("a1deltaphi_t_h", &a1deltaphi_t_h);
-  t->Branch("a1deltaphi_t_g", &a1deltaphi_t_g);
   t->Branch("deltaphi_h_g", &deltaphi_h_g);
-  t->Branch("deltaphi_t_h", &deltaphi_t_h);
-  t->Branch("deltaphi_t_g", &deltaphi_t_g);
   t->Branch("z_gp", &z_gp);
   t->Branch("deltar_", &deltar_);
   t->Branch("x_gp", &x_gp);
@@ -436,6 +592,7 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("Z_gv", &Z_gv);
   t->Branch("X_gv", &X_gv);
   t->Branch("Y_gv", &Y_gv);
+  t->Branch("dt_dxy", &dt_dxy);
 
 
   return t;
@@ -587,12 +744,13 @@ private:
   std::vector<string> dtStations_;
   std::vector<std::pair<int,int> > dtStationsCo_;
   std::set<int> stationsdt_to_use_;
-  TTree *tree_eff_dt_[24];
-  MyTrackEffDT etrk_dt_[24];
+  TTree *tree_eff_dt_[26];
+  MyTrackEffDT etrk_dt_[26];
   double vtx_dt;
   double vty_dt;
   double vtz_dt; 
-  
+  bool SameWheelOnly;
+
   edm::ParameterSet cfg_;
   edm::InputTag simInputLabel_;
   double simTrackMinPt_;
@@ -665,6 +823,9 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
   vector<int> stationsDT = ps.getParameter<vector<int> >("DTSTationsToUSE");
   copy(stationsDT.begin(), stationsDT.end(), inserter(stationsdt_to_use_,stationsdt_to_use_.end()));
 
+  auto dtSimHit = cfg_.getParameter<edm::ParameterSet>("dtSimHit");
+  SameWheelOnly =  dtSimHit.getParameter<bool>("sameWheelOnly");
+  
   for (auto m: stationsdt_to_use_)
     {
     stringstream ss;
@@ -694,21 +855,27 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
     }
   }
         //DT Changes
-  dtStationsCo_.push_back(std::make_pair(-10,-10));
-  dtStationsCo_.push_back(std::make_pair(1,0));
+  dtStationsCo_.push_back(std::make_pair(-99,-99));
+  dtStationsCo_.push_back(std::make_pair(0,1));
   dtStationsCo_.push_back(std::make_pair(1,1));
-  dtStationsCo_.push_back(std::make_pair(1,2));
-  dtStationsCo_.push_back(std::make_pair(2,0));
   dtStationsCo_.push_back(std::make_pair(2,1));
+  dtStationsCo_.push_back(std::make_pair(0,2));
+  dtStationsCo_.push_back(std::make_pair(1,2));
   dtStationsCo_.push_back(std::make_pair(2,2));
-  dtStationsCo_.push_back(std::make_pair(3,0));
-  dtStationsCo_.push_back(std::make_pair(3,1));
-  dtStationsCo_.push_back(std::make_pair(3,2));
-  dtStationsCo_.push_back(std::make_pair(4,0));
-  dtStationsCo_.push_back(std::make_pair(4,1));
-  dtStationsCo_.push_back(std::make_pair(4,2));
-
-
+  dtStationsCo_.push_back(std::make_pair(0,3));
+  dtStationsCo_.push_back(std::make_pair(1,3));
+  dtStationsCo_.push_back(std::make_pair(2,3));
+  dtStationsCo_.push_back(std::make_pair(0,4));
+  dtStationsCo_.push_back(std::make_pair(1,4));
+  dtStationsCo_.push_back(std::make_pair(2,4));
+  dtStationsCo_.push_back(std::make_pair(-1,1));
+  dtStationsCo_.push_back(std::make_pair(-2,1));
+  dtStationsCo_.push_back(std::make_pair(-1,2));
+  dtStationsCo_.push_back(std::make_pair(-2,2));
+  dtStationsCo_.push_back(std::make_pair(-1,3));
+  dtStationsCo_.push_back(std::make_pair(-2,3));
+  dtStationsCo_.push_back(std::make_pair(-1,4));
+  dtStationsCo_.push_back(std::make_pair(-2,4));
 
 
   cscStationsCo_.push_back(std::make_pair(-99,-99));
@@ -726,9 +893,9 @@ GEMCSCAnalyzer::GEMCSCAnalyzer(const edm::ParameterSet& ps)
 }
 
 //DT Function:
-int GEMCSCAnalyzer::detIdToMBStation(int st,  int wh)
+int GEMCSCAnalyzer::detIdToMBStation(int wh,  int st)
 {
-    auto p(std::make_pair(st, wh));
+    auto p(std::make_pair(wh, st));
     return std::find(dtStationsCo_.begin(), dtStationsCo_.end(),p) - dtStationsCo_.begin();
 }
 
@@ -888,36 +1055,33 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[asdt].eta_SimTrack_dt=t.momentum().eta();
     etrk_dt_[asdt].phi_SimTrack_dt = t.momentum().phi();
 
-
      if (!(t.momentum().pt()==0)){
          etrk_dt_[asdt].apt_SimTrack_dt =1/ t.momentum().pt();  //This one
      }else{
          etrk_dt_[asdt].apt_SimTrack_dt = 0;
      }
 
+    auto pphi = t.momentum().phi();
+    etrk_dt_[asdt].dt_dxy = vtx_dt*sin(pphi) - vty_dt*cos(pphi);
+     
+    } // End of Track info t. algo
 
-       
 
-    }
-
-  //DT Changes
+    //DT Changes
   auto dt_simhits(match_sh.layerIdsDT());
   for (auto ddt: dt_simhits)
   {
     DTWireId iddt(ddt);
-    const int stdt(detIdToMBStation(iddt.station(),iddt.wheel()));
+    const int stdt(detIdToMBStation(iddt.wheel(),iddt.station()));
     if (stationsdt_to_use_.count(stdt) == 0) continue;
-    //std::cout<<" The station number: "<<stdt<<" is the one for: "<<iddt<<" Or equal to "<<ddt<<std::endl;
     int nlayersdtch = match_sh.nLayerWithHitsInLayerDT(ddt);
 
     if(nlayersdtch == 0) continue;
-    //std::cout<<" There are: "<<nlayersdtch<<" hits in "<<ddt<<" or equal to "<<iddt<<" chamber in DT."<<std::endl;
     etrk_dt_[stdt].has_dt_sh |= 1;
     etrk_dt_[stdt].nlayerdt  = nlayersdtch;
    
-    // This one is the Global Point of the hit, as measured from the detector position (Actual bending of the muon)
+    // This one is the Global Point of the hit (position), as measured from the detector position
     GlobalPoint hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(ddt));
-    //std::cout<<" For that eta: "<<hitGP.eta()<<" X: "<<hitGP.x()<<" R: "<<hitGP.perp()<<" Y: "<<hitGP.y()<<" PHI: "<<hitGP.phi()<<" Z "<<hitGP.z()<<std::endl;
     
     etrk_dt_[stdt].eta_gp = hitGp.eta();
     etrk_dt_[stdt].x_gp = hitGp.x();
@@ -926,10 +1090,8 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].r_gp = hitGp.perp();
     etrk_dt_[stdt].phi_gp = hitGp.phi();
 
-
-    //Global Vector for the hit. This is actually the one gotten from the middle point not really in the surface
+    // This one is the Global Vector for the hit (direction). This is actually the one gotten from the middle point not really in the surface
     GlobalVector ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(ddt));
-   // std::cout<<" SH eta: "<<ym.eta()<<" SH phi: "<<ym.phi()<<" Sh pt: "<<ym.mag()<<std::endl;
 
     etrk_dt_[stdt].eta_gv = ym.eta();
     etrk_dt_[stdt].pt_gv = ym.perp();
@@ -938,35 +1100,109 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].Z_gv = ym.z();
     etrk_dt_[stdt].X_gv = ym.x();
     etrk_dt_[stdt].Y_gv = ym.y();
-    etrk_dt_[stdt].deltaphi_t_h = t.momentum().phi() - hitGp.phi();
-    etrk_dt_[stdt].deltaphi_t_g = t.momentum().phi() - ym.phi();
     etrk_dt_[stdt].deltaphi_h_g = hitGp.phi() - ym.phi();     //This one
+
+
+    //Second hit search:
+    int trysecond=1;
+
+    for (auto s_ddt: dt_simhits)
+    {
+
+      DTWireId s_iddt(s_ddt);
+      const int s_stdt(detIdToMBStation(s_iddt.wheel(),s_iddt.station()));
+      if (stationsdt_to_use_.count(s_stdt) == 0) continue;
+      int s_nlayersdtch = match_sh.nLayerWithHitsInLayerDT(s_ddt);
+      int d_nlayersdtch = match_sh.nLayerWithHitsInLayerDT(ddt);
+
     
+      if(s_nlayersdtch == 0) continue; // Check to have hits in the secondary chamber
+      if(d_nlayersdtch == 0) continue; //Check that has hits in previous one
+      if(iddt.wheel()==s_iddt.wheel() and iddt.station()==s_iddt.station()) continue; //Not to count double hits in the same chamber
+      
 
-    if (!(t.momentum().phi() - hitGp.phi() ==0)) {
+      if(s_iddt.station() == 2){
+            GlobalPoint s_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
+            GlobalVector s_ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(s_ddt));
+            etrk_dt_[stdt].s_eta_gv = s_ym.eta();
+            etrk_dt_[stdt].s_pt_gv = s_ym.perp();
+            etrk_dt_[stdt].s_eta_gp = s_hitGp.eta();
+            etrk_dt_[stdt].s_wheel = s_iddt.wheel();
+            etrk_dt_[stdt].s_station = s_iddt.station();
+            etrk_dt_[stdt].s_x_gp = s_hitGp.x();
+            etrk_dt_[stdt].s_y_gp = s_hitGp.y();
+            etrk_dt_[stdt].s_z_gp = s_hitGp.z();
+            etrk_dt_[stdt].s_r_gp = s_hitGp.perp();
+            etrk_dt_[stdt].s_phi_gv = s_ym.phi();
+            etrk_dt_[stdt].s_phi_gp = s_hitGp.phi();
+            etrk_dt_[stdt].s_x_gv = s_ym.x();
+            etrk_dt_[stdt].s_y_gv = s_ym.y();
+            etrk_dt_[stdt].s_z_gv = s_ym.z();
+            etrk_dt_[stdt].s_deltaphi_h_g = s_hitGp.phi() - s_ym.phi();     //This one
+            etrk_dt_[stdt].s_has_dt_sh = 1;
+            etrk_dt_[stdt].deltaphi_frist_second_gp = hitGp.phi() - s_hitGp.phi();
+            etrk_dt_[stdt].deltaphi_frist_second_gv = -s_ym.phi() + ym.phi(); 
+       }
 
-    etrk_dt_[stdt].a1deltaphi_t_h = 1/(t.momentum().phi() - hitGp.phi());
+    
+     if(s_iddt.station() == 3){
+            GlobalPoint t_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
+            GlobalVector t_ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(s_ddt));
+            etrk_dt_[stdt].t_eta_gv = t_ym.eta();
+            etrk_dt_[stdt].t_pt_gv = t_ym.perp();
+            etrk_dt_[stdt].t_eta_gp = t_hitGp.eta();
+            etrk_dt_[stdt].t_wheel = s_iddt.wheel();
+            etrk_dt_[stdt].t_station = s_iddt.station();
+            etrk_dt_[stdt].t_x_gp = t_hitGp.x();
+            etrk_dt_[stdt].t_y_gp = t_hitGp.y();
+            etrk_dt_[stdt].t_z_gp = t_hitGp.z();
+            etrk_dt_[stdt].t_r_gp = t_hitGp.perp();
+            etrk_dt_[stdt].t_phi_gv = t_ym.phi();
+            etrk_dt_[stdt].t_phi_gp = t_hitGp.phi();
+            etrk_dt_[stdt].t_x_gv = t_ym.x();
+            etrk_dt_[stdt].t_y_gv = t_ym.y();
+            etrk_dt_[stdt].t_z_gv = t_ym.z();
+            etrk_dt_[stdt].t_deltaphi_h_g = t_hitGp.phi() - t_ym.phi();     //This one
+            etrk_dt_[stdt].t_has_dt_sh = 1;
+            etrk_dt_[stdt].deltaphi_frist_third_gp = hitGp.phi() - t_hitGp.phi();
+            etrk_dt_[stdt].deltaphi_frist_third_gv = -t_ym.phi() + ym.phi();
+       }
 
-    }else{
 
-    }
+      if(s_iddt.station() == 4){
+            GlobalPoint f_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
+            GlobalVector f_ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(s_ddt));
+            etrk_dt_[stdt].f_eta_gv = f_ym.eta();
+            etrk_dt_[stdt].f_pt_gv = f_ym.perp();
+            etrk_dt_[stdt].f_eta_gp = f_hitGp.eta();
+            etrk_dt_[stdt].f_wheel = s_iddt.wheel();
+            etrk_dt_[stdt].f_station = s_iddt.station();
+            etrk_dt_[stdt].f_x_gp = f_hitGp.x();
+            etrk_dt_[stdt].f_y_gp = f_hitGp.y();
+            etrk_dt_[stdt].f_z_gp = f_hitGp.z();
+            etrk_dt_[stdt].f_r_gp = f_hitGp.perp();
+            etrk_dt_[stdt].f_phi_gv = f_ym.phi();
+            etrk_dt_[stdt].f_phi_gp = f_hitGp.phi();
+            etrk_dt_[stdt].f_x_gv = f_ym.x();
+            etrk_dt_[stdt].f_y_gv = f_ym.y();
+            etrk_dt_[stdt].f_z_gv = f_ym.z();
+            etrk_dt_[stdt].f_deltaphi_h_g = f_hitGp.phi() - f_ym.phi();     //This one
+            etrk_dt_[stdt].f_has_dt_sh = 1;
+            etrk_dt_[stdt].deltaphi_frist_fourth_gp = hitGp.phi() - f_hitGp.phi();
+            etrk_dt_[stdt].deltaphi_frist_fourth_gv = -f_ym.phi() - ym.phi();
+       }
 
-    if(!(t.momentum().phi() - ym.phi() == 0)) {
-    etrk_dt_[stdt].a1deltaphi_t_g = 1/(t.momentum().phi() - ym.phi());
 
-    }else{
+   //std::cout<<"This track has hits on MB"<<iddt.wheel()<<iddt.station()<<" and in MB"<<s_iddt.wheel()<<s_iddt.station()<<std::endl;
+        
+        //std::cout<<"First gp: "<<hitGp.phi()<<" Second gp: "<<s_hitGp.phi()<<std::endl;
+        //std::cout<<"First gv: "<<ym.phi()<<" Second gv: "<<s_ym.phi()<<std::endl;
+        
+        trysecond=trysecond+1;
+    } // End of search for second
+    
+  } // End of DT
 
-    etrk_dt_[stdt].a1deltaphi_t_g = 0;
-    }
-
-    if(!(hitGp.phi() - ym.phi())==0){
-    etrk_dt_[stdt].a1deltaphi_h_g = 1/(hitGp.phi() - ym.phi()); // This one 
-    }else{
-    etrk_dt_[stdt].a1deltaphi_h_g = 0;
-    }
-   
-     
-  }
 
 
 
@@ -1496,6 +1732,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
+    if (id.region()==0) continue;
     int cscchamber = CSCTriggerNumbering::chamberFromTriggerLabels(id.sector(), 0, id.station(), id.subsector());
     cscchamber = (cscchamber+16)%18+1; 
     if ( (match_sh.hitsInChamber(d)).size() >0 )
@@ -1514,6 +1751,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     RPCDetId id(d);
     const int st(detIdToMEStation(id.station(), id.ring()));
     if (stations_to_use_.count(st) == 0) continue;
+    if (id.region()==0) continue;
     //meanstrip in rpc 
     auto rpcdigis = match_rd.digisInDetId(id); 
     int rpc_medianstrip(match_rd.median(rpcdigis));
