@@ -204,6 +204,8 @@ SimHitMatcher::matchSimHitsToSimTrack(std::vector<unsigned int> track_ids,
       GEMDetId superch_id(p_id.region(), p_id.ring(), p_id.station(), 1, p_id.chamber(), 0);
       gem_superchamber_to_hits_[ superch_id() ].push_back(h);
     }
+
+    runRPCSimHit_ = true;
     if (runRPCSimHit_) for (auto& h: rpc_hits)
     {
       if (h.trackId() != track_id) continue;
@@ -435,16 +437,16 @@ SimHitMatcher::hitsInDetIdDT(unsigned int detid) const
     DTWireId id(detid);
     if (dt_detid_to_hits_.find(detid) == dt_detid_to_hits_.end())
         {
-        std::cout<<" There are no hits in detid: "<<id<<" or "<<detid<<std::endl;
          return no_hits_;
         }
-    std::cout<<" There are hits on "<<id<<" or "<<detid<<std::endl;
     return dt_detid_to_hits_.at(detid);
 
  }
 
  return no_hits_;
 }
+
+
 
 
 
@@ -493,12 +495,29 @@ for(auto& h: sim_hits) {
     GlobalVector globalMomentum = dtGeometry_->idToDet(h.detUnitId())->surface().toGlobal(h.momentumAtEntry());
     //std::cout<<" PT GP"<<std::endl;
     return globalMomentum;
-    }
-    std::cout<<"Didn't work"<<std::endl;
-    return GlobalVector();
+}
+
+return GlobalVector();
 
 }
 
+
+
+GlobalVector
+SimHitMatcher::detDTRPCGlobalPT(const edm::PSimHitContainer& sim_hits) const
+{
+
+if (sim_hits.empty()) return GlobalVector();;
+
+for(auto& h: sim_hits) {
+    GlobalVector globalMomentum = rpcGeometry_->idToDet(h.detUnitId())->surface().toGlobal(h.momentumAtEntry());
+    //std::cout<<" PT GP"<<std::endl;
+    return globalMomentum;
+}
+
+return GlobalVector();
+
+}
 
 
 //DT 

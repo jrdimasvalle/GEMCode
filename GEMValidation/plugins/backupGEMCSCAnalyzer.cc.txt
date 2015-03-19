@@ -79,39 +79,6 @@ struct MyTrackEffDT
  Int_t event;
  Char_t charge_dt;
 
- Char_t has_rpc_sh_dt;
-
-
- Float_t x_gp_rpc;
- Float_t y_gp_rpc;
- Float_t z_gp_rpc;
- Float_t r_gp_rpc;
- Float_t eta_gp_rpc;
- Float_t phi_gp_rpc;
- Float_t pt_gv_rpc;
- Float_t phi_gv_rpc;
- Float_t eta_gv_rpc;
- Float_t deltaphi_dt_rpc_gv;
- Float_t deltaphi_dt_rpc_gp;
- Float_t deltaphi_first_second_gv;
- Float_t deltaphi_first_second_gp;
- Float_t deltaphi_first_third_gv;
- Float_t deltaphi_first_third_gp;
- Float_t deltaphi_first_fourth_gv;
- Float_t deltaphi_first_fourth_gp;
- 
- Char_t has_second_dtst_hit;
- Char_t has_third_dtst_hit;
- Char_t has_fourth_dtst_hit;
-
- Float_t pt_calculated_rpc;
- Float_t pt_calculated_dt;
- Float_t pt_calculated_dt_12;
- Float_t pt_calculated_dt_14;
- Float_t pt_calculated_dt_13;
-
-
-
  Double_t dtvertex_x;
  Double_t dtvertex_y;
  Double_t dtvertex_z;
@@ -124,6 +91,7 @@ struct MyTrackEffDT
  Float_t deltaphi_h_g;
  Float_t deltaphi_t_h;
  Float_t deltaphi_t_g;
+ Float_t deltar_;
  Float_t pt_gv;
  Float_t apt_SimTrack_dt;
  Float_t phi_gv;
@@ -131,11 +99,76 @@ struct MyTrackEffDT
  Float_t r_gp;
  Float_t phi_gp;
 
+ Float_t s_phi_gp;
+ Float_t s_phi_gv;
+ Float_t deltaphi_frist_second_gv;
+ Float_t deltaphi_frist_second_gp;
+ Float_t s_deltaphi_h_g;
+ Float_t s_eta_gv;
+ Float_t s_pt_gv;
+ Float_t s_eta_gp;
+ Int_t s_wheel;
+ Int_t s_station;
+ Float_t s_x_gp;
+ Float_t s_y_gp;
+ Float_t s_z_gp;
+ Float_t s_r_gp;
+ Char_t s_has_dt_sh;
+ Float_t s_z_gv;
+ Float_t s_y_gv;
+ Float_t s_x_gv;
+
+ Float_t t_phi_gp;
+ Float_t t_phi_gv;
+ Float_t deltaphi_frist_third_gv;
+ Float_t deltaphi_frist_third_gp;
+ Float_t t_deltaphi_h_g;
+ Float_t t_eta_gv;
+ Float_t t_pt_gv;
+ Float_t t_eta_gp;
+ Int_t t_wheel;
+ Int_t t_station;
+ Float_t t_x_gp;
+ Float_t t_y_gp;
+ Float_t t_z_gp;
+ Float_t t_r_gp;
+ Char_t t_has_dt_sh;
+ Float_t t_z_gv;
+ Float_t t_y_gv;
+ Float_t t_x_gv;
+
+ Float_t f_phi_gp;
+ Float_t f_phi_gv;
+ Float_t deltaphi_frist_fourth_gv;
+ Float_t deltaphi_frist_fourth_gp;
+ Float_t f_deltaphi_h_g;
+ Float_t f_eta_gv;
+ Float_t f_pt_gv;
+ Float_t f_eta_gp;
+ Int_t f_wheel;
+ Int_t f_station;
+ Float_t f_x_gp;
+ Float_t f_y_gp;
+ Float_t f_z_gp;
+ Float_t f_r_gp;
+ Char_t f_has_dt_sh;
+ Float_t f_z_gv;
+ Float_t f_y_gv;
+ Float_t f_x_gv;
+
+ Float_t deltaphiSecondHit;
+ Float_t dt_pT_as_12;
+ Float_t dt_pT_as_13;
+ Float_t dt_pT_as_1phi;
+ Float_t dt_pT_as_14;
  Float_t pt_SimTrack_dt;
  Float_t eta_SimTrack_dt;
  Float_t phi_SimTrack_dt;
+ Char_t barrel;
  Char_t has_dt_sh;
  Char_t nlayerdt;
+ Float_t GlobalEta_dt;
+ Float_t GlobalPhi_dt;
  Float_t R_gv;
  Float_t Z_gv;
  Float_t X_gv;
@@ -277,36 +310,72 @@ void MyTrackEffDT::init()
  pt_gv= -9.;
  z_gp = -9900.;
  deltaphi_h_g = -9.;
+ deltar_ = -999.;
  apt_SimTrack_dt=-999;
  charge_dt = -99;
+
+ s_eta_gv = -99.;
+ s_pt_gv = - 999.;
+ s_eta_gp = - 99.;
+ s_wheel = - 99;
+ s_station = - 99;
+ s_x_gp = -9999.;
+ s_y_gp = - 9999.;
+ s_z_gp = - 9999.;
+ s_r_gp= - 9999.;
+ s_phi_gv = -9.;
+ s_phi_gp=-9.;
+ deltaphi_frist_second_gv= - 999.;
+ deltaphi_frist_second_gp= - 999.;
+ s_deltaphi_h_g = -999;
+ s_has_dt_sh = 0;
+ s_x_gv = - 9999.;
+ s_y_gv= - 9999.;
+ s_z_gv = - 9999.;
  
- has_rpc_sh_dt=0;
- x_gp_rpc=-9999.;
- y_gp_rpc=-9999.;
- z_gp_rpc=-9999.;
- r_gp_rpc=-9999.;
- eta_gp_rpc=-9999.;
- phi_gp_rpc=-9999.;
- pt_gv_rpc=-9999.;
- phi_gv_rpc=-9999.;
- eta_gv_rpc=-9999.;
- deltaphi_dt_rpc_gp = - 9999.;
- deltaphi_dt_rpc_gv=-9999.;
- deltaphi_first_second_gv=-9990.;
- deltaphi_first_second_gp=-9990.;
- deltaphi_first_third_gv=-9990.;
- deltaphi_first_third_gp=-9999.;
- deltaphi_first_fourth_gv=-9999.;
- deltaphi_first_fourth_gp=-9999.;
- has_second_dtst_hit=0;
- has_third_dtst_hit=0;
- has_fourth_dtst_hit=0;
- 
- pt_calculated_rpc=0;
- pt_calculated_dt=0;
- pt_calculated_dt_12=0;
- pt_calculated_dt_13=0;
- pt_calculated_dt_14=0;
+ t_phi_gp=-9.;
+ t_phi_gv=-9.;
+ deltaphi_frist_third_gv=-999.;
+ deltaphi_frist_third_gp=-999.;
+ t_deltaphi_h_g=-999;
+ t_eta_gv= - 9.;
+ t_pt_gv = - 999.;
+ t_eta_gp = -9.;
+ t_wheel = -99;
+ t_station = -99;
+ t_x_gp = - 9999.;
+ t_y_gp = -9999.;
+ t_z_gp = -9999.;
+ t_r_gp = -9999.;
+ t_has_dt_sh = 0;
+ t_z_gv=-9999.;
+ t_y_gv=-9999.;
+ t_x_gv=-9999.;
+
+ f_phi_gp=-9.;
+ f_phi_gv=-9.;
+ deltaphi_frist_fourth_gv=-999.;
+ deltaphi_frist_fourth_gp=-999.;
+ f_deltaphi_h_g=-999;
+ f_eta_gv= - 9.;
+ f_pt_gv = - 999.;
+ f_eta_gp = -9.;
+ f_wheel = -99;
+ f_station = -99;
+ f_x_gp = - 9999.;
+ f_y_gp = -9999.;
+ f_z_gp = -9999.;
+ f_r_gp = -9999.;
+ f_has_dt_sh = 0;
+ f_z_gv=-9999.;
+ f_y_gv=-9999.;
+ f_x_gv=-9999.;
+
+ dt_pT_as_12=-999.;
+ dt_pT_as_13=-999.;
+ dt_pT_as_1phi=-999.;
+ dt_pT_as_14=-999.;
+ deltaphiSecondHit = - 999.;
  x_gp = -9900.;
  y_gp = -9900.;
  r_gp = -9900.;
@@ -316,8 +385,11 @@ void MyTrackEffDT::init()
  dtvertex_y=-9999;
  dtvertex_z=-9999;
  dtvertex_r=-9999;
+ barrel= -9;
  has_dt_sh=0;
  nlayerdt = 0;
+ GlobalEta_dt=-99.;
+ GlobalPhi_dt=-99.;
  R_gv=-9999.;
  Z_gv=-9999.;
  X_gv=-9999.;
@@ -447,36 +519,68 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("pt_SimTrack_dt", &pt_SimTrack_dt);
   t->Branch("eta_gv", &eta_gv);
  
+  t->Branch("s_eta_gv", &s_eta_gv);
+  t->Branch("s_pt_gv", &s_pt_gv);
+  t->Branch("s_eta_gp", &s_eta_gp);
+  t->Branch("s_x_gp", &s_x_gp);
+  t->Branch("s_y_gp", &s_y_gp);
+  t->Branch("s_z_gp", &s_z_gp);
+  t->Branch("s_r_gp", &s_r_gp);
+  t->Branch("s_wheel", &s_wheel);
+  t->Branch("s_station", &s_station);
+  t->Branch("s_phi_gv", &s_phi_gv);
+  t->Branch("s_deltaphi_h_g", &s_deltaphi_h_g);
+  t->Branch("s_y_gv", &s_y_gv);
+  t->Branch("s_x_gv", &s_x_gv);
+  t->Branch("s_z_gv", &s_z_gv);
+  t->Branch("s_has_dt_sh", &s_has_dt_sh);
+  t->Branch("s_phi_gp", &s_phi_gp);
+  t->Branch("deltaphi_frist_second_gv", &deltaphi_frist_second_gv);
+  t->Branch("deltaphi_frist_second_gp", &deltaphi_frist_second_gp);
+  
+  t->Branch("t_eta_gv", &t_eta_gv);
+  t->Branch("t_pt_gv", &t_pt_gv);
+  t->Branch("t_eta_gp", &t_eta_gp);
+  t->Branch("t_x_gp", &t_x_gp);
+  t->Branch("t_y_gp", &t_y_gp);
+  t->Branch("t_z_gp", &t_z_gp);
+  t->Branch("t_r_gp", &t_r_gp);
+  t->Branch("t_wheel", &t_wheel);
+  t->Branch("t_station", &t_station);
+  t->Branch("t_phi_gv", &t_phi_gv);
+  t->Branch("t_deltaphi_h_g", &t_deltaphi_h_g);
+  t->Branch("t_y_gv", &t_y_gv);
+  t->Branch("t_x_gv", &t_x_gv);
+  t->Branch("t_z_gv", &t_z_gv);
+  t->Branch("t_has_dt_sh", &t_has_dt_sh);
+  t->Branch("t_phi_gp", &t_phi_gp);
+  t->Branch("deltaphi_frist_third_gv", &deltaphi_frist_third_gv);
+  t->Branch("deltaphi_frist_third_gp", &deltaphi_frist_third_gp);
 
-  t->Branch("has_rpc_sh_dt", &has_rpc_sh_dt);
-  t->Branch("x_gp_rpc", &x_gp_rpc);
-  t->Branch("y_gp_rpc", &y_gp_rpc);
-  t->Branch("z_gp_rpc", &z_gp_rpc);
-  t->Branch("r_gp_rpc", &r_gp_rpc);
-  t->Branch("eta_gp_rpc", &eta_gp_rpc);
-  t->Branch("phi_gp_rpc", &phi_gp_rpc);
-  t->Branch("pt_gv_rpc", &pt_gv_rpc);
-  t->Branch("eta_gv_rpc", &eta_gv_rpc);
-  t->Branch("phi_gv_rpc", &phi_gv_rpc);
-  t->Branch("deltaphi_dt_rpc_gv", &deltaphi_dt_rpc_gv);
-  t->Branch("deltaphi_dt_rpc_gp", &deltaphi_dt_rpc_gp);
-  t->Branch("deltaphi_first_second_gv", &deltaphi_first_second_gv);
-  t->Branch("deltaphi_first_second_gp", &deltaphi_first_second_gp);
-  t->Branch("deltaphi_first_third_gv", &deltaphi_first_third_gv);
-  t->Branch("deltaphi_first_third_gp", &deltaphi_first_third_gp);
-  t->Branch("deltaphi_first_fourth_gv", &deltaphi_first_fourth_gv);
-  t->Branch("deltaphi_first_fourth_gp", &deltaphi_first_fourth_gp);
+  t->Branch("f_eta_gv", &f_eta_gv);
+  t->Branch("f_pt_gv", &f_pt_gv);
+  t->Branch("f_eta_gp", &f_eta_gp);
+  t->Branch("f_x_gp", &f_x_gp);
+  t->Branch("f_y_gp", &f_y_gp);
+  t->Branch("f_z_gp", &f_z_gp);
+  t->Branch("f_r_gp", &f_r_gp);
+  t->Branch("f_wheel", &f_wheel);
+  t->Branch("f_station", &f_station);
+  t->Branch("f_phi_gv", &f_phi_gv);
+  t->Branch("f_deltaphi_h_g", &f_deltaphi_h_g);
+  t->Branch("f_y_gv", &f_y_gv);
+  t->Branch("f_x_gv", &f_x_gv);
+  t->Branch("f_z_gv", &f_z_gv);
+  t->Branch("f_has_dt_sh", &f_has_dt_sh);
+  t->Branch("f_phi_gp", &f_phi_gp);
+  t->Branch("deltaphi_frist_fourth_gv", &deltaphi_frist_fourth_gv);
+  t->Branch("deltaphi_frist_fourth_gp", &deltaphi_frist_fourth_gp);
 
-  t->Branch("has_second_dtst_hit", &has_second_dtst_hit);
-  t->Branch("has_third_dtst_hit", &has_third_dtst_hit);
-  t->Branch("has_fourth_dtst_hit", &has_fourth_dtst_hit);
-
-  t->Branch("pt_calculated_rpc", &pt_calculated_rpc);
-  t->Branch("pt_calculated_dt", &pt_calculated_dt);
-  t->Branch("pt_calculated_dt_12", &pt_calculated_dt_12);
-  t->Branch("pt_calculated_dt_13", &pt_calculated_dt_13);
-  t->Branch("pt_calculated_dt_14", &pt_calculated_dt_14);
-
+  t->Branch("deltaphiSecondHit", &deltaphiSecondHit);
+  t->Branch("dt_pT_as12", &dt_pT_as_12);
+  t->Branch("dt_pT_as13", &dt_pT_as_13);
+  t->Branch("dt_pT_as1phi", &dt_pT_as_1phi);
+  t->Branch("dt_pT_as14", &dt_pT_as_14);
 
   t->Branch("pt_gv", &pt_gv);
   t->Branch("phi_gv", &phi_gv);
@@ -489,13 +593,17 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("dtvertex_r", &dtvertex_r);
   t->Branch("deltaphi_h_g", &deltaphi_h_g);
   t->Branch("z_gp", &z_gp);
+  t->Branch("deltar_", &deltar_);
   t->Branch("x_gp", &x_gp);
   t->Branch("y_gp", &y_gp);
   t->Branch("r_gp", &r_gp);
   t->Branch("phi_gp", &phi_gp);
   t->Branch("phi_SimTrack_dt", &phi_SimTrack_dt);
+  t->Branch("barrel", &barrel);
   t->Branch("has_dt_sh", &has_dt_sh);
   t->Branch("nlayerdt", &nlayerdt);
+  t->Branch("GlobalEta_dt", &GlobalEta_dt);
+  t->Branch("GlobalPhi_dt", &GlobalPhi_dt);
   t->Branch("R_gv", &R_gv);
   t->Branch("Z_gv", &Z_gv);
   t->Branch("X_gv", &X_gv);
@@ -945,7 +1053,7 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_[s].endcap = (etrk_[s].eta > 0.) ? 1 : -1;
   }
 
-  //DT Changes: SimTrack
+  //DT Changes
   for (auto asdt: stationsdt_to_use_)
     {
     etrk_dt_[asdt].init();
@@ -972,10 +1080,10 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     auto pphi = t.momentum().phi();
     etrk_dt_[asdt].dt_dxy = vtx_dt*sin(pphi) - vty_dt*cos(pphi);
      
-    } // End of Track info 
+    } // End of Track info t. algo
 
 
-    //DT Changes: SimHit
+    //DT Changes
   auto dt_simhits(match_sh.layerIdsDT());
   for (auto ddt: dt_simhits)
   {
@@ -1010,39 +1118,20 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
     etrk_dt_[stdt].Y_gv = ym.y();
     etrk_dt_[stdt].deltaphi_h_g = hitGp.phi() - ym.phi();     //This one
 
-    etrk_dt_[stdt].pt_calculated_dt = (1/(hitGp.phi() - ym.phi()))*1.4025845 + 0.674463;
 
-    auto rpc_ch_ids = match_sh.chamberIdsRPC();
-    for (auto drp:rpc_ch_ids) //Looking for a second hit in RPC
-    {
-      RPCDetId idrp(drp);
-      const int stdt(detIdToMBStation(idrp.ring(), idrp.station()));
-      if (stationsdt_to_use_.count(stdt) == 0) continue;
-      if(!(iddt.wheel() == idrp.ring()) or !(iddt.station()==idrp.station())) continue;  //Same RPC Station to DT Station
-      if (!((match_sh.hitsInChamber(drp)).size() >0 )) continue ; //It has to have hits there unless it's not only muon
-    
-      GlobalPoint hitGp_rpc = match_sh.simHitsMeanPosition(match_sh.hitsInChamber(drp));
-      GlobalVector ym_rpc = match_sh.detDTRPCGlobalPT(match_sh.hitsInChamber(drp));
-      etrk_dt_[stdt].has_rpc_sh_dt = 1;
-      etrk_dt_[stdt].x_gp_rpc = hitGp_rpc.x();
-      etrk_dt_[stdt].y_gp_rpc = hitGp_rpc.y();
-      etrk_dt_[stdt].z_gp_rpc = hitGp_rpc.z();
-      etrk_dt_[stdt].r_gp_rpc = hitGp_rpc.perp();
-      etrk_dt_[stdt].eta_gp_rpc = hitGp_rpc.eta();
-      etrk_dt_[stdt].phi_gp_rpc = hitGp_rpc.phi();
-      etrk_dt_[stdt].pt_gv_rpc = ym_rpc.perp();
-      etrk_dt_[stdt].phi_gv_rpc = ym_rpc.phi();
-      etrk_dt_[stdt].eta_gv_rpc = ym_rpc.eta();
-      etrk_dt_[stdt].deltaphi_dt_rpc_gv = -ym_rpc.phi() + ym.phi();
-      etrk_dt_[stdt].deltaphi_dt_rpc_gp = -hitGp_rpc.phi() + hitGp.phi();
-      etrk_dt_[stdt].pt_calculated_rpc = 0.0102010/( -hitGp_rpc.phi() + hitGp.phi()) + 0.67960267;
+        if(t.charge() < 0){
+            etrk_dt_[stdt].dt_pT_as_1phi = 1.58461682227 + 1.25341888996/(hitGp.phi() - ym.phi());
 
+        }else{
+            etrk_dt_[stdt].dt_pT_as_1phi = 1.58461682227 + 1.25341888996/(hitGp.phi() - ym.phi());
 
-    } // End of Second Station on  RPC SimHit
+        }
 
+    //Second hit search:
+    int prevv=0;
+    float phiSecond=-999.;
 
-
-    for (auto s_ddt: dt_simhits) // Looking for a second hit in DT stations 
+    for (auto s_ddt: dt_simhits)
     {
 
       DTWireId s_iddt(s_ddt);
@@ -1051,44 +1140,131 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
       int s_nlayersdtch = match_sh.nLayerWithHitsInLayerDT(s_ddt);
       int d_nlayersdtch = match_sh.nLayerWithHitsInLayerDT(ddt);
 
-
+    
       if(s_nlayersdtch == 0) continue; // Check to have hits in the secondary chamber
       if(d_nlayersdtch == 0) continue; //Check that has hits in previous one
       if(iddt.wheel()==s_iddt.wheel() and iddt.station()==s_iddt.station()) continue; //Not to count double hits in the same chamber
-
+      
 
       if(s_iddt.station() == 2){
             GlobalPoint s_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
             GlobalVector s_ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(s_ddt));
-            etrk_dt_[stdt].has_second_dtst_hit = 1;
-            etrk_dt_[stdt].deltaphi_first_second_gv= -s_ym.phi() + ym.phi();
-            etrk_dt_[stdt].deltaphi_first_second_gp=  hitGp.phi() - s_hitGp.phi();
-            etrk_dt_[stdt].pt_calculated_dt_12 = (1/( -s_ym.phi() + ym.phi()))*0.160453 + 3.174856;
-        }
+            etrk_dt_[stdt].s_eta_gv = s_ym.eta();
+            etrk_dt_[stdt].s_pt_gv = s_ym.perp();
+            etrk_dt_[stdt].s_eta_gp = s_hitGp.eta();
+            etrk_dt_[stdt].s_wheel = s_iddt.wheel();
+            etrk_dt_[stdt].s_station = s_iddt.station();
+            etrk_dt_[stdt].s_x_gp = s_hitGp.x();
+            etrk_dt_[stdt].s_y_gp = s_hitGp.y();
+            etrk_dt_[stdt].s_z_gp = s_hitGp.z();
+            etrk_dt_[stdt].s_r_gp = s_hitGp.perp();
+            etrk_dt_[stdt].s_phi_gv = s_ym.phi();
+            etrk_dt_[stdt].s_phi_gp = s_hitGp.phi();
+            etrk_dt_[stdt].s_x_gv = s_ym.x();
+            etrk_dt_[stdt].s_y_gv = s_ym.y();
+            etrk_dt_[stdt].s_z_gv = s_ym.z();
+            etrk_dt_[stdt].s_deltaphi_h_g = s_hitGp.phi() - s_ym.phi();     //This one
+            etrk_dt_[stdt].s_has_dt_sh = 1;
+            etrk_dt_[stdt].deltaphi_frist_second_gp = hitGp.phi() - s_hitGp.phi();
+            etrk_dt_[stdt].deltaphi_frist_second_gv = -s_ym.phi() + ym.phi(); 
 
-      if(s_iddt.station() == 3){
+            phiSecond = s_ym.phi();
+            if(t.charge() < 0){
+                etrk_dt_[stdt].dt_pT_as_12 = 3.4470254367 + 0.158894758479/(s_ym.phi() - ym.phi());
+
+            }else{
+                etrk_dt_[stdt].dt_pT_as_12 = 3.4470254367 - 0.158894758479/(s_ym.phi() - ym.phi());
+
+            }
+
+
+       }
+
+    
+     if(s_iddt.station() == 3){
             GlobalPoint t_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
             GlobalVector t_ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(s_ddt));
-            etrk_dt_[stdt].has_third_dtst_hit = 1;
-            etrk_dt_[stdt].deltaphi_first_third_gv= -t_ym.phi() + ym.phi();
-            etrk_dt_[stdt].deltaphi_first_third_gp=  hitGp.phi() - t_hitGp.phi();
-            etrk_dt_[stdt].pt_calculated_dt_13 = (1/( -t_ym.phi() + ym.phi()))*0.4112057 + 3.599571;
-        }
+            etrk_dt_[stdt].t_eta_gv = t_ym.eta();
+            etrk_dt_[stdt].t_pt_gv = t_ym.perp();
+            etrk_dt_[stdt].t_eta_gp = t_hitGp.eta();
+            etrk_dt_[stdt].t_wheel = s_iddt.wheel();
+            etrk_dt_[stdt].t_station = s_iddt.station();
+            etrk_dt_[stdt].t_x_gp = t_hitGp.x();
+            etrk_dt_[stdt].t_y_gp = t_hitGp.y();
+            etrk_dt_[stdt].t_z_gp = t_hitGp.z();
+            etrk_dt_[stdt].t_r_gp = t_hitGp.perp();
+            etrk_dt_[stdt].t_phi_gv = t_ym.phi();
+            etrk_dt_[stdt].t_phi_gp = t_hitGp.phi();
+            etrk_dt_[stdt].t_x_gv = t_ym.x();
+            etrk_dt_[stdt].t_y_gv = t_ym.y();
+            etrk_dt_[stdt].t_z_gv = t_ym.z();
+            etrk_dt_[stdt].t_deltaphi_h_g = t_hitGp.phi() - t_ym.phi();     //This one
+            etrk_dt_[stdt].t_has_dt_sh = 1;
+            etrk_dt_[stdt].deltaphi_frist_third_gp = hitGp.phi() - t_hitGp.phi();
+            etrk_dt_[stdt].deltaphi_frist_third_gv = -t_ym.phi() + ym.phi();
+
+            phiSecond = t_ym.phi();
+
+           if(t.charge() < 0){
+                etrk_dt_[stdt].dt_pT_as_13 = 4.02092513589 + 0.35831829711/(t_ym.phi() - ym.phi());
+
+            }else{
+                etrk_dt_[stdt].dt_pT_as_13 = 4.02092513589 - 0.35831829711/(t_ym.phi() - ym.phi());
+
+            }
+       }
+
 
       if(s_iddt.station() == 4){
             GlobalPoint f_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
             GlobalVector f_ym = match_sh.detDTGlobalPT(match_sh.hitsInLayerDT(s_ddt));
-            etrk_dt_[stdt].has_fourth_dtst_hit = 1;
-            etrk_dt_[stdt].deltaphi_first_fourth_gv= -f_ym.phi() + ym.phi();
-            etrk_dt_[stdt].deltaphi_first_fourth_gp=  hitGp.phi() - f_hitGp.phi();
-            etrk_dt_[stdt].pt_calculated_dt_14 = (1/( -f_ym.phi() + ym.phi()))*0.656863 + 4.1039583;
+            etrk_dt_[stdt].f_eta_gv = f_ym.eta();
+            etrk_dt_[stdt].f_pt_gv = f_ym.perp();
+            etrk_dt_[stdt].f_eta_gp = f_hitGp.eta();
+            etrk_dt_[stdt].f_wheel = s_iddt.wheel();
+            etrk_dt_[stdt].f_station = s_iddt.station();
+            etrk_dt_[stdt].f_x_gp = f_hitGp.x();
+            etrk_dt_[stdt].f_y_gp = f_hitGp.y();
+            etrk_dt_[stdt].f_z_gp = f_hitGp.z();
+            etrk_dt_[stdt].f_r_gp = f_hitGp.perp();
+            etrk_dt_[stdt].f_phi_gv = f_ym.phi();
+            etrk_dt_[stdt].f_phi_gp = f_hitGp.phi();
+            etrk_dt_[stdt].f_x_gv = f_ym.x();
+            etrk_dt_[stdt].f_y_gv = f_ym.y();
+            etrk_dt_[stdt].f_z_gv = f_ym.z();
+            etrk_dt_[stdt].f_deltaphi_h_g = f_hitGp.phi() - f_ym.phi();     //This one
+            etrk_dt_[stdt].f_has_dt_sh = 1;
+            etrk_dt_[stdt].deltaphi_frist_fourth_gp = hitGp.phi() - f_hitGp.phi();
+            etrk_dt_[stdt].deltaphi_frist_fourth_gv = f_ym.phi() - ym.phi();
+            phiSecond = f_ym.phi();
+
+
+           if(t.charge() < 0){
+                etrk_dt_[stdt].dt_pT_as_14 = 2.04500457058 - 0.326117493465/(f_ym.phi() - ym.phi());
+
+            }else{
+                etrk_dt_[stdt].dt_pT_as_14 = 2.04500457058 - 0.326117493465/(f_ym.phi() - ym.phi());
+
+            }
+
+
+
+       }
+
+        if(prevv==0 or (s_iddt.station() < prevv)){
+           etrk_dt_[stdt].deltaphiSecondHit = phiSecond - ym.phi(); 
         }
-
-
-     }   // End of second station on DT SimHit.
-
+ 
+               
+    prevv = s_iddt.station();
+   //std::cout<<"This track has hits on MB"<<iddt.wheel()<<iddt.station()<<" and in MB"<<s_iddt.wheel()<<s_iddt.station()<<std::endl;
+        
+        //std::cout<<"First gp: "<<hitGp.phi()<<" Second gp: "<<s_hitGp.phi()<<std::endl;
+        //std::cout<<"First gv: "<<ym.phi()<<" Second gv: "<<s_ym.phi()<<std::endl;
+        
+    } // End of search for second
     
-  } // End of DT SimHits
+  } // End of DT
 
 
 
