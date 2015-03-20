@@ -100,6 +100,24 @@ struct MyTrackEffDT
  Float_t deltaphi_first_fourth_gv;
  Float_t deltaphi_first_fourth_gp;
  
+ Float_t wheel_second;
+ Float_t eta_gv_second;
+ Float_t phi_gv_second;
+ Float_t eta_gp_second;
+ Float_t phi_gp_second;
+
+ Float_t wheel_third;
+ Float_t eta_gv_third;
+ Float_t phi_gv_third;
+ Float_t phi_gp_third;
+ Float_t eta_gp_third;
+
+ Float_t wheel_fourth;
+ Float_t eta_gv_fourth;
+ Float_t phi_gv_fourth;
+ Float_t eta_gp_fourth;
+ Float_t phi_gp_fourth;
+ 
  Char_t has_second_dtst_hit;
  Char_t has_third_dtst_hit;
  Char_t has_fourth_dtst_hit;
@@ -302,6 +320,24 @@ void MyTrackEffDT::init()
  has_third_dtst_hit=0;
  has_fourth_dtst_hit=0;
  
+ wheel_second = -99;
+ phi_gp_second= - 9999.;
+ eta_gp_second = - 99.;
+ phi_gv_second = - 9999.;
+ eta_gv_second = - 99.;
+
+ wheel_third = -99.;
+ phi_gp_third =  - 9999.;
+ eta_gp_third = -99.;
+ phi_gv_third = - 9999.;
+ eta_gv_third = - 99.;
+
+ wheel_fourth = -99.;
+ phi_gp_fourth = - 9999.;
+ eta_gp_fourth = -99.;
+ phi_gv_fourth = - 9999.;
+ eta_gv_fourth = -99.;
+
  pt_calculated_rpc=0;
  pt_calculated_dt=0;
  pt_calculated_dt_12=0;
@@ -470,6 +506,25 @@ TTree*MyTrackEffDT::book(TTree *t,const std::string & name)
   t->Branch("has_second_dtst_hit", &has_second_dtst_hit);
   t->Branch("has_third_dtst_hit", &has_third_dtst_hit);
   t->Branch("has_fourth_dtst_hit", &has_fourth_dtst_hit);
+
+  t->Branch("wheel_second", &wheel_second);
+  t->Branch("eta_gv_second", &eta_gv_second);
+  t->Branch("eta_gp_second", &eta_gp_second);
+  t->Branch("phi_gv_second", &phi_gv_second);
+  t->Branch("eta_gv_second", &eta_gv_second);
+
+  t->Branch("wheel_third", &wheel_third);
+  t->Branch("eta_gv_third", &eta_gv_third);
+  t->Branch("eta_gp_third", &eta_gp_third);
+  t->Branch("phi_gv_third", &phi_gv_third);
+  t->Branch("eta_gv_third", &eta_gv_third);
+
+  t->Branch("wheel_fourth", &wheel_fourth);
+  t->Branch("eta_gv_fourth", &eta_gv_fourth);
+  t->Branch("eta_gp_fourth", &eta_gp_fourth);
+  t->Branch("phi_gv_fourth", &phi_gv_fourth);
+  t->Branch("eta_gv_fourth", &eta_gv_fourth);
+
 
   t->Branch("pt_calculated_rpc", &pt_calculated_rpc);
   t->Branch("pt_calculated_dt", &pt_calculated_dt);
@@ -1018,7 +1073,8 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
       RPCDetId idrp(drp);
       const int stdt(detIdToMBStation(idrp.ring(), idrp.station()));
       if (stationsdt_to_use_.count(stdt) == 0) continue;
-      if(!(iddt.wheel() == idrp.ring()) or !(iddt.station()==idrp.station())) continue;  //Same RPC Station to DT Station
+      if(!(iddt.wheel() == idrp.ring())) continue; // Same ring/wheel that the DT
+      if(!(iddt.station()==idrp.station())) continue;  //Same RPC Station to DT Station
       if (!((match_sh.hitsInChamber(drp)).size() >0 )) continue ; //It has to have hits there unless it's not only muon
     
       GlobalPoint hitGp_rpc = match_sh.simHitsMeanPosition(match_sh.hitsInChamber(drp));
@@ -1037,25 +1093,19 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
       etrk_dt_[stdt].deltaphi_dt_rpc_gp = -hitGp_rpc.phi() + hitGp.phi();
       etrk_dt_[stdt].pt_calculated_rpc = 0.0102010/( -hitGp_rpc.phi() + hitGp.phi()) + 0.67960267;
 
-
     } // End of Second Station on  RPC SimHit
-
-
 
     for (auto s_ddt: dt_simhits) // Looking for a second hit in DT stations 
     {
-
       DTWireId s_iddt(s_ddt);
       const int s_stdt(detIdToMBStation(s_iddt.wheel(),s_iddt.station()));
       if (stationsdt_to_use_.count(s_stdt) == 0) continue;
       int s_nlayersdtch = match_sh.nLayerWithHitsInLayerDT(s_ddt);
       int d_nlayersdtch = match_sh.nLayerWithHitsInLayerDT(ddt);
 
-
       if(s_nlayersdtch == 0) continue; // Check to have hits in the secondary chamber
       if(d_nlayersdtch == 0) continue; //Check that has hits in previous one
       if(iddt.wheel()==s_iddt.wheel() and iddt.station()==s_iddt.station()) continue; //Not to count double hits in the same chamber
-
 
       if(s_iddt.station() == 2){
             GlobalPoint s_hitGp = match_sh.detidToGlobalDT(match_sh.hitsInLayerDT(s_ddt));
@@ -1064,6 +1114,11 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
             etrk_dt_[stdt].deltaphi_first_second_gv= -s_ym.phi() + ym.phi();
             etrk_dt_[stdt].deltaphi_first_second_gp=  hitGp.phi() - s_hitGp.phi();
             etrk_dt_[stdt].pt_calculated_dt_12 = (1/( -s_ym.phi() + ym.phi()))*0.160453 + 3.174856;
+            etrk_dt_[stdt].wheel_second = s_iddt.wheel();
+            etrk_dt_[stdt].phi_gp_second = s_hitGp.phi();
+            etrk_dt_[stdt].eta_gp_second = s_hitGp.eta();
+            etrk_dt_[stdt].phi_gv_second = s_ym.phi();
+            etrk_dt_[stdt].eta_gv_second = s_ym.eta();
         }
 
       if(s_iddt.station() == 3){
@@ -1073,6 +1128,11 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
             etrk_dt_[stdt].deltaphi_first_third_gv= -t_ym.phi() + ym.phi();
             etrk_dt_[stdt].deltaphi_first_third_gp=  hitGp.phi() - t_hitGp.phi();
             etrk_dt_[stdt].pt_calculated_dt_13 = (1/( -t_ym.phi() + ym.phi()))*0.4112057 + 3.599571;
+            etrk_dt_[stdt].wheel_third = s_iddt.wheel();
+            etrk_dt_[stdt].phi_gp_third = t_hitGp.phi();
+            etrk_dt_[stdt].eta_gp_third = t_hitGp.eta();
+            etrk_dt_[stdt].phi_gv_third = t_ym.phi();
+            etrk_dt_[stdt].eta_gv_third = t_ym.eta();
         }
 
       if(s_iddt.station() == 4){
@@ -1082,6 +1142,11 @@ void GEMCSCAnalyzer::analyzeTrackEff(SimTrackMatchManager& match, int trk_no)
             etrk_dt_[stdt].deltaphi_first_fourth_gv= -f_ym.phi() + ym.phi();
             etrk_dt_[stdt].deltaphi_first_fourth_gp=  hitGp.phi() - f_hitGp.phi();
             etrk_dt_[stdt].pt_calculated_dt_14 = (1/( -f_ym.phi() + ym.phi()))*0.656863 + 4.1039583;
+            etrk_dt_[stdt].wheel_fourth = s_iddt.wheel();
+            etrk_dt_[stdt].phi_gp_fourth = f_hitGp.phi();
+            etrk_dt_[stdt].eta_gp_fourth = f_hitGp.eta();
+            etrk_dt_[stdt].phi_gv_fourth = f_ym.phi();
+            etrk_dt_[stdt].eta_gv_fourth = f_ym.eta();
         }
 
 
