@@ -32,6 +32,11 @@ public:
   
   ~SimHitMatcher();
 
+
+  GlobalPoint DTSegmentsGlobalPosition(const LocalPoint lp, unsigned int detid ) const;
+  GlobalVector DTSegmentsGlobalVector(const LocalVector lv, unsigned int detid ) const;
+
+
   /// access to all the Muon SimHits (use MuonSubdetId::SubSystem)
   const edm::PSimHitContainer& simHits(enum MuonType) const;
   /// access to all the GEM SimHits
